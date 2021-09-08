@@ -1,0 +1,26 @@
+{
+    "name": "vicebrary",
+    "version": "1.0.0",
+    "description": "A personal library to store information regarding your vices.",
+    "main": "/server/server.js",
+    "scripts": {
+        "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run start\"",
+        "install": "cd server && npm i && cd ../client && npm i",
+        "build": "cd client && npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Max-Effort/Vicebrary.git"
+    },
+    "author": "Max-Effort",
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/Max-Effort/Vicebrary/issues"
+    },
+    "homepage": "https://github.com/Max-Effort/Vicebrary#readme",
+    "dependencies": {
+        "concurrently": "^6.2.1",
+        "writemereadme": "^1.5.0"
+    }
+}
