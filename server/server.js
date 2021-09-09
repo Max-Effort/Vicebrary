@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
+const logger = require('morgan');
 // const routes = require('./routes');
 require('dotenv').config();
 
@@ -23,7 +24,7 @@ const server = new ApolloServer({
 // applying Apollo middleware here
 server.applyMiddleware({ app });
 
-
+app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

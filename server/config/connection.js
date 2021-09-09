@@ -7,5 +7,5 @@
        //    useCreateIndex: true,
        //    useFindAndModify: false,
    });
-   console.log(mongoose.connection)
+
    module.exports = mongoose.connection;
