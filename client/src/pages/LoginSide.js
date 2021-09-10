@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Auth from '../utils/auth'
+import { useMutation } from '@apollo/react-hooks';
+import { LOGIN_USER } from '../utils/mutations';
 
 function Copyright() {
   return (
@@ -60,6 +63,35 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [validated] = useState('false');
+  const[loginUser, {error}] = useMutation(LOGIN_USER);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await loginUser({
+        variables: { ...userFormData}
+      })
+      console.dir({data});
+
+      Auth.login(data.login.token)
+
+    } catch (e) {
+      console.error(e);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -72,7 +104,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Login In
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate validated={validated} onSubmit={handleFormSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -81,6 +113,8 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
+              onChange={handleInputChange}
+              value={userFormData.email}
               autoComplete="email"
               autoFocus
             />
@@ -93,6 +127,8 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
+              onChange={handleInputChange}
+              value={userFormData.password}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -100,6 +136,7 @@ export default function SignInSide() {
               label="Remember me"
             />
             <Button
+              disabled={!(userFormData.email && userFormData.password)}
               type="submit"
               fullWidth
               variant="contained"
@@ -125,6 +162,7 @@ export default function SignInSide() {
               <Copyright />
             </Box>
           </form>
+            {error && <div>Login failed</div>}
         </div>
       </Grid>
     </Grid>

@@ -4,6 +4,15 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        // Returns All SELF(user data) if token matches
+        Self: async(parent, args, context) => {
+            console.dir({ context })
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                return userData;
+            }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
+        },
         Users: async() => {
             const userData = await db.User.find({});
             return userData;
@@ -13,13 +22,6 @@ const resolvers = {
             // console.log(args.username)
             const userData = await db.User.findOne({ username: args.username });
             return userData;
-        },
-        // Returns All SELF(user data) if token matches
-        Self: async(parent, args, context) => {
-            if (context.user) {
-                const userData = await db.User.findOne({ _id: context.user._id });
-                return userData;
-            }
         },
         Library: async(parent, args, context) => {
             if (context.user) {
