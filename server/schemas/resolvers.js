@@ -1,10 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const db = require('../models');
 const { signToken } = require('../utils/auth');
-const getWineImage = require('../utils/fetchWineImages')
 const SerpApi = require('google-search-results-nodejs');
-const apikey = //See .env file
-    const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
+const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY);
 
 const resolvers = {
     Query: {
