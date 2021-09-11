@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Vicebrary
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -70,7 +70,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Create New Account
           </Typography>
           <form className={classes.form} noValidate>
             <TextField

@@ -4,6 +4,15 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        // Returns All SELF(user data) if token matches
+        Self: async(parent, args, context) => {
+            console.dir({ context })
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                return userData;
+            }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
+        },
         Users: async() => {
             const userData = await db.User.find({});
             return userData;
@@ -14,19 +23,16 @@ const resolvers = {
             const userData = await db.User.findOne({ username: args.username });
             return userData;
         },
-        // Returns All SELF(user data) if token matches
-        Self: async(parent, args, context) => {
-            if (context.user) {
-                const userData = await db.User.findOne({ _id: context.user._id });
-                return userData;
-            }
-        },
         Library: async(parent, args, context) => {
             if (context.user) {
                 const libraryData = await db.Library.findOne({ owner_id: context.user._id });
                 return libraryData;
             }
-        }
+        },
+        Wines: async() => {
+            const wineData = await db.Wine.find({});
+            return wineData;
+        },
     },
 
     Mutation: {
@@ -77,14 +83,19 @@ const resolvers = {
         saveItem: async(parent, args, context) => {
             if (context.user) {
                 const savedItem = await db.Item.create({...args, username: context.user.username });
-
-
-
                 return updatedUser;
             }
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        saveWine: async(parent, args, context) => {
+            // if (context.user) {
+            const savedWine = await db.Wine.create({...args })
+            return savedWine;
+            // }
+            // throw new AuthenticationError('You need to be logged in!');
+
+        }
     }
 }
 
