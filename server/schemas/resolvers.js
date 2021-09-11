@@ -4,24 +4,24 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        Users: async() => {
+        Users: async () => {
             const userData = await db.User.find({});
             return userData;
         },
         // Finds a user that is not SELF
-        User: async(parent, args) => {
+        User: async (parent, args) => {
             // console.log(args.username)
             const userData = await db.User.findOne({ username: args.username });
             return userData;
         },
         // Returns All SELF(user data) if token matches
-        Self: async(parent, args, context) => {
+        Self: async (parent, args, context) => {
             if (context.user) {
                 const userData = await db.User.findOne({ _id: context.user._id });
                 return userData;
             }
         },
-        Library: async(parent, args, context) => {
+        Library: async (parent, args, context) => {
             if (context.user) {
                 const libraryData = await db.Library.findOne({ owner_id: context.user._id });
                 return libraryData;
@@ -30,13 +30,13 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async(parent, args) => {
+        addUser: async (parent, args) => {
             const user = await db.User.create(args);
             const token = signToken(user);
             return { token, user };
             // return user;
         },
-        login: async(parent, { email, password }) => {
+        login: async (parent, { email, password }) => {
             let emailCheck = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email);
             if (emailCheck) {
                 try {
@@ -74,9 +74,9 @@ const resolvers = {
 
             }
         },
-        saveItem: async(parent, args, context) => {
+        saveItem: async (parent, args, context) => {
             if (context.user) {
-                const savedItem = await db.Item.create({...args, username: context.user.username });
+                const savedItem = await db.Item.create({ ...args, username: context.user.username });
 
 
 
