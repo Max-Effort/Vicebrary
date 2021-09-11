@@ -5,14 +5,14 @@ import Auth from "./utils/auth";
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
+import './App.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-import Header from './components/Header';
-import Footer from './components/Footer';
+
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -36,11 +36,11 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Header />
+        
           <div className="App">
             <Switch>
               <Route exact path="/">
-                {loggedIn ? <Redirect to="/login" /> : <Main />}
+                {!loggedIn ? <Redirect to="/login" /> : <Main />}
               </Route>
               <Route path="/login">
                 <LoginSide />
@@ -53,7 +53,7 @@ function App() {
               />
             </Switch>
           </div>
-          <Footer />
+        
         </>
       </Router>
     </ApolloProvider>
