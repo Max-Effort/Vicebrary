@@ -1,6 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const db = require('../models');
 const { signToken } = require('../utils/auth');
+const getWineImage = require('../utils/fetchWineImages')
+const SerpApi = require('google-search-results-nodejs');
+const apikey = //See .env file
+    const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
 
 const resolvers = {
     Query: {
@@ -89,12 +93,32 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         saveWine: async(parent, args, context) => {
-            // if (context.user) {
-            const savedWine = await db.Wine.create({...args })
-            return savedWine;
-            // }
-            // throw new AuthenticationError('You need to be logged in!');
+            let savedWine
+            if (args.imgsrc == '') {
+                const { year, name, type } = args
+                let input = `${year} ${name} ${type}`
+                    // const search = getWineImage(input)
+                search.json({
+                        engine: "google",
+                        q: input,
+                        location: "United States",
+                        google_domain: "google.com",
+                        gl: "us",
+                        hl: "en",
+                        tbm: "isch"
+                    }, async(data) => {
+                        args.imgsrc = data.images_results[0].original
+                        console.log('ARGS: ', args)
+                        savedWine = await db.Wine.create({...args })
+                    })
+                    //! This will always return null, but the information is getting passed to the db
+                return savedWine
+            } else {
 
+                savedWine = await db.Wine.create({...args })
+                console.log('Wine saved:', savedWine)
+                return savedWine;
+            }
         }
     }
 }
