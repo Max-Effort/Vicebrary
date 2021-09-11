@@ -1,9 +1,11 @@
 const SerpApi = require('google-search-results-nodejs');
-const apikey = '' // COPY GAPI_KEY from .env;
+// const apikey = see .env
 const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
-let wineImage
 
-const getWineImage = async(input) => {
+// The input to be passed in is the year+name+type of wine entered
+
+const getWineImage = (input) => {
+
     const params = {
         engine: "google",
         q: input,
@@ -14,24 +16,29 @@ const getWineImage = async(input) => {
         tbm: "isch"
     };
 
-    const callback = (data) => {
-        wineImage = data.images_results[0].original;
-        console.log(wineImage)
-        return
-    }
+    // const callback = (data) => {
+
+    //     wineImage = data.images_results[0].original;
+    //     console.log('callback:', wineImage)
+    // }
 
     // Show result as JSON
-    search.json(params, callback);
+    // return search.json(params, (data) => {
+    //     let myImage = data.images_results[0].original
+    //     console.log('callback:', myImage)
+    //     return myImage
+    // });
+    const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
+    return search
 
-    return wineImage
 }
 
-async function init(input) {
-    let image = await getWineImage(input);
-    return image;
-}
+// async function initGetImage(input) {
+//     let image = await getWineImage(input);
+//     console.log('initGetImage:', image)
+//     return image;
+// }
 
 // Hardcode Test for retrieving image for added wines
-console.log(init('2008 Yellow Tail Chardonnay'))
-
-// module.exports = init;
+// console.log('get image', getWineImage('2008 Yellow Tail Chardonnay'))
+module.exports = getWineImage;
