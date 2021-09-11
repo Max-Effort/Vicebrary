@@ -12,9 +12,14 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+
+import {Redirect} from 'react-router-dom'
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../utils/mutations';
+
+
+
 
 function Copyright() {
   return (
@@ -61,11 +66,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
-  const classes = useStyles();
-
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState('false');
   const[loginUser, {error}] = useMutation(LOGIN_USER);
+  const classes = useStyles();
+
+  if (Auth.loggedIn()){
+    console.log('is logged in: '+ Auth.loggedIn())
+    return   <Redirect to='/'></Redirect>
+  }
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -91,7 +101,11 @@ export default function SignInSide() {
       email: '',
       password: '',
     });
+  
+
   };
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -102,7 +116,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login In
+            Login
           </Typography>
           <form className={classes.form} noValidate validated={validated} onSubmit={handleFormSubmit}>
             <TextField
