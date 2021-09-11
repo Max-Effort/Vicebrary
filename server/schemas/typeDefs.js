@@ -40,13 +40,14 @@ type Note{
     user: User
   }
 
-  input saveItemInput{
+
+
+ input saveItemInput{
       itemId: ID!
       name: String
       type: String
       description: String
       imgsrc: String
-
   }
 
 type Query {
@@ -54,6 +55,7 @@ type Query {
     Self(username: String!): Self
     User(username: String!): User
     Library: Library
+    Wines: [Wine]
    
     }
 
@@ -61,5 +63,7 @@ type Mutation {
     login(email: String, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveItem(saveItemInput:saveItemInput): User
+   saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
+
 }`;
 module.exports = typeDefs;

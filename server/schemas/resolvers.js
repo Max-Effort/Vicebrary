@@ -26,7 +26,11 @@ const resolvers = {
                 const libraryData = await db.Library.findOne({ owner_id: context.user._id });
                 return libraryData;
             }
-        }
+        },
+        Wines: async() => {
+            const wineData = await db.Wine.find({});
+            return wineData;
+        },
     },
 
     Mutation: {
@@ -85,6 +89,14 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        saveWine: async(parent, args, context) => {
+            // if (context.user) {
+            const savedWine = await db.Wine.create({...args })
+            return savedWine;
+            // }
+            // throw new AuthenticationError('You need to be logged in!');
+
+        }
     }
 }
 

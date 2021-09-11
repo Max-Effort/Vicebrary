@@ -2,8 +2,8 @@ import Auth from '../utils/auth'
 import {Redirect} from 'react-router-dom'
 
 export default function Main() {
-     if(!Auth.loggedIn){
-         console.log(Auth.loggedIn)
+     if(!Auth.loggedIn()) {
+         console.log(Auth.loggedIn())
       return   <Redirect to='/login'></Redirect>
      }
     
