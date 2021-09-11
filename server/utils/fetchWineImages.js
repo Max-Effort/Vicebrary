@@ -1,7 +1,6 @@
 const SerpApi = require('google-search-results-nodejs');
-const apikey = process.env.GAPI_KEY
-console.log({ apikey })
-const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY);
+const apikey = '' // COPY GAPI_KEY from .env;
+const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
 let wineImage
 
 const getWineImage = async(input) => {
