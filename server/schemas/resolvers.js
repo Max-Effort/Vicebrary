@@ -106,7 +106,7 @@ const resolvers = {
                         tbm: "isch"
                     }, async(data) => {
                         args.imgsrc = data.images_results[0].original
-                        console.log('ARGS: ', args)
+                            // console.log('ARGS: ', args)
                         savedWine = await db.Wine.create({...args })
                     })
                     //! This will always return null, but the information is getting passed to the db
