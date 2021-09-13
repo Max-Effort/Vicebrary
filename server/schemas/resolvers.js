@@ -1,10 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const db = require('../models');
 const { signToken } = require('../utils/auth');
-const getWineImage = require('../utils/fetchWineImages')
 const SerpApi = require('google-search-results-nodejs');
-const apikey = //See .env file
-    const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY || apikey);
+const search = new SerpApi.GoogleSearch(process.env.GAPI_KEY);
 
 const resolvers = {
     Query: {
@@ -108,7 +106,7 @@ const resolvers = {
                         tbm: "isch"
                     }, async(data) => {
                         args.imgsrc = data.images_results[0].original
-                        console.log('ARGS: ', args)
+                            // console.log('ARGS: ', args)
                         savedWine = await db.Wine.create({...args })
                     })
                     //! This will always return null, but the information is getting passed to the db
