@@ -26,21 +26,18 @@ const client = new ApolloClient({
   uri: "/graphql",
 });
 
-const loggedIn = () => {
-  console.log(Auth.loggedIn());
-  return Auth.loggedIn;
-};
+
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
-        
           <div className="App">
             <Switch>
               <Route exact path="/">
-                {!loggedIn ? <Redirect to="/login" /> : <Main />}
+                <Main />
               </Route>
               <Route path="/login">
                 <LoginSide />
@@ -55,7 +52,7 @@ function App() {
           </div>
         
         </>
-      </Router>
+      </Router>)}
     </ApolloProvider>
   );
 }

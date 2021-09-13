@@ -1,15 +1,12 @@
 import Auth from '../utils/auth'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 
-export default function Main() {
-     if(!Auth.loggedIn()) {
-         console.log(Auth.loggedIn())
-      return   <Redirect to='/login'></Redirect>
-     }
-    
 
+export default function Main(){
+    if (Auth.loggedIn() === false) {
+        window.location.replace('/login');  }
     return(
         <div className="mainPage">
     <Header />
