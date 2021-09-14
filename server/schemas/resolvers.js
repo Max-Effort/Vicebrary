@@ -8,12 +8,16 @@ const resolvers = {
     Query: {
         // Returns All SELF(user data) if token matches
         Self: async(parent, args, context) => {
-            console.dir({ context })
-            if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                return userData;
-            }
-            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
+            // console.dir({ context })
+            // if (context.user) {
+            const userData = await db.User.findOne({ username: args.username }, )
+                .populate('library')
+                // const libraryData = await db.Library.findOne({ owner_id: userData._id })
+                // console.log(libraryData)
+            console.log(`UserData: ${userData}`)
+            return userData;
+            // }
+            // throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         Users: async() => {
             const userData = await db.User.find({});
@@ -26,10 +30,14 @@ const resolvers = {
             return userData;
         },
         Library: async(parent, args, context) => {
-            if (context.user) {
-                const libraryData = await db.Library.findOne({ owner_id: context.user._id });
-                return libraryData;
-            }
+            // if (context.user) {
+            const libraryData = await db.Library.findOne({ owner_id: args.owner_id });
+            return libraryData;
+            // }
+        },
+        Items: async(parent, args, context) => {
+            const itemsData = await db.Item.find({});
+            return itemsData;
         },
         Wines: async() => {
             const wineData = await db.Wine.find({});
@@ -83,12 +91,12 @@ const resolvers = {
             }
         },
         saveItem: async(parent, args, context) => {
-            if (context.user) {
-                const savedItem = await db.Item.create({...args, username: context.user.username });
-                return updatedUser;
-            }
+            // if (context.user) {
+            const savedItem = await db.Item.create({...args });
+            return savedItem;
+            // }
 
-            throw new AuthenticationError('You need to be logged in!');
+            // throw new AuthenticationError('You need to be logged in!');
         },
         saveWine: async(parent, args, context) => {
             let savedWine
@@ -117,6 +125,13 @@ const resolvers = {
                 console.log('Wine saved:', savedWine)
                 return savedWine;
             }
+        },
+        createLibrary: async(parent, args, context) => {
+            // if (context.user){
+            //     const library = await db.Library.create({...args, owner_id: context.user._id})
+            // }
+            const library = await db.Library.create({...args })
+            return library
         }
     }
 }

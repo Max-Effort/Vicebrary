@@ -6,10 +6,14 @@ const librarySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    item_id: {
+    items: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
-    },
+    }],
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Notes'
+    }],
     isLiked: {
         type: Boolean,
         default: true

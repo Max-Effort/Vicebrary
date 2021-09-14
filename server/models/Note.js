@@ -10,10 +10,10 @@ const noteSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     },
-    visibleTo: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+    // visibleTo: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }],
     content: {
         type: String,
     }
