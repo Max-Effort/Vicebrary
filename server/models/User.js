@@ -17,7 +17,11 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    library: {
+        type: Schema.Types.ObjectId,
+        ref: 'Library'
+    },
 
 })
 

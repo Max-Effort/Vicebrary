@@ -6,14 +6,12 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
-    type: {
+    vice_type: {
         type: String,
     },
-    description: {
+    vice_id: {
         type: String,
-    },
-    imgsrc: {
-        type: String,
+        unique: true
     }
 
 })
