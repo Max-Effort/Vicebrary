@@ -4,6 +4,7 @@ const db = require('./config/connection');
 const logger = require('morgan');
 // const routes = require('./routes');
 require('dotenv').config();
+require('./db/database')
 
 // importing ApolloServer
 const { ApolloServer } = require('apollo-server-express');
@@ -27,6 +28,10 @@ server.applyMiddleware({ app });
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// API
+const users = require('/api/users');
+app.use('/api/users', users);
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
