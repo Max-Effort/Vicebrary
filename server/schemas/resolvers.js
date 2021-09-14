@@ -10,8 +10,7 @@ const resolvers = {
         Self: async(parent, args, context) => {
             // console.dir({ context })
             // if (context.user) {
-            const userData = await db.User.findOne({ username: args.username }, )
-                .populate('library')
+            const userData = await db.User.findOne({ username: args.username })
                 // const libraryData = await db.Library.findOne({ owner_id: userData._id })
                 // console.log(libraryData)
             console.log(`UserData: ${userData}`)
