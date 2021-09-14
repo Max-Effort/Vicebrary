@@ -43,10 +43,8 @@ type Note{
    _id: ID
    username: String
    email: String
-   library: Library{
-     
-   }
-    }
+   library: Library
+  }
  
 type Auth {
    token: ID!
