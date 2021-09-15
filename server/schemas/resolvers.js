@@ -11,10 +11,7 @@ const resolvers = {
             // console.dir(context.user)
             if (context.user) {
                 const userData = await db.User.findOne({ _id: context.user._id })
-                    .populate([{
-                        path: 'items',
-                        populate: { path: 'note' }
-                    }])
+                    .populate('items')
                     .populate('notes')
                     // console.log(`UserData: ${userData}`)
                 return userData;
