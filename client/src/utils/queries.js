@@ -15,42 +15,25 @@ query Wines {
 }
 `;
 
-export const QUERY_SELF = gql `
-query Self($username: String!) {
-  Self(username: $username) {
+export const QUERY_SELF = gql ` 
+query Self{
+  Self{
     _id
     username
     email
-    library {
+    items{
+      _id
+      name
+      vice_type
+      vice_id
+      imgsrc
+    }
+    notes{
+      _id
       owner_id
-      items {
-        _id
-        name
-        vice_type
-        vice_id
-      }
-      notes {
-        _id
-        owner_id
-        item_id
-        content
-      }
+      item_id
+      content
     }
   }
 }
-`;
-
-export const QUERY_WINES = gql `
-query Wines {
-  Wines {
-    _id
-    name
-    year
-    country
-    type
-    description
-    imgsrc
-  }
-}
-
 `;

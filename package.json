@@ -22,6 +22,7 @@
     "homepage": "https://github.com/Max-Effort/Vicebrary#readme",
     "dependencies": {
         "concurrently": "^6.2.1",
+        "cors": "^2.8.5",
         "writemereadme": "^1.5.0"
     }
 }
