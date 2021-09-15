@@ -8,12 +8,15 @@ const resolvers = {
     Query: {
         // Returns All SELF(user data) if token matches
         Self: async(parent, args, context) => {
-            console.dir(context.user)
+            // console.dir(context.user)
             if (context.user) {
                 const userData = await db.User.findOne({ _id: context.user._id })
-                    .populate('items')
+                    .populate([{
+                        path: 'items',
+                        populate: { path: 'note' }
+                    }])
                     .populate('notes')
-                console.log(`UserData: ${userData}`)
+                    // console.log(`UserData: ${userData}`)
                 return userData;
             }
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
@@ -40,6 +43,11 @@ const resolvers = {
         Items: async(parent, args, context) => {
             const itemsData = await db.Item.find({});
             return itemsData;
+        },
+        Wine: async(parent, args, context) => {
+            console.log({ args })
+            const wineData = await db.Wine.findOne({ _id: args._id })
+            return wineData
         },
         Wines: async() => {
             const wineData = await db.Wine.find({});
@@ -136,9 +144,13 @@ const resolvers = {
             }
         },
         saveNote: async(parent, args, context) => {
-            const savedNote = await db.Note.create({...args });
-            await db.User.findOneAndUpdate({ _id: args.owner_id }, { $addToSet: { notes: savedNote._id } })
-            return savedNote;
+            if (context.user) {
+                console.log(`CONTEXTID: ${context.user._id}`)
+                const savedNote = await db.Note.create({...args, owner_id: context.user._id });
+                await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { notes: savedNote._id } })
+
+                return savedNote;
+            }
         }
     }
 }
