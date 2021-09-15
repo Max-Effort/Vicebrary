@@ -17,6 +17,7 @@ type Wine{
    name: String
    vice_type: String
    vice_id: String
+   imgsrc: String
    notes:[Note]
   #  owner_id: String
  }
