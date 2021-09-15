@@ -18,10 +18,18 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    library: {
+    items: [{
         type: Schema.Types.ObjectId,
-        ref: 'Library'
-    },
+        ref: 'Item'
+    }],
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+    }],
+    isLiked: {
+        type: Boolean,
+        default: true
+    }
 
 })
 
