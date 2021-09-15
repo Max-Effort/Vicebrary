@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
+
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -17,11 +18,17 @@ const useStyles = makeStyles({
     },
   });
 
-export default function LibraryCards({userData}) {
+  
+  export default function LibraryCards({userData}) {
+   
+      // const [wineData,setWineData] = useState({})
+    
+     
+    
     const classes = useStyles();
-    console.log({userData })
-const {items, notes} = userData;
 
+  //  const {items,notes} = userData;
+  //  const [cardInfo,setCardInfo] = useState({})
 
   
     return (
@@ -29,7 +36,7 @@ const {items, notes} = userData;
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image=".picture.png"
             title="Contemplative Reptile"
           />
           <CardContent>
