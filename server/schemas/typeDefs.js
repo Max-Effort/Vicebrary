@@ -16,9 +16,9 @@ type Wine{
    _id: String
    name: String
    vice_type: String
-   vice_id: String
+   vice_id: ID
    imgsrc: String
-   notes:[Note]
+   note:Note
   #  owner_id: String
  }
 
@@ -63,6 +63,7 @@ type Query {
     Item(_id: ID): Item
     Items:[Item]
     Wines: [Wine]
+    Wine(_id:ID):Wine
     }
 
 type Mutation {
@@ -70,7 +71,7 @@ type Mutation {
    addUser(username: String!, email: String!, password: String!): Auth
    saveItem(name:String, vice_type:String, vice_id:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
-   saveNote(owner_id: String,item_id: String, content: String): Note
+   saveNote(item_id: String, content: String): Note
   #  createLibrary(owner_id: String): Library
 }
 `;
