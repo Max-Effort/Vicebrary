@@ -2,10 +2,13 @@ const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
 const logger = require('morgan');
-// const routes = require('./routes');
 require('dotenv').config();
 
-// importing ApolloServer
+const cors = require('cors');
+const corsOptions = {
+        origin: 'http://localhost:3000'
+    }
+    // importing ApolloServer
 const { ApolloServer } = require('apollo-server-express');
 
 // importing typeDefs and resolvers
@@ -32,11 +35,11 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+app.use(cors(corsOptions))
 db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`🌍 Now listening on localhost:${PORT}`)
