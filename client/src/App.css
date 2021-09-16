@@ -9,12 +9,7 @@
         margin: 0 5%;
         height: auto;
     }
-    /* header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-} */
-    
+
     .modal-container {
         height: 90%;
         width: 90%;
@@ -53,8 +48,5 @@
         align-items: flex-start;
         justify-content: space-evenly;
     }
-    /* .makeStyles-modal-1 h2 {
-    flex: 1;
-    padding-top: 100rem !important;
-    margin: 5vh 0 0 0!important;
-} */
+
+
