@@ -8,26 +8,39 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    form: {
       '& > *': {
+          backGroundColor:'white',
         margin: theme.spacing(1),
         width: '25ch',
       },
+    container: {
+        width: '90%',
+        
+        
+    },
+    h2box:{
+        root:{
+      backgroundColor: 'white',
+        }
+        }
     },
   }));
 
-export default function Add() {
+export default function Add({userData}) {
     const classes = useStyles();
     return (
         <div className="add-bg">
             <div className="renderAdd" style={{ width: '100%' }}>
-                <Container style={{ width: '90%' }} align="center">
+                <Container className={classes.container} align="center">
+                   <Box className={classes.h2box}>
                     <Typography variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
+                    </Box>
                     <Divider />
                     <br />
-                    <form className={classes.root} noValidate autoComplete="off">
+                    <form className={classes.form} noValidate autoComplete="off">
                         <Box flexGrow={1}>
-                            <TextField id="filled-basic"  label="Name" variant="filled" /></Box>
+                            <TextField id="filled-basic"  color='white' label="Name" variant="filled" /></Box>
                         <Box flexGrow={1}>
                             <TextField id="filled-basic"  label="Year" variant="filled" /></Box>
                         <Box flexGrow={1}>
@@ -35,7 +48,7 @@ export default function Add() {
                         <Box flexGrow={1}>
                             <TextField id="filled-basic"  label="Type" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField id="filled-basic"  label="Description" variant="filled" multiline rows={6} /></Box>
+                            <TextField id="filled-basic"  fullWidth label="Description" variant="filled" multiline rows={6} /></Box>
                         <Box flexGrow={1}>
                             <Button variant="contained">Click Me!</Button></Box>
                     </form>

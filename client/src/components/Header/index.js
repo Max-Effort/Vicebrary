@@ -33,13 +33,14 @@ const useStyles = makeStyles((theme) => ({
       color:'white',
       maxWidth: '20rem',
       flex: '0 0 10%',
+      transition:'.3s ease-in-out',
+      transitionDelay: "0.1s",
       fontSize: '.75rem',
-      "& hover":{
-        boxShadow: ' 0 0 5px white'
-      }
-
-    },
-    appbar:{
+       '&:hover':{
+          boxShadow: 'inset 0 -5px 5px rgba(255,255,255, .5)'
+    }
+  },
+       appbar:{
   width: '100%',
   display: 'flex',
   zIndex: '1100',
