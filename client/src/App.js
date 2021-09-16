@@ -54,7 +54,9 @@ function App() {
         </>
       </Router>
     </ApolloProvider>
+
   )
 };
+
 
 export default App;
