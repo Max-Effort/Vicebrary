@@ -9,7 +9,7 @@
         margin: 0 5%;
         height: auto;
     }
-
+    
     .modal-container {
         height: 90%;
         width: 90%;
@@ -18,6 +18,7 @@
     footer {
         position: fixed;
         bottom: 0;
+        left: 0;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -27,44 +28,34 @@
         text-align: center;
     }
     
+    .MuiTypography-h5 {
+        font-size: 1rem !important;
+        font-weight: bold !important
+    }
+    
+    .MuiTypography-body1 {
+        font-size: .75rem !important;
+        font-weight: 200 !important;
+    }
+    
     .MuiTypography-colorTextSecondary {
         color: rgb(233, 233, 233) !important
     }
     
-    .makeStyles-modal-1 {
-        display: flex;
-        margin: 2rem;
-        inset: 2%;
-        padding: 8px;
-        overflow-y: scroll;
-        align-items: flex-start !important;
-        justify-content: space-evenly;
+    .search-bg {
+        background-image: url(../../client/src/searchImg.png);
+        background-color: #cccccc;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     
-    .makeStyles-modal-27 {
-        display: flex;
-        padding: 8px;
-        overflow-y: scroll;
-        align-items: flex-start;
-        justify-content: space-evenly;
+    .add-bg {
+        background-image: url(../../client/src/addImg.png);
+        background-color: #cccccc;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-
-
-.search-bg {
-    background-image: url(../../client/src/searchImg.png);
-    background-color: #cccccc;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.add-bg {
-    background-image: url(../../client/src/addImg.png);
-    background-color: #cccccc;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
