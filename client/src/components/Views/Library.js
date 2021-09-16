@@ -5,14 +5,14 @@ import LibraryCards from './components/LibraryCards'
 import { Container } from '@material-ui/core'
 // import {userData} from '../../data/userData'
 
-export default function Library(){
+export default function Library({userData}){
      // USER DATA FOR USE IN UNDERLYING COMPONENTS
-     const [userData, setUserData] = useState({});
-     const { data } = useQuery(QUERY_SELF, {
-         onCompleted: () => {
-             setUserData(data.Self)
-         }
-     });
+    //  const [userData, setUserData] = useState({});
+    //  const { data } = useQuery(QUERY_SELF, {
+    //      onCompleted: () => {
+    //          setUserData(data.Self)
+    //      }
+    //  });
      console.dir({userData})
  
     return (<div className="renderLibrary">
