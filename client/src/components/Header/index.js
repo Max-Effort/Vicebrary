@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import About from './About'
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
@@ -29,11 +29,21 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 export default function Header(){
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+
   return (
         <div className="header">
     <AppBar>
@@ -55,9 +65,12 @@ export default function Header(){
             </Button>
             </>
           )}
-          <About/>
+           <Button variant="outlined" color="white" type="Button" onClick={handleOpen}>
+        About MaxEffort
+      </Button>
     <Toolbar/>
       </AppBar>
+      <About open={open} setOpen={setOpen}/>
     </div> 
   
   );

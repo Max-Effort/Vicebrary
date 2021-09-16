@@ -21,7 +21,7 @@ export const Team = [{
         name: 'Ryan Hillier',
         skills: 'Making JSON Files',
         github: 'Ryan1992186',
-        linkedIn: 'Ryan-hillier-782216167',
+        linkedin: 'Ryan-hillier-782216167',
         email: 'Ryan1992186@gmail.com',
         bio: 'This is a quick bio about Ryan'
     },
@@ -30,7 +30,7 @@ export const Team = [{
         name: 'Peter Roto',
         skills: 'Project Management | Server-Client Synergy',
         github: 'PRoto133',
-        linkedIn: 'peterroto',
+        linkedin: 'peterroto',
         email: 'peter@peterroto.com',
         bio: 'Peter is new to the web development. He enjoys learning and using his ever growing skill-set to create things to help others. He is always open to feedback as well as new friends, so if you want to connect. . . do it.'
 
@@ -40,7 +40,7 @@ export const Team = [{
         name: 'Gerald Plotke',
         skills: 'Knows Almost All the Letters on the Keyboard!',
         github: 'Gplotke',
-        linkedIn: 'gerald-plotke',
+        linkedin: 'gerald-plotke',
         email: 'Jerry.Plotke@gmail.com',
         bio: `Gerald is a new web developer, (recently graduated from Northwestern's Coding Bootcamp). Additionally, he sports a Bachelor's degree (Marketing) from Illinois State University and 7 years of sales experience in the logistics industry.`
     }
