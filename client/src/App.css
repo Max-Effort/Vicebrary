@@ -1,28 +1,54 @@
-.App {
-    width: 100%;
-    min-height: 100vh;
-}
+    .App {
+        width: 100%;
+        min-height: 100vh;
+    }
+    
+    .mainPage {
+        padding-top: 3rem;
+        width: 90%;
+        margin: 0 5%;
+        height: auto;
+    }
 
-.mainPage {
-    padding-top: 3rem;
-    width: 90%;
-    margin: 0 5%;
-    height: auto;
-}
+    .modal-container {
+        height: 90%;
+        width: 90%;
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .addWineContainer {
+        text-align: center;
+    }
+    
+    .MuiTypography-colorTextSecondary {
+        color: rgb(233, 233, 233) !important
+    }
+    
+    .makeStyles-modal-1 {
+        display: flex;
+        margin: 2rem;
+        inset: 2%;
+        padding: 8px;
+        overflow-y: scroll;
+        align-items: flex-start !important;
+        justify-content: space-evenly;
+    }
+    
+    .makeStyles-modal-27 {
+        display: flex;
+        padding: 8px;
+        overflow-y: scroll;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
 
 .search-bg {
     background-image: url(../../client/src/searchImg.png);
@@ -41,3 +67,4 @@ footer {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
