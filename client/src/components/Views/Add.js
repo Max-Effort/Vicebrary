@@ -16,30 +16,31 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Add(){
+export default function Add() {
     const classes = useStyles();
-
     return (
-        <div className="renderAdd" style={{ width: '100%' }}>
-            <Container style={{ width: '90%' }} align="center">
-                <Typography variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
-                <Divider/>
-                <br />
-                <form className={classes.root} noValidate autoComplete="off">
-                    <Box flexGrow={1}>
-                        <TextField id="outlined-basic" label="Name" variant="outlined" /></Box>
-                    <Box flexGrow={1}>
-                        <TextField id="outlined-basic" label="Year" variant="outlined" /></Box>
-                    <Box flexGrow={1}>
-                        <TextField id="outlined-basic" label="Country" variant="outlined" /></Box>
-                    <Box flexGrow={1}>
-                        <TextField id="outlined-basic" label="Type" variant="outlined" /></Box>
-                    <Box flexGrow={1}>
-                        <TextField id="outlined-basic" label="Description" variant="outlined" multiline rows={6} /></Box>
-                    <Box flexGrow={1}>
-                        <Button variant="outlined">Add Wine!</Button></Box>
-                </form>
-            </Container>
+        <div className="add-bg">
+            <div className="renderAdd" style={{ width: '100%' }}>
+                <Container style={{ width: '90%' }} align="center">
+                    <Typography variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
+                    <Divider />
+                    <br />
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <Box flexGrow={1}>
+                            <TextField id="filled-basic"  label="Name" variant="filled" /></Box>
+                        <Box flexGrow={1}>
+                            <TextField id="filled-basic"  label="Year" variant="filled" /></Box>
+                        <Box flexGrow={1}>
+                            <TextField id="filled-basic"  label="Country" variant="filled" /></Box>
+                        <Box flexGrow={1}>
+                            <TextField id="filled-basic"  label="Type" variant="filled" /></Box>
+                        <Box flexGrow={1}>
+                            <TextField id="filled-basic"  label="Description" variant="filled" multiline rows={6} /></Box>
+                        <Box flexGrow={1}>
+                            <Button variant="contained">Click Me!</Button></Box>
+                    </form>
+                </Container>
+            </div>
         </div>
     )
 }

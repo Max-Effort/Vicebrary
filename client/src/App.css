@@ -23,3 +23,21 @@ footer {
     justify-content: center;
     width: 100%;
 }
+
+.search-bg {
+    background-image: url(../../client/src/searchImg.png);
+    background-color: #cccccc;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.add-bg {
+    background-image: url(../../client/src/addImg.png);
+    background-color: #cccccc;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
