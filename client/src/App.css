@@ -9,7 +9,7 @@
         margin: 0 5%;
         height: auto;
     }
-
+    
     .modal-container {
         height: 90%;
         width: 90%;
@@ -48,23 +48,30 @@
         align-items: flex-start;
         justify-content: space-evenly;
     }
-
-
-.search-bg {
-    background-image: url(../../client/src/searchImg.png);
-    background-color: #cccccc;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.add-bg {
-    background-image: url(../../client/src/addImg.png);
-    background-color: #cccccc;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
+    
+    .search-bg {
+        background-image: url(../../client/src/components/images/searchImg.png);
+        background-color: #cccccc;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .add-bg {
+        background-image: url(../../client/src/components/images/addImg.png);
+        background-color: #cccccc;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .vice-video {
+        background-image: url();
+        background-color: #cccccc;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
