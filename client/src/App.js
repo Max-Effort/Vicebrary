@@ -52,9 +52,9 @@ function App() {
           </div>
         
         </>
-      </Router>)}
+      </Router>
     </ApolloProvider>
-  );
-}
+  )
+};
 
 export default App;
