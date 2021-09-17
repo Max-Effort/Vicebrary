@@ -4,21 +4,15 @@ import {QUERY_SELF} from '../../utils/queries'
 import LibraryCards from './components/LibraryCards'
 import { Container } from '@material-ui/core'
 // import {userData} from '../../data/userData'
+import {testSELF} from '../../dev/testSELF'
 
 export default function Library({userData}){
-     // USER DATA FOR USE IN UNDERLYING COMPONENTS
-    //  const [userData, setUserData] = useState({});
-    //  const { data } = useQuery(QUERY_SELF, {
-    //      onCompleted: () => {
-    //          setUserData(data.Self)
-    //      }
-    //  });
-     console.dir({userData})
+        console.dir({userData})
  
     return (<div className="renderLibrary">
         <h2>{userData.username}'s Library</h2>
         <Container>
-            <LibraryCards userData={userData}/>
+            <LibraryCards testSELF={testSELF}/>
         </Container>
     </div>)
 }
