@@ -113,7 +113,19 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         saveWine: async(parent, args, context) => {
+            let wines = await db.Wine.find({})
+            let existCheck = await wines.map((wine) => {
+                let dbWine = `${wine.year} ${wine.name} ${wine.type}`
+                let newWine = `${args.year} ${args.name} ${args.type}`
+                if (dbWine == newWine) {
+                    return false
+                } else { return true }
+            })
+
             let savedWine
+            if (!existCheck) {
+                return `The wine's already in the database.`
+            }
             if (args.imgsrc == '') {
                 const { year, name, type } = args
                 let input = `${year} ${name} ${type}`
