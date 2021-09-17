@@ -54,8 +54,13 @@
     .add-bg {
         background-image: url(../../client/src/addImg.png);
         background-color: #cccccc;
-        height: 100vh;
+        height: 100%;
+        min-height: 90vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+    
+    form div input {
+        background-color: white;
     }
