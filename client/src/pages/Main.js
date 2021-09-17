@@ -18,9 +18,7 @@ export default function Main() {
     return ( 
     <div className="mainPage" >
         <Header />
-        <View page={page}
-     
-        /> 
+        <View page={page}/> 
         <Footer page={page}
         setPage={setPage}
         handleChange={handleChange}
