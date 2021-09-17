@@ -13,26 +13,31 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  });
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
 
 
 export default function SearchGrid() {
-    const [wineList, setWineList] = useState([])
+  const [wineList, setWineList] = useState([])
 
-    const wineDB = useQuery(QUERY_WINES, {
-        onCompleted: () => {
-            setWineList(wineDB.data.Wines)
-        }
-    })
-    const classes = useStyles();
+  const wineDB = useQuery(QUERY_WINES, {
+    onCompleted: () => {
+      setWineList(wineDB.data.Wines)
+    }
+  })
 
-    const wineCards = wineList.map((wine,index) => {
+  console.dir({ wineList })
+  const classes = useStyles();
+
+  const wineCards = wineList.map((wine, index) => {
+    if (wine.imgsrc == '') {
+      wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
+    }
     return (
       <Grid item key={index} xs={3}>
         <Card className={classes.root}>
@@ -59,14 +64,13 @@ export default function SearchGrid() {
         </Card>
       </Grid>
     );
-})
+  })
 
-return(
+  return (
     <Container>
-
-    <Grid container spacing={1}>
-    {wineCards}
-    </Grid>
+      <Grid container spacing={1}>
+        {wineCards}
+      </Grid>
     </Container>
-)
+  )
 }

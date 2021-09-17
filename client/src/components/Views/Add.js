@@ -41,7 +41,9 @@ export default function Add({userData}) {
                         <Box flexGrow={1}>
                             <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Type" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Description" variant="filled" multiline rows={6} /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Description" placeholder="You can just copy and paste here." variant="filled" multiline rows={6} /></Box>
+                        <Box flexGrow={1}>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Image URL" placeholder="Upload an image or we will...eventually." variant="filled" /></Box>
                         <Box flexGrow={1}>
                             <Button variant="default">Click Me!</Button></Box>
                     </form>
