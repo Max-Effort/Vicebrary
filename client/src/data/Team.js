@@ -38,10 +38,10 @@ export const Team = [{
     {
         imgsrc: 'https://avatars.githubusercontent.com/u/80848115?v=4',
         name: 'Gerald Plotke',
-        skills: 'Knows Almost All the Letters on the Keyboard!',
+        skills: 'HTML, CSS, JavaScript basics, Back-end basics',
         github: 'Gplotke',
         linkedin: 'gerald-plotke',
         email: 'Jerry.Plotke@gmail.com',
-        bio: `Gerald is a new web developer, (recently graduated from Northwestern's Coding Bootcamp). Additionally, he sports a Bachelor's degree (Marketing) from Illinois State University and 7 years of sales experience in the logistics industry.`
+        bio: `Gerald is a new web developer, (recently graduated from Northwestern's Coding Bootcamp). Additionally, he sports a Bachelor's degree (Marketing) from Illinois State University and over 7 years of sales experience in the logistics industry.`
     }
 ]

@@ -1,4 +1,3 @@
-
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     '& > *': {
       margin: theme.spacing(1),
-
       width: '100%',
       maxWidth: '500px',
       minWidth: '200px'
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 },
 }}));
 
-export default function Search({userData}) {
+export default function Search({ userData }) {
   const classes = useStyles();
 
 
@@ -38,9 +36,7 @@ export default function Search({userData}) {
   return (
     <div className="renderSearch" style={{ width: '100%' }}>
       <div className="search-bg">
-
       <Container style={{ width: '100%' }} align="center">
-
         <Typography variant="h4" component="h2" >Search for a Wine!</Typography>
         <Divider />
         <br />
