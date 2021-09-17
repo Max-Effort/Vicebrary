@@ -162,7 +162,7 @@ export default function ProfileList({Team}){
 const devCards = Team.map((dev,index)=>{
   console.log({dev})
     return (
-        <Box style={{flex:'0 0 30%', justifyContent:'space-around'}}>
+        <Box style={{flex:'0 0 30%',maxWidth: '400px', justifyContent:'space-around'}}>
         <Card key={index} className={classes.card} elevation={16}>
               <CardContent className={classes.media}>
                 <img src={dev.imgsrc} alt={`${dev.name}'s Profile Picture'`} />
