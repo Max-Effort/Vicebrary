@@ -13,8 +13,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: '50ch',
   },
+  container: {
+    width: '90%',
+    
+    
+},
 }}));
 
 export default function Search({userData}) {
@@ -22,15 +27,15 @@ export default function Search({userData}) {
   return (
     <div className="renderSearch" style={{ width: '100%' }}>
       <div className="search-bg">
-      <Container style={{ width: '90%' }} align="center">
+      <Container style={{ width: '100%' }} align="center">
         <Typography variant="h4" component="h2" >Search for a Wine!</Typography>
         <Divider />
         <br />
         <form className={classes.root} noValidate autoComplete="off">
           <Box flexGrow={1}>
-            <TextField id="filled-basic" label="Enter Vice" variant="filled" /></Box>
+            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic" label="Enter Vice" variant="filled" /></Box>
           <Box flexGrow={1}>
-            <Button variant="contained">Click Me!</Button></Box>
+            <Button style={{ width: '100%' }} variant="contained">Click Me!</Button></Box>
         </form>
       </Container>
       </div>
