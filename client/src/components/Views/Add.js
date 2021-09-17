@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-  form: {
+form: {
     "& > *": {
       backgroundColor: "white",
       margin: theme.spacing(1),
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
        
     }
   },
+
 }));
 
 export default function Add({userData}) {
@@ -43,17 +44,17 @@ export default function Add({userData}) {
                     <br />
                     <form className={classes.form} noValidate autoComplete="off">
                         <Box flexGrow={1}>
-                            <TextField style={{ width:'100%'}} id="filled-basic"  label="Name" variant="filled" /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  color='white' label="Name" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField style={{ width:'100%'}} id="filled-basic"  label="Year" variant="filled" /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Year" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField style={{ width:'100%'}} id="filled-basic"  label="Country" variant="filled" /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Country" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField style={{ width:'100%'}} id="filled-basic"  label="Type" variant="filled" /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Type" variant="filled" /></Box>
                         <Box flexGrow={1}>
-                            <TextField style={{ width:'100%'}} id="filled-basic"  fullWidth label="Description" variant="filled" multiline rows={6} /></Box>
+                            <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Description" variant="filled" multiline rows={6} /></Box>
                         <Box flexGrow={1}>
-                            <Button>Click Me!</Button></Box>
+                            <Button variant="default">Click Me!</Button></Box>
                     </form>
                 </Container>
             </div>
