@@ -44,9 +44,7 @@ function App() {
               <Route path="/signup">
                 <SignUpSide />
               </Route>
-              <Route
-                render={() => <h1 className="display-2">Wrong page!</h1>}
-              />
+              <Route render={() => <h1 className="display-2">Wrong page!</h1>}/>
             </Switch>
           </div>
       </Router>

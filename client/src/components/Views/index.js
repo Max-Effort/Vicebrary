@@ -13,6 +13,7 @@ export default function View(page) {
             setUserData(data.Self)
         }
     });
+    console.dir('User:',{userData})
     let view = page.page;
     // Get State from Footer through Main and render appropriate component  
     if (view === "home") {
