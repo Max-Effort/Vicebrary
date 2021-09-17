@@ -12,37 +12,37 @@ import ProfilesGrid from './ProfilesGrid';
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    overflowY:'auto',
-    padding: theme.spacing(1)
+      padding: '8px',
+    overflowY: 'scroll',
+    alignItems: 'flex-start',
+    justifyContent: 'space-evenly'
   },
   paper: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    justifySelf:'center',
+    top:'5%',
+    margin: '2%',
+    width:'90%',
+    minWidth: '320px',
+    height:'90%',
+    // transform: 'translateX(-50%)',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: '1rem'
    
   },
 }));
 
-export default function About() {
+export default function About({open, setOpen}) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <div>
-      <Button variant="outlined" color="white" type="Button" onClick={handleOpen}>
-        About MaxEffort
-      </Button>
       <div className="modal-container">
       <Modal
         aria-labelledby="transition-modal-title"
@@ -56,12 +56,12 @@ export default function About() {
           timeout: 500,
         }}
       >
-        <Box>
+      <Box style={{display:'flex', justifyContent:'center'}}>
         <Fade in={open}>
           <div className={classes.paper}>
             <Container style={{
                overflow: 'auto',
-    padding: '5rem 5rem',
+    padding: 0,
     maxWidth: '90%',
     maxHeight:'90%',}}>
             <h2 id="transition-modal-title">Meet Our Squad</h2>
