@@ -25,20 +25,21 @@ const useStyles = makeStyles({
 export default function SearchGrid() {
   const [wineList, setWineList] = useState([])
 
-  const wineDB = useQuery(QUERY_WINES, {
-    onCompleted: () => {
-      setWineList(wineDB.data.Wines)
-    }
-  })
+    const wineDB = useQuery(QUERY_WINES, {
+        onCompleted: () => {
+            setWineList(wineDB.data.Wines)
+        }
+    })
 
-  console.dir({ wineList })
-  const classes = useStyles();
+    console.dir({wineList})
+    const classes = useStyles();
 
-  const wineCards = wineList.map((wine, index) => {
-    if (wine.imgsrc == '') {
-      wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
-    }
-    return (
+    const wineCards = wineList.map((wine,index) => {
+      if (wine.imgsrc == ''){
+        wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
+      }
+
+      return (
       <Grid item key={index} xs={3}>
         <Card className={classes.root}>
           <CardActionArea>

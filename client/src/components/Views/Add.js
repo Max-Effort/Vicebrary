@@ -8,16 +8,27 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-    form: {
-        '& > *': {
-            backgroundColor: 'white',
-            margin: theme.spacing(1),
-            width: '50ch',
-        },
-        container: {
-            width: '90%',
-        },
+form: {
+    "& > *": {
+      backgroundColor: "white",
+      margin: theme.spacing(1),
+      width: "80%",
+      maxWidth: "500px",
+      minWidth:'200px'
     },
+    container: {
+      width: "90%",
+    },
+    h2box: {
+      root: {
+        backgroundColor: "white",
+      },
+    },
+    input: {
+       
+    }
+  },
+
 }));
 
 export default function Add({userData}) {
