@@ -1,0 +1,65 @@
+export const testSELF = {
+    username: 'Wino',
+    email: 'wino@example.com',
+    items: [{
+        _id: "11",
+        vice_type: 'Wine',
+        name: "Yellow Tail",
+        year: "2008",
+        country: "Australia",
+        type: "Chardonnay",
+        note: "This is a note about Yellow Tail that belongs to Wino",
+        imgsrc: "https://www.wine-searcher.com/images/labels/93/90/10209390.jpg",
+        description: "This wine shows ripe characters of peach and rockmelon, which are striking on the nose. This leads into a fresh and floral front palate where there is an up-front sweetness, adding to the wines` lengthy oak richness"
+    }, {
+        id: "12",
+        vice_type: 'Wine',
+        name: "Wine 2",
+        year: "1989",
+        country: "Mexico",
+        type: "Pino Noir",
+        imgsrc: "https://loremflickr.com/g/320/240/wine,bottle",
+        description: "This is a dummy description of wine number 2. It is grapey.",
+        note: ''
+    }, {
+        id: "13",
+        vice_type: 'Wine',
+        name: "Wine 3",
+        year: "1492",
+        country: "USA",
+        type: "Cabernet",
+        imgsrc: "https://loremflickr.com/g/320/240/wine,bottle",
+        description: "This is a dummy description of wine number 3. It is grapey.",
+        note: "This is a note about Wine 3 that belongs to Wino",
+    }, {
+        id: "14",
+        vice_type: 'Wine',
+        name: "Wine 4",
+        year: "2016",
+        country: "France",
+        type: "Chardonnay",
+        imgsrc: "https://loremflickr.com/g/320/240/wine,bottle",
+        description: "This is a dummy description of wine number 4. It is grapey.",
+        note: "This is a note about Wine 4 that belongs to Wino",
+    }, {
+        id: "15",
+        vice_type: 'Wine',
+        name: "Wine 5",
+        year: "2010",
+        country: "Italy",
+        type: "Merlot",
+        imgsrc: "https://loremflickr.com/g/320/240/wine,bottle",
+        description: "This is a dummy description of wine number 5. It is grapey.",
+        note: "This is a note about Wine 5 that belongs to Wino",
+    }, {
+        _id: "16",
+        vice_type: 'Coffee',
+        name: "FAILURE",
+        year: "5",
+        country: "FAIL",
+        type: "FAILURE",
+        note: "This is shouldn't be showing.",
+        imgsrc: "https://loremflickr.com/g/320/240/failure",
+        description: "This shouldn't populate with Wine notes"
+    }]
+}

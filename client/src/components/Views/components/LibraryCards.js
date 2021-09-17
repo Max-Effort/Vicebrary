@@ -5,13 +5,20 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import CheckIcon from '@mui/icons-material/Check';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import ToggleButton from '@mui/material/ToggleButton';
+import {useState} from 'react'
 
 
 
 const useStyles = makeStyles({
     root: {
-      maxWidth: 345,
+      maxWidth: 350,
+      maxHeight: 400
     },
     media: {
       height: 140,
@@ -19,44 +26,85 @@ const useStyles = makeStyles({
   });
 
   
-  export default function LibraryCards({userData}) {
-   
-      // const [wineData,setWineData] = useState({})
-    
-     
-    
-    const classes = useStyles();
-
-  //  const {items,notes} = userData;
-  //  const [cardInfo,setCardInfo] = useState({})
-
-  
-    return (
-      <Card className={classes.root}>
+  export default function LibraryCards({testSELF}) {  
+  const classes = useStyles();
+  console.log({testSELF})
+  const [selected,setSelected] = useState(false)
+const itemCards = testSELF.items.map((item) => {
+ 
+  return (
+      <Card data-vice={item.vice_type} className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image=".picture.png"
-            title="Contemplative Reptile"
-          />
+            image={item.imgsrc}
+            title={item.name}
+            />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {item.name} 
             </Typography>
+          <Stack
+  direction="row"
+  justifyContent="space-evenly"
+  alignItems="center"
+  spacing={2}
+>
+      <Chip size='small' label={item.year} />
+      <Chip size='small' label={item.country}/>
+     <Chip size='small' label={item.type}       />
+            </Stack>
+            <hr/>
+  
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+            {selected ? (item.note) : item.description}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
+        <Stack
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+  spacing={2}
+>
+  <span>
+            <ToggleButton
+            size='small'
+      value="notes"
+      selected={selected}
+      onChange={() => {
+        setSelected(!selected);
+      }}
+    >
+      <CheckIcon />
+    </ToggleButton>
+    </span>
+    <span>
+    <ToggleButton
+    size='small'
+      value="removeItem"
+      selected={selected}
+      onClick={() => {
+        // REMOVE FROM DB 
+      }}
+    >
+      <CheckIcon />
+    </ToggleButton>
+    </span>
+    <span>
           <Button size="small" color="primary">
-            Share
+           X
           </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
+          </span>
+    </Stack>
         </CardActions>
       </Card>
-    );
+    )})
+
+  return( 
+  <Box>
+    {itemCards}
+  </Box>)
+
   }

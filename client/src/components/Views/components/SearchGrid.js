@@ -30,9 +30,14 @@ export default function SearchGrid() {
             setWineList(wineDB.data.Wines)
         }
     })
+
+    console.dir({wineList})
     const classes = useStyles();
 
     const wineCards = wineList.map((wine,index) => {
+      if (wine.imgsrc == ''){
+        wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
+      }
     return (
       <Grid item key={index} xs={3}>
         <Card className={classes.root}>
@@ -63,7 +68,6 @@ export default function SearchGrid() {
 
 return(
     <Container>
-
     <Grid container spacing={1}>
     {wineCards}
     </Grid>

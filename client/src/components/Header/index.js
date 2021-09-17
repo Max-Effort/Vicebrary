@@ -20,38 +20,36 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-    button:{
-      border:'none',
-      color:'white',
-      maxWidth: '20rem',
-      flex: '0 0 10%',
-      transition:'.3s ease-in-out',
-      transitionDelay: "0.1s",
-      fontSize: '.75rem',
-       '&:hover':{
-          boxShadow: 'inset 0 -5px 5px rgba(255,255,255, .5)'
-    }
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
-       appbar:{
-  width: '100%',
-  display: 'flex',
-  zIndex: '1100',
-  boxSizing: 'border-box',
-  flexShrink: '0',
-  flexFlow: 'row wrap',
-  justifyContent: 'flex-end',
-  gap:'2rem',
-
-}
-    
+  button: {
+    border: "none",
+    color: "white",
+    maxWidth: "20rem",
+    flex: "0 0 10%",
+    transition: ".3s ease-in-out",
+    transitionDelay: "0.1s",
+    fontSize: ".75rem",
+    "&:hover": {
+      boxShadow: "inset 0 -5px 5px rgba(255,255,255, .5)",
+    },
+  },
+  appbar: {
+    width: "100%",
+    display: "flex",
+    zIndex: "1100",
+    boxSizing: "border-box",
+    flexShrink: "0",
+    flexFlow: "row wrap",
+    justifyContent: "flex-end",
+    gap: "2rem",
+  },
 }));
 
 
