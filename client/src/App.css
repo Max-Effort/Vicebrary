@@ -43,7 +43,7 @@
     }
     
     .search-bg {
-        background-image: url(../../client/src/searchImg.png);
+        background-image: url(../../client/src/components/images/searchImg.png);
         background-color: #cccccc;
         height: 100vh;
         background-position: center;
@@ -52,7 +52,7 @@
     }
     
     .add-bg {
-        background-image: url(../../client/src/addImg.png);
+        background-image: url(../../client/src/components/images/addImg.png);
         background-color: #cccccc;
         height: 100%;
         min-height: 90vh;
