@@ -12,22 +12,32 @@ type Wine{
 
 }
 
+type Vice{
+  _id:ID
+  item_id:ID
+  name: String
+   year: String
+   country: String
+   type: String
+   description: String
+   imgsrc: String
+}
+
  type Item{
-   _id: String
-   name: String
+   _id: ID
+   owner_id: ID
    vice_type: String
    vice_id: ID
-   imgsrc: String
-   note:Note
-  #  owner_id: String
+   vice:[Vice]
+   note: String
  }
 
-type Note{
-   _id: String
-   owner_id: String
-   item_id: String
-   content: String
-}
+# type Note{
+#    _id: String
+#    owner_id: String
+#    item_id: String
+#    content: String
+# }
 
 #  type Library{
 #    _id: ID
@@ -46,8 +56,7 @@ type Note{
    _id: ID
    username: String
    email: String
-  items:[Item] ## items that specifically have owner_id === self_id
-  notes:[Note]
+  items:[Item] 
   }
  
 type Auth {
@@ -57,21 +66,25 @@ type Auth {
 
 type Query {
     Users: [User]
-    Self(username: String): Self
+    Self: Self
     User(username: String!): User
     # Library(owner_id: String): Library
     Item(_id: ID): Item
+    Vice(item_id: ID):Vice
+    Vices:[Vice]
     Items:[Item]
     Wines: [Wine]
     Wine(_id:ID):Wine
     }
 
 type Mutation {
+  # add remove note & remove item
    login(email: String, password: String!): Auth
    addUser(username: String!, email: String!, password: String!): Auth
-   saveItem(name:String, vice_type:String, vice_id:String):Item
+   saveToVicebrary(item_id:ID, vice_type:String, vice_id:ID):Vice
+   saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
-   saveNote(item_id: String, content: String): Note
+   saveNote(item_id: ID, content: String): Item
   #  createLibrary(owner_id: String): Library
 }
 `;

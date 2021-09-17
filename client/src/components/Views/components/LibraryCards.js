@@ -26,23 +26,30 @@ const useStyles = makeStyles({
   });
 
   
-  export default function LibraryCards({testSELF}) {  
+  export default function LibraryCards({items}) {  
   const classes = useStyles();
-  console.log({testSELF})
-  const [selected,setSelected] = useState(false)
-const itemCards = testSELF.items.map((item) => {
- 
+    const [selected,setSelected] = useState(false)
+const itemCards = items.map((item, index) => {
+  console.dir({item})
+console.log(item.vice[0].imgsrc)
+
+const handleNoteToggle = () =>{
+  console.log('NoteToggle:', selected)
+  setSelected(!selected)
+
+}
+
   return (
       <Card data-vice={item.vice_type} className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={item.imgsrc}
-            title={item.name}
+            image={item.vice[0].imgsrc}
+            title={item.vice[0].name}
             />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {item.name} 
+              {item.vice[0].name} 
             </Typography>
           <Stack
   direction="row"
@@ -50,14 +57,14 @@ const itemCards = testSELF.items.map((item) => {
   alignItems="center"
   spacing={2}
 >
-      <Chip size='small' label={item.year} />
-      <Chip size='small' label={item.country}/>
-     <Chip size='small' label={item.type}       />
+      <Chip size='small' label={item.vice[0].year} />
+      <Chip size='small' label={item.vice[0].country}/>
+     <Chip size='small' label={item.vice[0].type}       />
             </Stack>
             <hr/>
   
             <Typography variant="body2" color="textSecondary" component="p">
-            {selected ? (item.note) : item.description}
+            {selected ? (item.note) : item.vice[0].description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -69,32 +76,28 @@ const itemCards = testSELF.items.map((item) => {
   spacing={2}
 >
   <span>
-            <ToggleButton
+            <Button
             size='small'
       value="notes"
       selected={selected}
-      onChange={() => {
-        setSelected(!selected);
-      }}
+      onClick={handleNoteToggle}
     >
-      <CheckIcon />
-    </ToggleButton>
+     {selected?'See Note': 'See Description'} 
+    </Button>
     </span>
     <span>
-    <ToggleButton
+    <Button
     size='small'
-      value="removeItem"
-      selected={selected}
       onClick={() => {
         // REMOVE FROM DB 
       }}
     >
-      <CheckIcon />
-    </ToggleButton>
+      Add/Edit Note
+    </Button>
     </span>
     <span>
           <Button size="small" color="primary">
-           X
+           Remove From Vicebrary
           </Button>
           </span>
     </Stack>
