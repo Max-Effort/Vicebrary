@@ -112,18 +112,7 @@ const resolvers = {
 
             }
         },
-        saveItem: async(parent, args, context) => {
-
-            const savedItem = await db.Item.findOne({ vice_id: args.vice_id })
-            if (!savedItem) {
-                const newItem = await db.Item.create({...args, owner_id: context.user._id })
-                await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: newItem._id } })
-                return newItem;
-            }
-            // await db.User.findOneAndUpdate({ _id: args.owner_id })
-            return savedItem;
-        },
-        saveVice: async(parent, args, context) => {
+        saveToVicebrary: async(parent, args, context) => {
             // console.dir(`Update Vice ARGS: ${args.item_id}`)
             let vice = await db.Vice.findOne({ item_id: args.item_id })
             if (!vice) {
@@ -142,6 +131,18 @@ const resolvers = {
             console.log(`Found Existing Record: ${vice}`)
             return vice
         },
+        saveItem: async(parent, args, context) => {
+            if (context.user) {
+                const savedItem = await db.Item.findOne({ vice_id: args.vice_id })
+                if (!savedItem) {
+                    const newItem = await db.Item.create({...args, owner_id: context.user._id })
+                    await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: newItem._id } })
+                }
+                return newItem;
+            }
+            return savedItem;
+        },
+
         saveWine: async(parent, args, context) => {
             let wines = await db.Wine.find({})
             let existCheck = await wines.map((wine) => {
@@ -192,6 +193,7 @@ const resolvers = {
         }
     }
 }
+
 
 
 

@@ -81,10 +81,10 @@ type Mutation {
   # add remove note & remove item
    login(email: String, password: String!): Auth
    addUser(username: String!, email: String!, password: String!): Auth
-   saveVice(item_id:ID, vice_type:String, vice_id:ID):Vice
+   saveToVicebrary(item_id:ID, vice_type:String, vice_id:ID):Vice
    saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
-   saveNote(item_id: String, content: String): Item
+   saveNote(item_id: ID, content: String): Item
   #  createLibrary(owner_id: String): Library
 }
 `;
