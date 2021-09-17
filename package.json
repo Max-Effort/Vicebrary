@@ -21,8 +21,15 @@
     },
     "homepage": "https://github.com/Max-Effort/Vicebrary#readme",
     "dependencies": {
+        "@emotion/react": "^11.4.1",
+        "@emotion/styled": "^11.3.0",
+        "@mui/icons-material": "^5.0.0",
+        "@mui/material": "^5.0.0",
+        "@mui/styled-engine-sc": "^5.0.0",
+        "aos": "^2.3.4",
         "concurrently": "^6.2.1",
         "cors": "^2.8.5",
+        "styled-components": "^5.3.1",
         "writemereadme": "^1.5.0"
     }
 }
