@@ -4,6 +4,7 @@
     }
     
     .mainPage {
+        background-color: white !important;
         padding-top: 3rem;
         width: 90%;
         margin: 0 5%;
@@ -72,6 +73,7 @@
         color: white !important;
     }
     
+
     .search-bg h2 {
         color: white !important;
     }
