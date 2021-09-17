@@ -49,7 +49,7 @@
     }
     
     .search-bg {
-        background-image: url(../../client/src/searchImg.png);
+        background-image: url(../../client/src/components/images/searchImg.png);
         background-color: #cccccc;
         height: 100vh;
         margin: 2rem 0;
@@ -59,7 +59,7 @@
     }
     
     .add-bg {
-        background-image: url(../../client/src/addImg.png);
+        background-image: url(../../client/src/components/images/addImg.png);
         background-color: #cccccc;
         height: 100%;
         margin: 2rem 0;
@@ -73,11 +73,16 @@
         color: white !important;
     }
     
-
     .search-bg h2 {
         color: white !important;
     }
     
     form div input {
         background-color: white;
+    }
+    
+    #video {
+        position: fixed;
+        /* z-index: -1; */
+        width: 100%;
     }
