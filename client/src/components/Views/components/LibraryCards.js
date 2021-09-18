@@ -123,7 +123,7 @@ const useStyles = makeStyles({
   
 
   return(
-       <Box style={{ display: 'flex', justifyContent:'space-evenly',width:'100%'}}>
+       <Box style={{ display: 'flex', flexFlow: 'row wrap',gap:'1rem', justifyContent:'space-evenly',width:'100%'}}>
           {itemCards}
        </Box>
         )
