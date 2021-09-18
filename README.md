@@ -7,6 +7,11 @@
 ---
   
   A personal library for your vices.
+
+  GitHub: https://github.com/Max-Effort/Vicebrary
+
+  Heroku: http://vicebrary.herokuapp.com
+ 
  
   ## Table of Contents 
   - [Description](#--description--)
