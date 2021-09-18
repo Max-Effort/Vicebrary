@@ -49,6 +49,10 @@
                 color: white !important;
             }
             
+            .add-bg {
+                padding: 3rem;
+            }
+            
             .search-bg h2 {
                 color: white !important;
             }

@@ -24,8 +24,10 @@
     
   ## Installation Instructions 📣
 ---
+Clone the repo
+Run npm i 
+Run npm run dev
 
-  Install it.
   
   ## Usage 🖱️
 ---
@@ -40,7 +42,7 @@ Visit [Vicebrary](http://vicebrary.herokuapp.com) and create a new account.
 
   |  Login to Vicebrary                              | Community Driven Databases                              | Mobile Friendly                               | 
   |:------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:|
-  | <img alt="login page" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150"> |<img alt="add a wine page" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|<img alt="mobile screenshot" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|
+  | <img alt="login page" src='client/src/components/images/ScreenShotLogin.png' width="150" height="150"> |<img alt="add a wine page" src='client/src/components/images/ScreenShotUserDB.png' width="150" height="150">|<img alt="mobile screenshot" src='client/src/components/images/ScreenShotMobile.png' width="150" height="150">|
   |                                                        |                                                        |                                                        |
   |                                                        |                                                        |                                                        |   
 
