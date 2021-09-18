@@ -24,10 +24,6 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     }],
-    // notes: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Note'
-    // }],
     isLiked: {
         type: Boolean,
         default: true
