@@ -25,7 +25,13 @@ const resolvers = {
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         Users: async() => {
-            const userData = await db.User.find({}).populate('items').populate('vices');
+            const userData = await db.User.find({}).populate({
+                path: 'items',
+                populate: {
+                    path: 'vice',
+                    model: 'Vice'
+                }
+            })
             return userData;
         },
         // Finds a user that is not SELF
@@ -114,35 +120,36 @@ const resolvers = {
         },
         saveToVicebrary: async(parent, args, context) => {
             // {"vice_type": "Wine", "vice_id": "61419bf1fb2190ea2445d460", "item_id": "614542b2165e0d97b5a57500"}
-
-            console.log(`Update Vice item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
-            let vice = await db.Vice.findOne({ item_id: args.item_id })
-            if (!vice) {
-                let viceInfo
-                let updatedVice
-                    // console.log(`vicetype: ${args.vice_type}`)
-                if (args.vice_type === 'Wine') {
-                    let data = await db.Wine.find({ _id: args.vice_id })
-                        // console.log(`inside wine if: \n ${data[0]._doc.name}`)
-                    viceInfo = {...data[0]._doc, item_id: args.item_id }
-                    updatedVice = await db.Vice.create(viceInfo)
-                    let newItem = await db.Item.findOne({ vice_id: args.vice_id })
-                    if (!newItem) {
-                        // add info to Item table in DB
-                        const newUserItem = await db.Item.create({...args, owner_id: context.user._id })
-                        console.dir({ newUserItem })
-                            // update User Items to include the id of the new item
-                        let userItemCheck = await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: newUserItem._id } })
-                        console.dir({ userItemCheck })
-                        console.dir({ newUserItem })
-                            // console.dir({ updatedVice })
-                        return updatedVice
+            if (context.user) {
+                console.log(`Update Vice item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
+                const savedVice = await db.Vice.findOne({ _id: args.vice_id });
+                const savedItem = await db.Item.findOne({ vice_id: args.vice_id })
+                if (!savedVice) {
+                    let viceInfo
+                    let updatedVice
+                        // console.log(`vicetype: ${args.vice_type}`)
+                    if (args.vice_type === 'Wine') {
+                        //Getting Vice info
+                        let data = await db.Wine.find({ _id: args.vice_id })
+                            // Check if user is adding a new item
+                        if (!savedItem) {
+                            // add info to Item table in DB
+                            const newItem = await db.Item.create({...args, owner_id: context.user._id })
+                            console.dir({ newItem })
+                                // update User Items to include the id of the new item
+                                //Setting item_id from newly created item
+                            viceInfo = {...data[0]._doc, item_id: newItem._id, owner_id: context.user._id }
+                        }
                     }
+                    //Creating new Vice
+                    // Vice DB entry = selected vice's(wine) table info as the properties plus the item_id of the new item
+                    updatedVice = await db.Vice.create(viceInfo)
+                    await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: updatedVice.item_id } })
                     return updatedVice
                 }
-                console.log(`Found Existing Record: ${vice}`)
-                return vice
             }
+            console.log(`Found Existing Record: ${vice}`)
+            return vice
         },
         saveItem: async(parent, args, context) => {
             console.log({ parent })
@@ -156,7 +163,6 @@ const resolvers = {
                     const newItem = await db.Item.create({...args, owner_id: context.user._id })
                     console.dir({ newItem })
                         // update User Items to include the id of the new item
-                    await saveToVicebrary({ item: newItem.item_id, vice_type: newItem.vice_type, vice_id: newItem.vice_id })
                     await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: newItem._id } })
                 }
                 return newItem;
@@ -210,6 +216,18 @@ const resolvers = {
                 try {
                     const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content }, upsert: true })
                     return targetItem
+                } catch (err) { throw err }
+            }
+        },
+        removeFromVicebrary: async(parent, args, context) => {
+            if (context.user) {
+                console.log(db.Item.length)
+                try {
+                    await db.Item.remove({ vice_id: args.vice_id })
+                    await db.Vice.remove({ _id: args.vice_id })
+
+                    // db.User.findOneAndUpdate({_id:context.user._id},{$removeFromSet:{items:{item}}})
+                    return { message: 'Item removed' }
                 } catch (err) { throw err }
             }
         }

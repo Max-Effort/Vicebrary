@@ -24,10 +24,6 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     }],
-    vices: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Vice'
-    }],
     isLiked: {
         type: Boolean,
         default: true

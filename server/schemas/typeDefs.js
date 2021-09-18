@@ -70,7 +70,7 @@ type Auth {
 
 type Query {
     Users: [User]
-    Self: Self
+    Self:Self
     User(username: String!): User
     # Library(owner_id: String): Library
     Item(_id: ID): Item
@@ -89,7 +89,7 @@ type Mutation {
    saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
    saveNote(item_id: ID, content: String): Item
-  #  createLibrary(owner_id: String): Library
+   removeFromVicebrary(vice_id:ID):Self
 }
 `;
 
