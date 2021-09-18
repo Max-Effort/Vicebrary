@@ -5,6 +5,7 @@ import Auth from "./utils/auth";
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
+import BackgroundVideo from './components/Background Videos/viceclips.mp4.mov'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -34,6 +35,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
           <div className="App">
+          <video id="background-video" autoPlay loop muted>
+            <source src = {BackgroundVideo} type='video/mp4' />
+            </video>
             <Switch>
               <Route exact path="/">
                 <Main />
