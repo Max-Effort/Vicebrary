@@ -38,6 +38,7 @@ console.dir({wineList})
   const handleSaveWine = (e) => {
     let id = e.target.parentNode.attributes[3].value
        saveWine({variables:{vice_id:id, vice_type: 'Wine'}})
+       alert('It was added to your vicebrary . . . trust us.')
 
   }
  
