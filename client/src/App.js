@@ -33,7 +33,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
           <div className="App">
             <Switch>
               <Route exact path="/">
@@ -45,13 +44,9 @@ function App() {
               <Route path="/signup">
                 <SignUpSide />
               </Route>
-              <Route
-                render={() => <h1 className="display-2">Wrong page!</h1>}
-              />
+              <Route render={() => <h1 className="display-2">Wrong page!</h1>}/>
             </Switch>
           </div>
-
-        </>  
       </Router>
     </ApolloProvider>
 

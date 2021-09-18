@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
+const opts = { toJSON: { virtuals: true }, toObject: { virtuals: true } };
+
 
 const userSchema = new Schema({
     username: {
@@ -22,16 +24,21 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     }],
-    notes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Note'
-    }],
+    // notes: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Note'
+    // }],
     isLiked: {
         type: Boolean,
         default: true
     }
 
-})
+}, opts)
+
+// userSchema.virtual('vices', {
+//     ref: 'Vice',
+//     localField: 'items.vice'
+// });
 
 // hash user password
 userSchema.pre('save', async function(next) {

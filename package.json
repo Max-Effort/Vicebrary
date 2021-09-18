@@ -23,6 +23,7 @@
     "dependencies": {
         "concurrently": "^6.2.1",
         "cors": "^2.8.5",
+        "typography": "^0.16.21",
         "writemereadme": "^1.5.0"
     }
 }
