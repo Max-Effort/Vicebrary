@@ -1,95 +1,67 @@
-        .App {
-            width: 100%;
-            min-height: 100vh;
-            /* background-color: white !important; */
-        }
-        
-        .mainPage {
-            background-color: white !important;
-            padding-top: 3rem;
-            width: 90%;
-            margin: 0 5%;
-            height: auto;
-            background-color: white !important;
-        }
-        
-        .modal-container {
-            height: 90%;
-            width: 90%;
-        }
-        
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        .addWineContainer {
-            text-align: center;
-        }
-        
-        .MuiTypography-h5 {
-            font-size: 1rem !important;
-            font-weight: bold !important
-        }
-        
-        .MuiTypography-body1 {
-            font-size: .75rem !important;
-            font-weight: 200 !important;
-        }
-        
-        .MuiTypography-colorTextSecondary {
-            color: rgb(233, 233, 233) !important
-        }
-        
-        .search-bg {
-            /* background-image: url(../../client/src/components/images/searchImg.png); */
-            background-color: #cccccc;
-            height: 100vh;
-            margin: 2rem 0;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: scroll;
-        }
-        /* .add-bg {
-            background-image: url(../../client/src/components/images/addImg.png);
-            background-color: #cccccc;
-            height: 100%;
-            margin: 2rem 0;
-            min-height: 90vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: scroll;
-        } */
-        
-        .add-bg h2 {
-            color: white !important;
-        }
-        
-        .search-bg h2 {
-            color: white !important;
-        }
-        
-        form div input {
-            background-color: white;
-        }
-        
-        #background-video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            z-index: -1;
-        }
-        /* .renderHome {
-
-        } */
+            .App {
+                width: 100%;
+                min-height: 100vh;
+            }
+            
+            .mainPage {
+                padding-top: 3rem;
+                width: 90%;
+                margin: 0 5%;
+                height: auto;
+            }
+            
+            .modal-container {
+                height: 90%;
+                width: 90%;
+            }
+            
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .addWineContainer {
+                text-align: center;
+            }
+            
+            .MuiTypography-h5 {
+                font-size: 1rem !important;
+                font-weight: bold !important
+            }
+            
+            .MuiTypography-body1 {
+                font-size: .75rem !important;
+                font-weight: 200 !important;
+            }
+            
+            .MuiTypography-colorTextSecondary {
+                color: rgb(233, 233, 233) !important
+            }
+            
+            .add-bg h2 {
+                color: white !important;
+            }
+            
+            .search-bg h2 {
+                color: white !important;
+            }
+            
+            form div input {
+                background-color: white;
+            }
+            
+            #background-video {
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
