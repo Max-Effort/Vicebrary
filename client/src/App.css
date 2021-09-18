@@ -65,3 +65,11 @@
                 bottom: 0;
                 z-index: -1;
             }
+            
+            .renderAdd {
+                padding-top: 3rem;
+            }
+            
+            .renderSearch {
+                padding-top: 3rem;
+            }
