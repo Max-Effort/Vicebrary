@@ -48,7 +48,7 @@ Visit [Vicebrary](http://vicebrary.herokuapp.com) and create a new account.
   <br />
   :octocat: Find us on GitHub: [Max-Effort](https://github.com/Max-Effort)<br />
   <br />
-  📬 Email us with any questions: support@peterroto.com<br /><br />
+  📬 Email us with any questions: [email us](support@peteroto.com)<br /><br />
   
   ## License ![badge](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen)
 ---
