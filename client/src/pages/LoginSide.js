@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../utils/mutations';
@@ -68,12 +68,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState('false');
-  const[loginUser, {error}] = useMutation(LOGIN_USER);
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
   const classes = useStyles();
 
-  if (Auth.loggedIn()){
-    console.log('is logged in: '+ Auth.loggedIn())
-    return   <Redirect to='/'></Redirect>
+  if (Auth.loggedIn()) {
+    console.log('is logged in: ' + Auth.loggedIn())
+    return <Redirect to='/'></Redirect>
   }
 
 
@@ -86,9 +86,9 @@ export default function SignInSide() {
 
     try {
       const { data } = await loginUser({
-        variables: { ...userFormData}
+        variables: { ...userFormData }
       })
-      console.dir({data});
+      console.dir({ data });
 
       Auth.login(data.login.token)
 
@@ -101,7 +101,7 @@ export default function SignInSide() {
       email: '',
       password: '',
     });
-  
+
 
   };
 
@@ -176,7 +176,7 @@ export default function SignInSide() {
               <Copyright />
             </Box>
           </form>
-            {error && <div>Login failed</div>}
+          {error && <div>Login failed</div>}
         </div>
       </Grid>
     </Grid>
