@@ -8,11 +8,13 @@ import Library from './Library'
 
 export default function View(page) {
     const [userData, setUserData] = useState({});
+    
     const { data } = useQuery(QUERY_SELF, {
         onCompleted: () => {
             setUserData(data.Self)
         }
     });
+    
     console.dir('User:',{userData})
     let view = page.page;
     // Get State from Footer through Main and render appropriate component  

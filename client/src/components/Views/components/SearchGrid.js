@@ -10,7 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { QUERY_WINES } from '../../../utils/queries';
 import { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import {SAVE_VICE} from '../../../utils/mutations'
 
 const useStyles = makeStyles({
   root: {
@@ -24,17 +25,27 @@ const useStyles = makeStyles({
 
 export default function SearchGrid() {
   const [wineList, setWineList] = useState([])
+console.dir({wineList})
+  const wineDB = useQuery(QUERY_WINES, {
+    onCompleted: () => {
+      setWineList(wineDB.data.Wines)
+    }
+  })
 
-    const wineDB = useQuery(QUERY_WINES, {
-        onCompleted: () => {
-            setWineList(wineDB.data.Wines)
-        }
-    })
+  const [saveWine,{data}]=useMutation(SAVE_VICE)
 
-    console.dir({wineList})
+  const handleSaveWine = (e) => {
+    let id = e.target.parentNode.attributes[3].value
+       saveWine({variables:{vice_id:id, vice_type: 'Wine'}})
+
+  }
+ 
     const classes = useStyles();
 
     const wineCards = wineList.map((wine,index) => {
+      // console.log('vice_id:',wine._id)
+ 
+
       if (wine.imgsrc == ''){
         wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
       }
@@ -58,7 +69,7 @@ export default function SearchGrid() {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="x-small" color="primary">
+            <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
               Add to Vicebrary
             </Button>
           </CardActions>
@@ -66,7 +77,6 @@ export default function SearchGrid() {
       </Grid>
     );
   })
-
   return (
     <Container>
       <Grid container spacing={1}>

@@ -25,7 +25,10 @@ itemSchema.virtual('vice', {
     localField: 'vice_id',
     foreignField: '_id',
 });
-console.log(this.image)
+itemSchema.pre('remove', function() {
+    console.log('PreRemove Hook Called')
+    Vice.deleteOne({ _id: this.vice_id });
+})
 const Item = mongoose.model("Item", itemSchema);
 
 module.exports = Item;
