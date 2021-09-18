@@ -85,7 +85,7 @@ type Mutation {
   # add remove note & remove item
    login(email: String, password: String!): Auth
    addUser(username: String!, email: String!, password: String!): Auth
-   saveToVicebrary(owner_id:ID,item_id:ID, vice_type:String, vice_id:ID):Vice
+   saveVice(owner_id:ID,item_id:ID, vice_type:String, vice_id:ID):Vice
    saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
    saveNote(item_id: ID, content: String): Item

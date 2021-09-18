@@ -118,7 +118,7 @@ const resolvers = {
 
             }
         },
-        saveToVicebrary: async(parent, args, context) => {
+        saveVice: async(parent, args, context) => {
             // {"vice_type": "Wine", "vice_id": "61419bf1fb2190ea2445d460", "item_id": "614542b2165e0d97b5a57500"}
             if (context.user) {
                 console.log(`Update Vice item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
@@ -151,6 +151,7 @@ const resolvers = {
             console.log(`Found Existing Record: ${vice}`)
             return vice
         },
+        // ! NOT SURE THIS MUTATION IS BEING USED ANYWHERE . . . DELETE IT?
         saveItem: async(parent, args, context) => {
             console.log({ parent })
             if (context.user) {
@@ -170,7 +171,6 @@ const resolvers = {
             // if community vice already exists in user library, do nothing
             return savedItem;
         },
-
         saveWine: async(parent, args, context) => {
             let wines = await db.Wine.find({})
             let existCheck = await wines.map((wine) => {
