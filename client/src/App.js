@@ -50,8 +50,8 @@ function App() {
               />
             </Switch>
           </div>
-        
-        </>
+
+        </>  
       </Router>
     </ApolloProvider>
 

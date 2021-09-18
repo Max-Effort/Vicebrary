@@ -9,26 +9,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
 
 const bull = (
-    <Box
-        component="span"
-        sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
+    <Box component="span" sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}>
         •
     </Box>
 );
 
 export default function Home({ userData }) {
+    console.log (bull)
     console.dir(userData)
-    return (<div className="renderHome">
-        <h2>Welcome {userData.username},</h2>
-    </div>)
     return (
         <div className="renderHome">
             <h2>Welcome {userData.username},</h2>
             <React.Fragment>
                 <CardContent>
                     <Typography variant="h5" component="div">
-                        Welcome to Vicebrary: 
+                        Welcome to Vicebrary:
                         an application that allows you to broaden your horizons and your Vices.
                     </Typography>
                     <Typography variant="h5" component="div">

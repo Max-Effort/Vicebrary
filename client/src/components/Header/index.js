@@ -29,27 +29,27 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   button: {
-
-    border: "none",
-    color: "white",
-    maxWidth: "20rem",
-    flex: "0 0 10%",
-    transition: ".3s ease-in-out",
+    border: 'none',
+    color: 'white',
+    maxWidth: '20rem',
+    flex: '0 0 10%',
+    transition: '.3s ease-in-out',
     transitionDelay: "0.1s",
-    fontSize: ".75rem",
-    "&:hover": {
-      boxShadow: "inset 0 -5px 5px rgba(255,255,255, .5)",
-    },
+    fontSize: '.75rem',
+    '&:hover': {
+      boxShadow: 'inset 0 -5px 5px rgba(255,255,255, .5)'
+    }
   },
   appbar: {
-    width: "100%",
-    display: "flex",
-    zIndex: "1100",
-    boxSizing: "border-box",
-    flexShrink: "0",
-    flexFlow: "row wrap",
-    justifyContent: "flex-end",
-    gap: "2rem",
+    width: '100%',
+    display: 'flex',
+    zIndex: '1100',
+    boxSizing: 'border-box',
+    flexShrink: '0',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-end',
+    gap: '2rem',
+
   }
 }));
 
@@ -78,7 +78,7 @@ export default function Header() {
             Logout
           </Button>
         ) : (
-          <>
+          <div>
             <Button variant="outlined" color="white" className={classes.button}>
               <Link className="" to="/login">
                 Login
@@ -89,7 +89,7 @@ export default function Header() {
                 Signup
               </Link>
             </Button>
-          </>
+          </div>
         )}
         <Button variant="outlined" color="white" type="Button" onClick={handleOpen} className={classes.button}>
           Meet The Devs
@@ -102,4 +102,3 @@ export default function Header() {
 
   );
 };
-
