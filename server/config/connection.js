@@ -1,7 +1,7 @@
    const mongoose = require('mongoose');
    require('dotenv').config();
    //    || 'mongodb://localhost/vicebrary'
-   mongoose.connect(process.env.MONGODB_URI, {
+   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/vicebrary', {
        useNewUrlParser: true,
        useUnifiedTopology: true,
        //   useCreateIndex: true,
