@@ -52,22 +52,23 @@ const useStyles = makeStyles({
      
     }
     const handleRemoveFromVicebrary = async (vice_id) =>{
-     const token = Auth.loggedIn() ? Auth.getToken() : null 
-     if (!token){
-       return false;
-     }
+      alert(`So that doesn't do anything. . . `)
+    //  const token = Auth.loggedIn() ? Auth.getToken() : null 
+    //  if (!token){
+    //    return false;
+    //  }
 
-     try{
-       const updatedData = await removeItem({
-         variables:{vice_id:vice_id},
-       });
-       console.log(vice_id)
-       if(error){
-         throw new Error(`So, that shit didn't work`)
-       }
-     }catch (err) { 
-       throw err
-      }
+    //  try{
+    //    const updatedData = await removeItem({
+    //      variables:{vice_id:vice_id},
+    //    });
+    //    console.log(vice_id)
+    //    if(error){
+    //      throw new Error(`So, that shit didn't work`)
+    //    }
+    //  }catch (err) { 
+    //    throw err
+    //   }
     }
     
   const itemCards = items.map((item, index) => {
@@ -104,7 +105,7 @@ const useStyles = makeStyles({
         </span>
         <span>
           <Button size='small' onClick={()=> {
-            // REMOVE FROM DB
+           alert(`This is a paid feature. \n . . . not really, it just doesn't work yet.`)
             }}
             >
             Add/Edit Note
