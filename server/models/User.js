@@ -24,10 +24,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     }],
-    // notes: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Note'
-    // }],
+    vices: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Vice'
+    }],
     isLiked: {
         type: Boolean,
         default: true

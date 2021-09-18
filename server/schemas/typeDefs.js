@@ -14,6 +14,7 @@ type Wine{
 
 type Vice{
   _id:ID
+  owner_id:ID
   item_id:ID
   name: String
    year: String
@@ -50,6 +51,9 @@ type Vice{
    _id: ID
    username: String
    email: String
+   items:[Item]
+   vices:[Vice]
+
  }
 
  type Self{
@@ -81,7 +85,7 @@ type Mutation {
   # add remove note & remove item
    login(email: String, password: String!): Auth
    addUser(username: String!, email: String!, password: String!): Auth
-   saveToVicebrary(item_id:ID, vice_type:String, vice_id:ID):Vice
+   saveToVicebrary(owner_id:ID,item_id:ID, vice_type:String, vice_id:ID):Vice
    saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
    saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
    saveNote(item_id: ID, content: String): Item
