@@ -29,7 +29,7 @@
   
   ## Contributors 🧑‍🤝‍🧑
 ---
-  Peter Roto, Nakshab Nadeem, Quanisha Jackson, Ryan Hillier, Gerald Plotke
+  [Peter Roto](http://github.com/PRoto133), [Nakshab Nadeem](http://github.com/nnadeem75), [Quanisha Jackson](http://github.com/jquanisha), [Ryan Hillier](http://github.com/Ryan1992186), [Gerald Plotke](http://github.com/gplotke)
   
   ## Screenshots 📷
 ---

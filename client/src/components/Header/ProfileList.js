@@ -164,8 +164,8 @@ const devCards = Team.map((dev,index)=>{
     return (
         <Box style={{flex:'0 0 30%',maxWidth: '400px', justifyContent:'space-around'}}>
         <Card key={index} className={classes.card} elevation={16}>
-              <CardContent className={classes.media}>
-                <img src={dev.imgsrc} alt={`${dev.name}'s Profile Picture'`} />
+              <CardContent  className={classes.media}>
+                <img  title={dev.bio} src={dev.imgsrc} alt={`${dev.name}'s Profile Picture'`} />
               <CardHeader
                 style={{color:"white"}}
                 title={dev.name}

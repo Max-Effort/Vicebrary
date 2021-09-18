@@ -8,7 +8,7 @@ export const Team = [{
         bio: 'Quanisha is the best.'
     },
     {
-        imgsrc: 'https://media-exp1.licdn.com/dms/image/C4E03AQEb2XG2iMwB4g/profile-displayphoto-shrink_400_400/0/1517756959414?e=1637193600&v=beta&t=LboKDOAxLvwHG3e6mW-Catld0zkG6eD7ekzU-POWq_0',
+        imgsrc: 'https://raw.githubusercontent.com/Max-Effort/Vicebrary/main/client/src/components/images/nakshab.jpeg',
         name: 'Nakshab Nadeem',
         skills: 'Management (Maybe?)',
         github: 'nnadeem75',
@@ -17,13 +17,13 @@ export const Team = [{
         bio: 'Nakshab is nice.'
     },
     {
-        imgsrc: 'https://media-exp1.licdn.com/dms/image/D4D35AQEzyEiO6p4Fvw/profile-framedphoto-shrink_800_800/0/1629673431484?e=1631847600&v=beta&t=7QW24RiwkZonH8YSKgeB_eO9vJMXKj04Lji9Zp8pIkE',
+        imgsrc: 'https://raw.githubusercontent.com/Max-Effort/Vicebrary/main/client/src/components/images/ryan.jpeg',
         name: 'Ryan Hillier',
         skills: 'Making JSON Files',
         github: 'Ryan1992186',
         linkedin: 'Ryan-hillier-782216167',
         email: 'Ryan1992186@gmail.com',
-        bio: 'This is a quick bio about Ryan'
+        bio: 'This is a quick bio about Ryan. . . that was never finished.'
     },
     {
         imgsrc: 'https://rb.gy/jzbfvm',
