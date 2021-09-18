@@ -37,6 +37,7 @@ export default function Search({ userData }) {
     <div className="renderSearch" style={{ width: '100%' }}>
       <div className="search-bg">
       <Container style={{ width: '100%' }} align="center">
+        <br />
         <Typography variant="h4" component="h2" >Search for a Wine!</Typography>
         <Divider />
         <br />
