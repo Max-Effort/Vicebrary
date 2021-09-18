@@ -24,8 +24,7 @@
   
   ## Usage 🖱️
 ---
-
-  Tracking Vices.
+Visit [Vicebrary](http://vicebrary.herokuapp.com) and create a new account. 
   
   ## Contributors 🧑‍🤝‍🧑
 ---
@@ -34,9 +33,9 @@
   ## Screenshots 📷
 ---
 
-  |  Screenshot 1                              | Screenshot 2                               | Screenshot 3                               | 
+  |  Login to Vicebrary                              | Community Driven Databases                              | Mobile Friendly                               | 
   |:------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:|
-  | <img alt="placholder image" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150"> |<img alt="placholder image" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|<img alt="placholder image" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|
+  | <img alt="login page" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150"> |<img alt="add a wine page" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|<img alt="mobile screenshot" href="https://rb.gy/jzbfvm" src="https://rb.gy/jzbfvm" width="150" height="150">|
   |                                                        |                                                        |                                                        |
   |                                                        |                                                        |                                                        |   
 
@@ -47,9 +46,9 @@
 
   Write all issues in your dream journal. . . then burn it.<br />
   <br />
-  :octocat: Find me on GitHub: [Max-Effort](https://github.com/Max-Effort)<br />
+  :octocat: Find us on GitHub: [Max-Effort](https://github.com/Max-Effort)<br />
   <br />
-  📬 Email me with any questions: support@peterroto.com<br /><br />
+  📬 Email us with any questions: support@peterroto.com<br /><br />
   
   ## License ![badge](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen)
 ---
