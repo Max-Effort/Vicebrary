@@ -65,3 +65,11 @@
                 bottom: 0;
                 z-index: -1;
             }
+            
+            .MuiButton-textSizeSmall {
+                font-size: .75rem !important;
+            }
+            
+            .MuiButton-textSizeSmall:hover {
+                color: rgb(255, 140, 140)
+            }

@@ -1,5 +1,6 @@
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -52,7 +53,7 @@ console.dir({wineList})
 
       return (
       <Grid item key={index} xs={3}>
-        <Card className={classes.root}>
+        <Card style={{height:'400px'}} className={classes.root}>
           <CardActionArea>
             <CardMedia
               className={classes.media}
@@ -60,12 +61,14 @@ console.dir({wineList})
               title={wine.name}
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
                 {wine.name}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Box style={{height:'125px', overflowY:'scroll'}}>
+              <Typography variant="body2" color="darkgrey" component="p">
                 {wine.description}
               </Typography>
+              </Box>
             </CardContent>
           </CardActionArea>
           <CardActions>
