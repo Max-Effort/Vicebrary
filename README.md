@@ -40,9 +40,9 @@ Visit [Vicebrary](http://vicebrary.herokuapp.com) and create a new account.
   ## Screenshots 📷
 ---
 
-  |  Login to Vicebrary                              | Community Driven Databases                              | Mobile Friendly                               | 
+  |  Login to Vicebrary                                    | Community Driven Databases                             | Mobile Friendly                                        | 
   |:------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:|
-  | <img alt="login page" href='client/src/components/images/ScreenShotLogin.png'src='client/src/components/images/ScreenShotLogin.png' width="150" height="150"> |<img alt="add a wine page" href='client/src/components/images/ScreenShotUserDB.png' src='client/src/components/images/ScreenShotUserDB.png' width="150" height="150">|<img alt="mobile screenshot"  src='client/src/components/images/ScreenShotMobile.png' href='client/src/components/images/ScreenShotMobile.png' width="150" height="150">|
+  | <img alt="add a wine page" href='client/src/components/images/ScreenShotLogin.png' src='client/src/components/images/ScreenShotLogin.png' width="150" height="150"> | <img alt="add a wine page" href='client/src/components/images/ScreenShotUserDB.png' src='client/src/components/images/ScreenShotUserDB.png' width="150" height="150">|<img alt="mobile screenshot"  src='client/src/components/images/ScreenShotMobile.png' href='client/src/components/images/ScreenShotMobile.png' width="150" height="150">|
   |                                                        |                                                        |                                                        |
   |                                                        |                                                        |                                                        |   
 
