@@ -7,7 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import CheckIcon from '@mui/icons-material/Check';
+
+
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Auth from '../../../utils/auth'
@@ -87,15 +88,17 @@ const useStyles = makeStyles({
           <Chip size='small' label={item.vice[0].type} />
         </Stack>
         <hr />
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Box style={{height:'100px', overflowY:'scroll'}}>
+        <Typography variant="body2" color="darkgrey" component="p">
           {selected ? (item.note) : item.vice[0].description}
         </Typography>
+        </Box>
       </CardContent>
     </CardActionArea>
     <CardActions>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <span>
-          <Button size='small' value="notes" selected={selected} onClick={handleNoteToggle}>
+          <Button tyle={{fontSize:'12px'}}size='small' value="notes" selected={selected} onClick={handleNoteToggle}>
             {selected?'See Note': 'See Description'}
           </Button>
         </span>
@@ -120,8 +123,8 @@ const useStyles = makeStyles({
   
 
   return(
-        <Box>
+       <Box style={{ display: 'flex', justifyContent:'space-evenly',width:'100%'}}>
           {itemCards}
-        </Box>
+       </Box>
         )
   }

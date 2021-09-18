@@ -10,6 +10,10 @@
                 height: auto;
             }
             
+            .renderSearch {
+                padding-top: 3rem !important;
+            }
+            
             .modal-container {
                 height: 90%;
                 width: 90%;
@@ -66,10 +70,10 @@
                 z-index: -1;
             }
             
-            .renderAdd {
-                padding-top: 3rem;
+            .MuiButton-textSizeSmall {
+                font-size: .75rem !important;
             }
             
-            .renderSearch {
-                padding-top: 3rem;
+            .MuiButton-textSizeSmall:hover {
+                color: rgb(255, 140, 140)
             }
