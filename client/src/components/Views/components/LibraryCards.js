@@ -16,7 +16,7 @@ import {useState} from 'react'
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {REMOVE_ITEM, SAVE_VICE} from '../../../utils/mutations';
 import {QUERY_SELF} from '../../../utils/queries'
-import {getSavedViceIds} from '../../../utils/localStorage'
+import {getSavedViceIDs} from '../../../utils/localStorage'
 
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     
   const classes = useStyles();
     // get My data
-    const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIds())
+    const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIDs())
     const [saveVice] = useMutation(SAVE_VICE,{ update(cache, { data: { saveVice }}) {
           const { self } = cache.readQuery({ query: QUERY_SELF });
       cache.writeQuery({
@@ -72,6 +72,7 @@ const useStyles = makeStyles({
     }
     
   const itemCards = items.map((item, index) => {
+    console.log(items)
   if (item.vice[0].imgsrc === ''){
     item.vice[0].imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
   }

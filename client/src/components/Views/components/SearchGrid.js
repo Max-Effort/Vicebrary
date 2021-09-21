@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { QUERY_WINES } from '../../../utils/queries';
+import {getSavedViceIDs, localSavedViceIDs} from '../../../utils/localStorage'
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import {SAVE_VICE} from '../../../utils/mutations'
@@ -25,33 +26,42 @@ const useStyles = makeStyles({
 
 
 export default function SearchGrid() {
+  const classes = useStyles();
   const [wineList, setWineList] = useState([])
-console.dir({wineList})
+// console.dir({wineList})
   const wineDB = useQuery(QUERY_WINES, {
     onCompleted: () => {
       setWineList(wineDB.data.Wines)
     }
   })
 
-  const [saveWine,{data}]=useMutation(SAVE_VICE)
+  const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIDs())
+  useEffect(()=>{localSavedViceIDs(savedViceIDs)})
+
+  const [saveWine,{data,loading,error}]=useMutation(SAVE_VICE)
+
+  if (loading) return 'Saving. . .'
+  if (error) return `Error occured ${error.message}`
 
   const handleSaveWine = (e) => {
-    let id = e.target.parentNode.attributes[3].value
+    // console.log(e.currentTarget.value)
+    let id = e.currentTarget.value
+    // console.log({id})
        saveWine({variables:{vice_id:id, vice_type: 'Wine'}})
-       alert('It was added to your vicebrary . . . trust us.')
+       setSavedViceIDs([...savedViceIDs, id])
+       
 
+      //  console.log({savedViceIDs})
   }
- 
-    const classes = useStyles();
+// console.log('saved vice id: '+savedViceIDs.length)
 
-    const wineCards = wineList.map((wine,index) => {
-      // console.log('vice_id:',wine._id)
- 
-
+    const wineCards = 
+    wineList.map((wine,index) => { 
+       if (!savedViceIDs.includes(wine._id)){
+      // console.log('name:',wine.name,'vice_id:',wine._id)
       if (wine.imgsrc == ''){
         wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
       }
-
       return (
       <Grid item key={index} xs={3}>
         <Card style={{height:'400px'}} className={classes.root}>
@@ -66,7 +76,7 @@ console.dir({wineList})
                 {wine.name}
               </Typography>
               <Box style={{height:'125px', overflowY:'scroll'}}>
-              <Typography variant="body2" color="darkgrey" component="p">
+              <Typography variant="body2" style={{color:'darkgrey'}} component="p">
                 {wine.description}
               </Typography>
               </Box>
@@ -80,7 +90,8 @@ console.dir({wineList})
         </Card>
       </Grid>
     );
-  })
+  }
+})
   return (
     <Container>
       <Grid container spacing={1}>
