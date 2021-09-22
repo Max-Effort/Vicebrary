@@ -225,8 +225,8 @@ const resolvers = {
             if (context.user) {
                 console.log(db.Item.length)
                 try {
-                    await db.Item.remove({ vice_id: args.vice_id })
-                    await db.Vice.remove({ _id: args.vice_id })
+                    await db.Item.deleteOne({ vice_id: args.vice_id })
+                    await db.Vice.deleteOne({ _id: args.vice_id })
 
                     // db.User.findOneAndUpdate({_id:context.user._id},{$removeFromSet:{items:{item}}})
                     return { message: 'Item removed' }
