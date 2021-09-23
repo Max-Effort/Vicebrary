@@ -215,8 +215,11 @@ const resolvers = {
         },
         saveNote: async(parent, args, context) => {
             if (context.user) {
+                console.dir({ args })
                 try {
-                    const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content }, upsert: true })
+                    console.log(`Args.itemID: ${args._id}`)
+                    const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content } })
+                    console.log('Item saved:', targetItem)
                     return targetItem
                 } catch (err) { throw err }
             }

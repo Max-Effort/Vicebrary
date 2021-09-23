@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Modal from '@mui/material/Modal';
 
 
 import Stack from '@mui/material/Stack';
@@ -28,11 +29,28 @@ const useStyles = makeStyles({
       height: 140,
     },
   });
-
+  
+  const style={
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      bgcolor: 'background.paper',
+      border: '2px solid #000',
+      boxShadow: 24,
+      p: 4,
+  }
   
   export default function LibraryCards({items}) {  
     
   const classes = useStyles();
+
+  //NoteModal functions and State
+  const [open, setOpen] = useState(false);
+  const [noteInfo, setNoteInfo] = useState({name:'', item_id:'', content:''})
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
     // get My data
     const [vicebraryIDs,setVicebraryIDs] = useState(getSavedViceIDs())
     
@@ -48,6 +66,9 @@ const useStyles = makeStyles({
      
     }
 
+    const handleSaveNote = ()=>{
+
+    }
     const handleRemoveFromVicebrary = async (v) =>{
     const viceID = v.currentTarget.value
     
@@ -79,7 +100,8 @@ const useStyles = makeStyles({
     )
 
     let freshItems = items.filter((item)=> vicebraryIDs.includes(item.vice_id))
-    console.log(`FRESH_ITEMS: ${freshItems}`)
+    /* 
+    console.log(`FRESH_ITEMS: ${freshItems}`)*/
   const itemCards = freshItems.map((item, index) => {
     if (!vicebraryIDs){
       return <Card>
@@ -106,7 +128,7 @@ const useStyles = makeStyles({
         </Stack>
         <hr />
         <Box style={{height:'100px', overflowY:'scroll'}}>
-        <Typography variant="body2" color="darkgrey" component="p">
+        <Typography variant="body2" style={{color:"darkgrey"}} component="p">
           {selected ? (item.note) : item.vice[0].description}
         </Typography>
         </Box>
@@ -120,9 +142,7 @@ const useStyles = makeStyles({
           </Button>
         </span>
         <span>
-          <Button size='small' onClick={()=> {
-           alert(`This is a paid feature. \n . . . not really, it just doesn't work yet.`)
-            }}
+          <Button value={item.id} name={item.vice[0].name} size='small' onClick={handleOpen}
             >
             Add/Edit Note
           </Button>
@@ -134,6 +154,25 @@ const useStyles = makeStyles({
         </span>
       </Stack>
     </CardActions>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Note for {item.vice[0].name}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+          <Stack direction="row" justifyContent="center" alignItems="sapceEvenly" spacing={2}>
+          <Button size='small' onClick={handleSaveNote}> Save Note</Button>
+          <Button size='small' onClick={handleClose}> Cancel</Button>
+          </Stack>
+        </Box>
+        </Modal>
   </Card>
 )
 } )
