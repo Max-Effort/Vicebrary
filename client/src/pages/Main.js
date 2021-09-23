@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import View from '../components/Views/index'
 
 
+
 export default function Main() {
       const [page, setPage] = useState('home');
 

@@ -31,51 +31,54 @@ query Wine($_id: ID){
 
 export const QUERY_SELF = gql `
   query Self {
-    Self {
-        _id
-        username
-        email
-        items {
-          _id
-          owner_id
-          vice_type
-          vice_id
-          vice {
-        _id
-        item_id
-        name
-        year
-        country
-        type
-        description
-        imgsrc
-
-      }
-          note
-        }
+Self{
+  _id
+  username
+  email
+  items{
+    _id
+    owner_id
+    vice_type
+  vice_id
+    vice{
+      _id
+      item_id
+      owner_id
+      name
+      year
+      country
+      type
+      description
+      imgsrc
+      
     }
+    note
   }
+}
+  }
+
 `;
 
 export const QUERY_ITEMS = gql `
   query Items {
-    Items {
+    Items{
+     _id
+    owner_id
+    vice_type
+  vice_id
+    vice{
       _id
+      item_id
       owner_id
-      vice_type
-      vice_id
-      vice {
-        _id
-        item_id
-        name
-        year
-        country
-        type
-        description
-        imgsrc
-
-      }
-      note
+      name
+      year
+      country
+      type
+      description
+      imgsrc
+      
     }
+    note
   }
+}
 `;

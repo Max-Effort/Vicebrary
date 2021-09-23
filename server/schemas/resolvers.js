@@ -121,10 +121,12 @@ const resolvers = {
         saveVice: async(parent, args, context) => {
             // {"vice_type": "Wine", "vice_id": "61419bf1fb2190ea2445d460", "item_id": "614542b2165e0d97b5a57500"}
             if (context.user) {
-                console.log(`Update Vice item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
+                // console.log(`Update Vice \n item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
                 const savedVice = await db.Vice.findOne({ _id: args.vice_id });
-                const savedItem = await db.Item.findOne({ vice_id: args.vice_id })
+                const savedItem = await db.Item.findOne({ owner_id: context.user._id, vice_id: args.vice_id })
+                console.log(`\n Server resolver.js saveVice: ${savedVice}\n`)
                 if (!savedVice) {
+                    console.log(`${savedVice} does not exist making one.`)
                     let viceInfo
                     let updatedVice
                         // console.log(`vicetype: ${args.vice_type}`)
@@ -147,9 +149,9 @@ const resolvers = {
                     await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: updatedVice.item_id } })
                     return updatedVice
                 }
+                console.log(`Found Existing Record: ${savedVice}`)
+                return savedVice
             }
-            console.log(`Found Existing Record: ${vice}`)
-            return vice
         },
         // ! NOT SURE THIS MUTATION IS BEING USED ANYWHERE . . . DELETE IT?
         saveItem: async(parent, args, context) => {
@@ -223,8 +225,8 @@ const resolvers = {
             if (context.user) {
                 console.log(db.Item.length)
                 try {
-                    await db.Item.remove({ vice_id: args.vice_id })
-                    await db.Vice.remove({ _id: args.vice_id })
+                    await db.Item.deleteOne({ vice_id: args.vice_id })
+                    await db.Vice.deleteOne({ _id: args.vice_id })
 
                     // db.User.findOneAndUpdate({_id:context.user._id},{$removeFromSet:{items:{item}}})
                     return { message: 'Item removed' }

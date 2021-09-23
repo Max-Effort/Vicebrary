@@ -30,6 +30,7 @@ mutation saveVice($vice_type: String, $vice_id: ID){
   saveVice(vice_type: $vice_type, vice_id:$vice_id){
     _id
     item_id
+    # vice_type
     name
     year
     country

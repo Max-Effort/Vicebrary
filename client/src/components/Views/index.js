@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks'
+import { localSavedViceIDs,getSavedViceIDs } from '../../utils/localStorage'
 import { QUERY_SELF } from '../../utils/queries'
 import Add from './Add'
 import Search from './Search'
@@ -7,15 +8,22 @@ import Home from './Home'
 import Library from './Library'
 
 export default function View(page) {
+    // let lsViceIDs = []
     const [userData, setUserData] = useState({});
+    // const [userItems, setUserItems] = useState(getSavedViceIDs());
     
     const { data } = useQuery(QUERY_SELF, {
         onCompleted: () => {
             setUserData(data.Self)
+            // setUserItems(lsViceIDs)
         }
-    });
-    
-    console.dir('User:',{userData})
+    })
+    // const {items} = userData;
+    // if (items){
+    // items.forEach((item) => {lsViceIDs.push(item.vice_id)})
+    // localSavedViceIDs(userItems)
+    // }
+
     let view = page.page;
     // Get State from Footer through Main and render appropriate component  
     if (view === "home") {
@@ -30,7 +38,6 @@ export default function View(page) {
     if (view === "add") {
         return <Add userData={userData}/> ;
     }
-
 
 
 
