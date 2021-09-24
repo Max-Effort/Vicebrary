@@ -182,6 +182,10 @@ const resolvers = {
                 let existCheck = await wines.map((wine) => {
                     let dbWine = `${wine.year} ${wine.name}${wine.type}`
                     let newWine = `${args.year} ${args.name}${args.type}`
+
+                    if (args.year == null || args.name == null || args.type == null) {
+                        return `We need some info.`
+                    }
                     if (dbWine == newWine) {
                         console.log(`${newWine} already exists`)
                         return false
