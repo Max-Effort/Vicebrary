@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const wineSchema = require('./Wine')
+const User = mongoose.model('User')
 const Schema = mongoose.Schema;
 const opts = { toJSON: { virtuals: true }, toObject: { virtuals: true } };
 const itemSchema = new Schema({
@@ -25,10 +26,10 @@ itemSchema.virtual('vice', {
     localField: 'vice_id',
     foreignField: '_id',
 });
-itemSchema.pre('remove', function() {
-    console.log('PreRemove Hook Called')
-    Vice.deleteOne({ _id: this.vice_id });
-})
+// itemSchema.pre('deleteOne', function() {
+//     User.findOneAndUpdate({ _id: this.owner_id }, { $pull: { items: { _id: this._id } } });
+//     console.log('PreRemove Hook Called \n \n Removing ' + this._id + ' from User List')
+// })
 const Item = mongoose.model("Item", itemSchema);
 
 module.exports = Item;

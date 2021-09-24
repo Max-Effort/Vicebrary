@@ -82,3 +82,10 @@ export const QUERY_ITEMS = gql `
   }
 }
 `;
+
+export const QUERY_NOTE = gql `
+query getNote($_id:ID){
+  Item(_id:$_id){
+    note
+  }
+}`;
