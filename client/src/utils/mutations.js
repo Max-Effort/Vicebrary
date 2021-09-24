@@ -41,6 +41,16 @@ mutation saveVice($vice_type: String, $vice_id: ID){
   }
 }`
 
+export const SAVE_NOTE = gql `
+mutation saveNote($item_id:ID, $content: String){
+  saveNote(item_id:$item_id, content:$content){
+    _id
+    note
+    owner_id
+  }
+  
+}`;
+
 export const REMOVE_ITEM = gql `
 mutation removeFromVicebrary($vice_id: ID) {
     removeFromVicebrary(vice_id: $vice_id) {

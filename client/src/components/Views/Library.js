@@ -6,17 +6,14 @@ import { Container } from '@material-ui/core'
 
 
 export default function Library({userData}){
-  const {items} = userData
-//   const [vicebrary,setVicebrary] = useState()
-  const [noteInput, setNoteInput] = useState('')
+  // const {items} = userData
 
- 
- 
     return (<div className="renderLibrary">
         <h2>{userData.username}'s Library</h2>
         <Container style={{width:'90%'}}>
         <Grid item >
-            <LibraryCards items={items}/>
+            <LibraryCards />
+            {/*items={items}/> */}
             </Grid>
         </Container>
     </div>)

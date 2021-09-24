@@ -47,8 +47,11 @@ const resolvers = {
             const updatedItem = await db.Item.findOneAndUpdate({ _id: item._id }, { $set: { imgsrc: wine[0].imgsrc } })
             console.log({ updatedItem })
             return updatedItem
-
         },
+        // Note: async(parent, args, context) => {
+        //     const item = await db.Item.findOne({ _id: args._id })
+
+        // },
         Items: async(parent, args, context) => {
             if (context.user) {
                 const itemsData = await db.Item.find({ owner_id: context.user._id }).populate({ path: 'vice', model: 'Vice' })
@@ -174,43 +177,46 @@ const resolvers = {
             return savedItem;
         },
         saveWine: async(parent, args, context) => {
-            let wines = await db.Wine.find({})
-            let existCheck = await wines.map((wine) => {
-                let dbWine = `${wine.year} ${wine.name}${wine.type}`
-                let newWine = `${args.year} ${args.name}${args.type}`
-                if (dbWine == newWine) {
-                    return false
-                } else { return true }
-            })
+            if (args) {
+                let wines = await db.Wine.find({})
+                let existCheck = await wines.map((wine) => {
+                    let dbWine = `${wine.year} ${wine.name}${wine.type}`
+                    let newWine = `${args.year} ${args.name}${args.type}`
+                    if (dbWine == newWine) {
+                        console.log(`${newWine} already exists`)
+                        return false
+                    } else { return true }
+                })
 
-            let savedWine
-            if (!existCheck) {
-                return (`The wine's already in the database.`)
-            }
-            if (args.imgsrc == '') {
-                const { year, name, type } = args
-                let input = `${year} ${name} ${type}`
-                    // const search = getWineImage(input)
-                search.json({
-                        engine: "google",
-                        q: input,
-                        location: "United States",
-                        google_domain: "google.com",
-                        gl: "us",
-                        hl: "en",
-                        tbm: "isch"
-                    }, async(data) => {
-                        args.imgsrc = data.images_results[0].original
-                            // console.log('ARGS: ', args)
-                        savedWine = await db.Wine.create({...args })
-                    })
-                    //! This will always return null, but the information is getting passed to the db
-                return savedWine
-            } else {
+                let savedWine
+                if (!existCheck) {
+                    return (`The wine's already in the database.`)
+                }
+                if (args.imgsrc == '') {
+                    const { year, name, type } = args
+                    let input = `${year} ${name} ${type}`
+                        // const search = getWineImage(input)
+                    search.json({
+                            engine: "google",
+                            q: input,
+                            location: "United States",
+                            google_domain: "google.com",
+                            gl: "us",
+                            hl: "en",
+                            tbm: "isch"
+                        }, async(data) => {
+                            args.imgsrc = data.images_results[0].original
+                                // console.log('ARGS: ', args)
+                            savedWine = await db.Wine.create({...args })
+                        })
+                        //! This will always return null, but the information is getting passed to the db
+                    return savedWine
+                } else {
 
-                savedWine = await db.Wine.create({...args })
-                console.log('Wine saved:', savedWine)
-                return savedWine;
+                    savedWine = await db.Wine.create({...args })
+                    console.log('Wine saved:', savedWine)
+                    return savedWine;
+                }
             }
         },
         saveNote: async(parent, args, context) => {
@@ -218,7 +224,7 @@ const resolvers = {
                 console.dir({ args })
                 try {
                     console.log(`Args.itemID: ${args._id}`)
-                    const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content } })
+                    const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content } }, { returnOriginal: false })
                     console.log('Item saved:', targetItem)
                     return targetItem
                 } catch (err) { throw err }
@@ -228,10 +234,11 @@ const resolvers = {
             if (context.user) {
                 console.log(db.Item.length)
                 try {
+                    const item = await db.Item.findOne({ vice_id: args.vice_id })
+                    const user = await db.User.findOneAndUpdate({ _id: context.user._id }, { $pull: { items: item._id }, returnOriginal: false })
+                    console.log(`Removing ${item._id} from ${user.username}'s items list.`)
                     await db.Item.deleteOne({ vice_id: args.vice_id })
                     await db.Vice.deleteOne({ _id: args.vice_id })
-
-                    // db.User.findOneAndUpdate({_id:context.user._id},{$removeFromSet:{items:{item}}})
                     return { message: 'Item removed' }
                 } catch (err) { throw err }
             }
