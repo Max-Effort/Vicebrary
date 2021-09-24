@@ -38,7 +38,7 @@ export default function Search({ userData }) {
       <div className="search-bg">
       <Container style={{ width: '100%' }} align="center">
         <br />
-        <Typography variant="h4" component="h2" >Search for a Wine!</Typography>
+        <Typography className="pageTitle" variant="h4" component="h2" >Search for a Wine!</Typography>
         <Divider />
         <br />
         <form className={classes.form} noValidate autoComplete="off">

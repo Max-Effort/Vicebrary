@@ -2,6 +2,7 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -20,17 +21,29 @@ import {useState, useEffect} from 'react'
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {REMOVE_ITEM, SAVE_NOTE} from '../../../utils/mutations';
 import {QUERY_ITEMS,QUERY_NOTE} from '../../../utils/queries'
-import {} from '@apollo/react-hooks'
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import {getSavedViceIDs, localSavedViceIDs} from '../../../utils/localStorage'
 
 
 const useStyles = makeStyles({
     root: {
-      maxWidth: 350,
-      maxHeight: 400
+      overflow: 'hidden',
+      backgroundColor: 'rgba(255,255,255,.5)',
+      flex: '0 0 33%',
+      minWidth:200,
+      maxWidth: 250,
+      maxHeight: 350
     },
     media: {
-      height: 140,
+      height:150,
+
+      '& img': {
+        objectFit: 'contain',
+        width:'100%',
+        height: 'auto'
+      }
     },
   });
     
@@ -67,7 +80,7 @@ const useStyles = makeStyles({
 // DialogueBox Open and Close
   const handleOpen = (e) => {
     // const itemID = e.currentTarget.value
-    // //console.log({itemID})
+    //console.log({itemID})
     setNoteInfo({
       name: e.currentTarget.name, 
       item_id:e.currentTarget.value,
@@ -97,7 +110,7 @@ const useStyles = makeStyles({
     setNoteInfo({item_id: noteInfo, name: noteInfo.name ,content: noteContent})
     //console.table(noteInfo)
     const {item_id, content} = noteInfo
-    console.log(`Note ITEM ID: ${item_id} \n Content: ${content}`)
+    // console.log(`Note ITEM ID: ${item_id} \n Content: ${content}`)
     const token = Auth.loggedIn() ? Auth.getToken() : null 
     if (!token){
       return false;
@@ -155,8 +168,6 @@ const useStyles = makeStyles({
     //console.table(items)
     let freshItems = items.filter((item)=> vicebraryIDs.includes(item.vice_id))
    
-    
-    console.log(`FRESH_ITEMS: ${freshItems}`)
     const itemCards = freshItems.map((item, index) => {
   
     if (!vicebraryIDs){
@@ -171,45 +182,42 @@ const useStyles = makeStyles({
   }
   return (
     <Card key={index} data-vice={item.vice_type} className={classes.root}>
-    <CardActionArea>
-        <CardMedia className={classes.media} image={item.vice[0].imgsrc} title={item.vice[0].name} />
-        <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {item.vice[0].name} | {item._id}
-        </Typography>
-        <Stack direction="row" justifyContent="space-evenly" alignItems="center" spacing={2}>
-          <Chip size='small' label={item.vice[0].year} />
-          <Chip size='small' label={item.vice[0].country} />
-          <Chip size='small' label={item.vice[0].type} />
-        </Stack>
-        <hr />
-        <Box style={{height:'100px', overflowY:'scroll'}}>
-        <Typography variant="body2" style={{color:"darkgrey"}} component="p">
+      <CardHeader style={{ padding:'.1rem .5rem', zIndex:1000,letterSpacing: '0.1em',fontWeight:'800',backgroundColor:'rgba(255,255,255,.85)', textShadow:'0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1)'}} title={item.vice[0].name} subheader={`${item.vice[0].year} | ${item.vice[0].country} | ${item.vice[0].type}`} />       
+      <CardMedia className={classes.media} image={item.vice[0].imgsrc} title={item.vice[0].name}/>
+        {/* <CardContent style={{maxHeight:'250px', padding:'5px'}}  > */}
+  
+          {/* <Stack direction="row" justifyContent="space-evenly" alignItems="center" spacing={1}>
+          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].year}</p>
+          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].country}</p>
+          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].type}</p>
+        </Stack> */}    
+        {/* <hr style={{marginBottom:'0'}} /> */}
+        <Box style={{  height: '100%', boxSizing: 'content-box', paddingRight:'17px',width:'100%', height:'100px', overflowY:'auto', overflowX:'hidden'}}>
+        <Typography variant="body2" style={{textAlign: 'justify', textJustify: 'inter-word',fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', padding: '.25rem', width:'100%', backgroundColor:'rgba(255,255,255,.85)', paddingTop:'.25rem', paddingRight:'calc(.25rem + 18px)',paddingBottom: 0, paddingLeft:'.25rem'}} component="p">
           {selected ? (item.note) : item.vice[0].description}
         </Typography>
         </Box>
-      </CardContent>
-    </CardActionArea>
-    <CardActions>
-      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-        <span>
-          <Button style={{fontSize:'12px'}} size='small' value="notes" selected={selected} onClick={handleNoteToggle}>
-            {selected?'See Note': 'See Description'}
+        {/* </CardContent> */}
+   {/* <div className="libraryCard--Footer"> */}
+   <Stack style={{ backgroundColor:'rgba(255,255,255,.85)', width:'100%', margin:'0', padding:'.25rem 0 0 0', boxShadow:'0px -2px 26px 0px #000000'}} direction="row" justifyContent="center" alignItems="center" spacing={2}>
+        <span style={{margin:'0', padding:'0'}}>
+          <Button style={{fontSize:'12px'}}  title={!selected?'See Note': 'See Description'} size='small' value="notes" selected={selected} onClick={handleNoteToggle}>
+            <VisibilityIcon style={{color:'blue'}}/>
           </Button>
         </span>
         <span>
-          <Button value={item._id} name={item.vice[0].name} size='small' onClick={handleOpen}
+          <Button title='Add/Edit Note' value={item._id} name={item.vice[0].name} size='small' onClick={handleOpen}
             >
-            Add/Edit Note
+            <EditIcon style={{color:'black'}}/>
           </Button>
         </span>
         <span>
-          <Button  value={item.vice_id} size="small" color="primary" onClick={handleRemoveFromVicebrary}>
-            Remove From Vicebrary
+          <Button title='Remove from Vicebrary' value={item.vice_id} size="small" color="primary" onClick={handleRemoveFromVicebrary}>
+            <RemoveCircleOutlineIcon style={{color:'red'}} />
           </Button>
         </span>
       </Stack>
-    </CardActions>
+   
     <Dialog 
     fullWidth={true}
     maxWidth='lg'

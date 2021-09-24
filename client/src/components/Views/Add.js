@@ -39,7 +39,7 @@ export default function Add({userData}) {
                 <Container className={classes.container} align="center">
                    <Box className={classes.h2box}>
                        <br />
-                    <Typography variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
+                    <Typography className="pageTitle" variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
                     </Box>
                     <Divider />
                     <br />
