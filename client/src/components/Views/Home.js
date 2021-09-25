@@ -27,7 +27,7 @@ localSavedViceIDs(dbItemIDs)}
 
     return (
     <div className="renderHome">
-        <h2>Welcome {userData.username},</h2>
+        <h2 className="pageTitle">Welcome {userData.username},</h2>
          <WelcomeCard />
         
     </div>)

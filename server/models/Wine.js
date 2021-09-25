@@ -8,17 +8,18 @@ const wineSchema = new Schema({
     },
     name: {
         type: String,
-        // required: true
+        required: true
     },
     year: {
         type: Number,
-        // required: true
+        required: true
     },
     country: {
         type: String,
     },
     type: {
         type: String,
+        required: true,
     },
     imgsrc: {
         type: String

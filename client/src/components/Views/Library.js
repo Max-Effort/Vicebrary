@@ -9,7 +9,7 @@ export default function Library({userData}){
   // const {items} = userData
 
     return (<div className="renderLibrary">
-        <h2>{userData.username}'s Library</h2>
+        <h2 className="pageTitle">{userData.username}'s Library</h2>
         <Container style={{width:'90%'}}>
         <Grid item >
             <LibraryCards />

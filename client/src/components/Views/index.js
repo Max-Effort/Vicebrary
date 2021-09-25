@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks'
-import { localSavedViceIDs,getSavedViceIDs } from '../../utils/localStorage'
+// import { localSavedViceIDs,getSavedViceIDs } from '../../utils/localStorage'
 import { QUERY_SELF } from '../../utils/queries'
 import Add from './Add'
 import Search from './Search'

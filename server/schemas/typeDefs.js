@@ -2,7 +2,8 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql `
 type Wine{
-   _id: String
+  author_id: ID
+   _id: ID
    name: String
    year: String
    country: String
@@ -87,7 +88,7 @@ type Mutation {
    addUser(username: String!, email: String!, password: String!): Auth
    saveVice(owner_id:ID,item_id:ID, vice_type:String, vice_id:ID):Vice
    saveItem(owner_id:ID, vice_type:String, vice_id:ID, note:String):Item
-   saveWine(name: String, year: String,country: String, type: String, description: String, imgsrc: String): Wine
+   saveWine(author_id: ID, name: String, year: String, country: String, type: String, description: String, imgsrc: String): Wine
    saveNote(item_id: ID, content: String): Item
    removeFromVicebrary(vice_id:ID):Self
 }

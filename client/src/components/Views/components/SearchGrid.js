@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 export default function SearchGrid() {
   const classes = useStyles();
   const [wineList, setWineList] = useState([])
-// console.dir({wineList})
+  // console.dir({wineList})
   const wineDB = useQuery(QUERY_WINES, {
     onCompleted: () => {
       setWineList(wineDB.data.Wines)
@@ -38,7 +38,7 @@ export default function SearchGrid() {
   const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIDs())
   useEffect(()=>{localSavedViceIDs(savedViceIDs)})
 
-  const [saveWine,{data,loading,error}]=useMutation(SAVE_VICE)
+  const [saveWine,{loading,error}]=useMutation(SAVE_VICE)
 
   if (loading) return 'Saving. . .'
   if (error) return `Error occured ${error.message}`
@@ -53,50 +53,46 @@ export default function SearchGrid() {
 
       //  console.log({savedViceIDs})
   }
-// console.log('saved vice id: '+savedViceIDs.length)
+  // console.log('saved vice id: '+savedViceIDs.length)
 
     const wineCards = 
     wineList.map((wine,index) => { 
-       if (!savedViceIDs.includes(wine._id)){
-      // console.log('name:',wine.name,'vice_id:',wine._id)
-      if (wine.imgsrc == ''){
-        wine.imgsrc = 'https://loremflickr.com/g/320/240/wine,bottle'
-      }
-      return (
-      <Grid item key={index} xs={3}>
-        <Card style={{height:'400px'}} className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={wine.imgsrc}
-              title={wine.name}
-            />
-            <CardContent>
-              <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
-                {wine.name}
-              </Typography>
-              <Box style={{height:'125px', overflowY:'scroll'}}>
-              <Typography variant="body2" style={{color:'darkgrey'}} component="p">
-                {wine.description}
-              </Typography>
-              </Box>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
-              Add to Vicebrary
-            </Button>
-          </CardActions>
-        </Card>
-      </Grid>
-    );
-  }
-})
+      if (!savedViceIDs.includes(wine._id)){
+        return (
+                  <Grid item key={index} xs={3}>
+                    <Card style={{height:'400px'}} className={classes.root}>
+                      <CardActionArea>
+                        <CardMedia
+                          className={classes.media}
+                          image={wine.imgsrc ? wine.imgsrc : 'https://loremflickr.com/g/320/240/wine,bottle'}
+                          title={wine.name}
+                        />
+                        <CardContent>
+                          <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
+                            {wine.name}
+                          </Typography>
+                          <Box style={{height:'125px', overflowY:'scroll'}}>
+                          <Typography variant="body2" style={{color:'darkgrey'}} component="p">
+                            {wine.description}
+                          </Typography>
+                          </Box>
+                        </CardContent>
+                      </CardActionArea>
+                      <CardActions>
+                        <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
+                          Add to Vicebrary
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                );
+        } 
+    })
   return (
-    <Container>
-      <Grid container spacing={1}>
-        {wineCards}
-      </Grid>
-    </Container>
-  )
-}
+          <Container>
+            <Grid container spacing={1}>
+              {wineCards}
+            </Grid>
+          </Container>
+          )
+  }
