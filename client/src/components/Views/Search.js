@@ -40,9 +40,9 @@ export default function Search({ userData }) {
         <br />
         <form className={classes.form} noValidate autoComplete="off">
           <Box flexGrow={1}>
-            <TextField style={{width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic" label="Enter Vice" variant="filled" /></Box>
+            <TextField style={{width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic" disabled label="Enter Vice" variant="filled" /></Box>
           <Box flexGrow={1}>
-            <Button style={{ width: '100%' }} variant="contained">Click Me!</Button></Box>
+            <Button style={{ width: '100%' }} disabled variant="contained">Coming Soon!</Button></Box>
         </form>
       </Container>
       <SearchGrid />
