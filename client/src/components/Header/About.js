@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Container from '@material-ui/core/Container';
@@ -42,36 +42,30 @@ export default function About({open, setOpen}) {
     setOpen(false);
   };
   return (
-    <div>
-      <div className="modal-container">
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-      <Box style={{display:'flex', justifyContent:'center'}}>
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <Container style={{
-               overflow: 'auto',
-    padding: 0,
-    maxWidth: '90%',
-    maxHeight:'90%',}}>
-            <h2 id="transition-modal-title">Meet Our Squad</h2>
-           <ProfilesGrid/>
-           </Container>
+        <div>
+          <div className="modal-container">
+            <Modal aria-labelledby="transition-modal-title" aria-describedby="transition-modal-description"
+              className={classes.modal} open={open} onClose={handleClose} closeAfterTransition BackdropComponent={Backdrop}
+              BackdropProps={{
+                  timeout: 500,
+                }}>
+              <Box style={{display:'flex', justifyContent:'center'}}>
+                <Fade in={open}>
+                  <div className={classes.paper}>
+                    <Container style={{
+                      overflow: 'auto',
+                      padding: 0,
+                      maxWidth: '90%',
+                      maxHeight:'90%'
+                      }}>
+                      <h2 id="transition-modal-title">Meet Our Squad</h2>
+                      <ProfilesGrid />
+                    </Container>
+                  </div>
+                </Fade>
+              </Box>
+            </Modal>
           </div>
-        </Fade>
-        </Box>
-      </Modal>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }

@@ -17,16 +17,13 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '500px',
       minWidth: '200px'
   }, 
+},
   container: {
     width: "90%",
 
   },
-  container: {
-    width: '90%',
-    
-    
-},
-}}));
+})
+);
 
 export default function Search({ userData }) {
   const classes = useStyles();

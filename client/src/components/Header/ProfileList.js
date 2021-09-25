@@ -17,15 +17,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
       flexGrow: 1,
   },
-  // paper: {
-  //     height: 140,
-  //     width: 100,
-  // },
   control: {
       padding: theme.spacing(2),
   },
   container: {
-      //   position: "absolute",
       display: "flex",
       justifyContent: "center",
       margin:'0',
@@ -39,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '90%',
     minHeight: '150px',
     borderRadius: '15px',
-      borderRadius: 15,
       "&:hover $media": {
           transform: "translateY(-90px)"
       },
@@ -65,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
       padding: 0,
-      //   position: "absolute",
       top: 0,
       left: 0,
       width: '100% !important',
@@ -73,21 +66,14 @@ const useStyles = makeStyles((theme) => ({
       minwidth: '200px',
       minHeight: '250px',
       maxWidth: '400px',
-      // maxHeight: '500px',
-      // width: "400px",
-      // height: "auto",
       transition: "0.5s",
       zIndex: 2,
       background: theme.palette.primary.main,
       "& img": {
-          // // width: '100%',
-          // // height: 'auto',
           minWidth: '200px',
           minHeight: '250px',
           width: '100%',
           maxHeight: '500px',
-          // maxWidth: "350px",
-          // height: "350px",
           transition: "0.5s"
       }
   },
@@ -132,8 +118,6 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
       position: "relative",
-      // flex:1,
-      // justifySelf: "flex-end",
       bottom: 0,
       left: 0,
       width: "350px",
@@ -156,54 +140,39 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function ProfileList({Team}){
-
-    const classes = useStyles();
-    
-const devCards = Team.map((dev,index)=>{
-  console.log({dev})
+  const classes = useStyles();  
+  const devCards = Team.map((dev,index)=>{
     return (
-        <Box style={{flex:'0 0 30%',maxWidth: '400px', justifyContent:'space-around'}}>
-        <Card key={index} className={classes.card} elevation={16}>
-              <CardContent  className={classes.media}>
-                <img  title={dev.bio} src={dev.imgsrc} alt={`${dev.name}'s Profile Picture'`} />
-              <CardHeader
-                style={{color:"white"}}
-                title={dev.name}
-                subheader={dev.skills}
-                />
-                
+          <Box style={{flex:'0 0 30%',maxWidth: '400px', justifyContent:'space-around'}}>
+            <Card key={index} className={classes.card} elevation={16}>
+              <CardContent className={classes.media}>
+                <img title={dev.bio} src={dev.imgsrc} alt={`${dev.name}'s Profile'`} />
+                <CardHeader style={{color:"white"}} title={dev.name} subheader={dev.skills} />
+
               </CardContent>
               <CardActions className={classes.actions} disableSpacing>
                 <Link href={`http://linkedin.com/in/${dev.linkedin}`} target="_blank">
-                  <LinkedInIcon />
+                <LinkedInIcon />
                 </Link>
                 <Link href={`http://github.com/${dev.github}`} target="_blank">
-                 <GitHubIcon />
+                <GitHubIcon />
                 </Link>
                 <Link href={`mailto:${dev.email}`}>
-                 <MailOutlineIcon />
+                <MailOutlineIcon />
                 </Link>
                 <Link href="http://github.com/Max-Effort/" target="_blank">
-                  <BusinessIcon />
+                <BusinessIcon />
                 </Link>
               </CardActions>
             </Card>
-        </Box>
-          );
+          </Box>
+      );
           
-        })
-        return (
-         
-          <Grid
-            className={classes.container}
-            container
-            alignItems="flexStart"
-            justify="spaceEvenly"
-          >
-
+  })
+  return (
+          <Grid className={classes.container} container alignItems="flexStart" justify="spaceEvenly">
             {devCards}
           </Grid>
-          
-        );
+          );
 
-        }
+}
