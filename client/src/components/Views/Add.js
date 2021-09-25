@@ -20,13 +20,17 @@ form: {
     "& > *": {
         // textAlign: "center",
       backgroundColor: "white",
-      margin: '1rem 10%' ,
+      margin: '0 10% .5rem' ,
       width: "80%",
       maxWidth: "500px",
       minWidth:'200px'
     },
+    "& > button": {
+        marginTop: '2rem'
+    }
 },
     container: {
+        flex:'0 0 100%',
         display:'flex',
         flexFlow: 'row wrap',
         justifyContent:'center',
@@ -522,7 +526,7 @@ export default function Add({userData}) {
     return (
         // <div className="add-bg">
             <div className="renderAdd" style={{ width: '100%' }}>
-                <Container className={classes.container} align="center">
+                <Container fullWidth className={classes.container} align="center">
                    <Box className={classes.h2box}>
                        <br />
                     <Typography className="pageTitle" variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
@@ -542,20 +546,18 @@ export default function Add({userData}) {
                         {/* <Box flexGrow={1}> */}
                         </FormControl>
                             <FormControl required className={classes.form} style={{ backgroundColor:'transparent',flexFlow:'row wrap', flex: '0 0 100%', justifyContent: 'center'}} fullWidth label="Select Wine Type" >
-                            <InputLabel style={{backgroundColor:'transparent', paddingTop:'7px', marginLeft:'1rem'}} id="wine-type-select-label"> Select a Wine Type </InputLabel>
                             <Box>
-                            <Select
-                            fullWidth
-                            align='left'
+                            <TextField
+                                fullWidth
+                                select
+                                align='left'
                                 style={{minWidth:'242px', borderRadius:0, backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                                labelId="wine-type-select-label"
-                                id="wine-type-select"
                                 label="Select Wine Type *"
                                 value={wineInfo.type}
                                 variant="filled"
                                 onChange={(e) => handleInput('type',e.target.value)}
                             >
-                            <InputLabel style={{maxWidth:'unset',paddingTop:'3px',backgroundColor:'transparent',flex: '0 0 100%'}} id="wine-type-select-label"> Select a Wine Type </InputLabel>
+                            {/* <InputLabel style={{maxWidth:'unset',paddingTop:'3px',backgroundColor:'transparent',flex: '0 0 100%'}} id="wine-type-select-label"> Select a Wine Type </InputLabel> */}
                                 <MenuItem value={''}></MenuItem>
                                 <MenuItem value={''} disabled><em>Red Wines</em></MenuItem>
                                 <MenuItem value={'Red'}>Red</MenuItem>
@@ -580,7 +582,7 @@ export default function Add({userData}) {
                                 <MenuItem value={''} disabled><em>Misc</em></MenuItem>
                                 <MenuItem value={'Rose'}>Rosé</MenuItem>
                                 <MenuItem value={'Other'}>Other</MenuItem>
-                            </Select>
+                            </TextField>
             </Box>
                 </FormControl>
                         <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>

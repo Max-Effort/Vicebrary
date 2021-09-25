@@ -84,7 +84,7 @@ const useStyles = makeStyles({
     setNoteInfo({
       name: e.currentTarget.name, 
       item_id:e.currentTarget.value,
-      content:''
+      content:e.currentTarget.content
     })
     setOpen(true);
     //console.table({noteInfo:noteInfo})
@@ -182,23 +182,13 @@ const useStyles = makeStyles({
   }
   return (
     <Card key={index} data-vice={item.vice_type} className={classes.root}>
-      <CardHeader style={{ padding:'.1rem .5rem', zIndex:1000,letterSpacing: '0.1em',fontWeight:'800',backgroundColor:'rgba(255,255,255,.85)', textShadow:'0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1)'}} title={item.vice[0].name} subheader={`${item.vice[0].year} | ${item.vice[0].country} | ${item.vice[0].type}`} />       
+      <CardHeader style={{ padding:'.1rem .5rem', zIndex:1000,fontWeight:'800',backgroundColor:'rgba(255,255,255,.85)', textShadow:'0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1)'}} title={item.vice[0].name} subheader={`${item.vice[0].year} | ${item.vice[0].country} | ${item.vice[0].type}`} />       
       <CardMedia className={classes.media} image={item.vice[0].imgsrc} title={item.vice[0].name}/>
-        {/* <CardContent style={{maxHeight:'250px', padding:'5px'}}  > */}
-  
-          {/* <Stack direction="row" justifyContent="space-evenly" alignItems="center" spacing={1}>
-          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].year}</p>
-          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].country}</p>
-          <p style={{fontFamily:'Roboto',fontWeight:500,fontSize:'.75rem', color:'black',padding:0,margin:0}}>{item.vice[0].type}</p>
-        </Stack> */}    
-        {/* <hr style={{marginBottom:'0'}} /> */}
         <Box style={{  height: '100%', boxSizing: 'content-box', paddingRight:'17px',width:'100%', height:'100px', overflowY:'auto', overflowX:'hidden'}}>
         <Typography variant="body2" style={{textAlign: 'justify', textJustify: 'inter-word',fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', padding: '.25rem', width:'100%', backgroundColor:'rgba(255,255,255,.85)', paddingTop:'.25rem', paddingRight:'calc(.25rem + 18px)',paddingBottom: 0, paddingLeft:'.25rem'}} component="p">
           {selected ? (item.note) : item.vice[0].description}
         </Typography>
         </Box>
-        {/* </CardContent> */}
-   {/* <div className="libraryCard--Footer"> */}
    <Stack style={{ backgroundColor:'rgba(255,255,255,.85)', width:'100%', margin:'0', padding:'.25rem 0 0 0', boxShadow:'0px -2px 26px 0px #000000'}} direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <span style={{margin:'0', padding:'0'}}>
           <Button style={{fontSize:'12px'}}  title={!selected?'See Note': 'See Description'} size='small' value="notes" selected={selected} onClick={handleNoteToggle}>
@@ -206,7 +196,7 @@ const useStyles = makeStyles({
           </Button>
         </span>
         <span>
-          <Button title='Add/Edit Note' value={item._id} name={item.vice[0].name} size='small' onClick={handleOpen}
+          <Button title='Add/Edit Note' value={item._id} content={item.note} name={item.vice[0].name} size='small' onClick={handleOpen}
             >
             <EditIcon style={{color:'black'}}/>
           </Button>
@@ -217,7 +207,6 @@ const useStyles = makeStyles({
           </Button>
         </span>
       </Stack>
-   
     <Dialog 
     fullWidth={true}
     maxWidth='lg'
@@ -226,7 +215,7 @@ const useStyles = makeStyles({
         <DialogTitle>Note for {noteInfo.name ?(noteInfo.name): 'this'}</DialogTitle>
         <DialogContent>
           <DialogContentText style={{padding: '2rem'}}>
-          <TextField style={{ width: '100%',backgroundColor: 'white'}} onChange={handleNoteChange} fullWidth label="Write your personal thoughts about this vice" variant="outlined" multiline rows={6}></TextField>
+          <TextField style={{ width: '100%',backgroundColor: 'white'}} onChange={handleNoteChange} fullWidth label="Write your personal thoughts about this vice" defaultValue={noteInfo.content} variant="outlined" multiline rows={6}></TextField>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

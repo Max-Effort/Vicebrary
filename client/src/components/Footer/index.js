@@ -10,18 +10,21 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    zIndex:'1000',
+    paddingBottom:'.25rem',
+    width:'100%',
+    maxWidth: 500,
   },
 });
 
 const Footer = ({setPage,page,handleChange}) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(page);
+  const [value, setValue] = useState(page);
 
   // const location = useLocation();
   // const history = useHistory();
   return (
-    <footer className="footer">
+    <footer className="footer" style={{zIndex:'999'}}>
       <BottomNavigation
       align='center'
         value={value}
@@ -31,21 +34,25 @@ const Footer = ({setPage,page,handleChange}) => {
         <BottomNavigationAction
           label="Home"
           value="home"
+          onClick={(e)=> setValue('home')}
           icon={<HomeIcon />}
         />
         <BottomNavigationAction
           label="Library"
           value="library"
+          onClick={(e)=> setValue('library')}
           icon={<FavoriteIcon />}
         />
         <BottomNavigationAction
           label="Search"
           value="search"
+          onClick={(e)=> setValue('search')}
           icon={<SearchIcon />}
         />
         <BottomNavigationAction
           label="Add"
           value="add"
+          onClick={(e)=> setValue('add')}
           icon={<AddIcon />}
         />
       </BottomNavigation>

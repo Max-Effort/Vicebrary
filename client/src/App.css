@@ -4,10 +4,10 @@
                 }
                 
                 .mainPage {
-                    padding-top: 3rem;
-                    padding-bottom: 5rem;
-                    width: 90%;
-                    margin: 0 5%;
+                    /* padding-top: 3rem;
+                    padding-bottom: 5rem; */
+                    padding: 4rem;
+                    width: calc(100% - 8rem);
                     height: auto;
                 }
                 /* .renderSearch {
@@ -86,4 +86,10 @@
                 
                 .MuiButton-textSizeSmall:hover {
                     color: rgb(255, 140, 140)
+                }
+                
+                .renderAdd {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: center;
                 }
