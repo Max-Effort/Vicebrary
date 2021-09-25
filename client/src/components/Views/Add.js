@@ -584,7 +584,7 @@ export default function Add({userData}) {
                              <MenuItem value={'Sauvignon Blanc'}>Sauvignon Blanc</MenuItem>
                              <MenuItem value={'Riesling'}>Riesling</MenuItem>
                              <MenuItem value={'Pinto Grigio'}>Pinto Grigio</MenuItem>
-                             <MenuItem value={'Sparkiling'}>Sparkiling</MenuItem>
+                             <MenuItem value={'Sparkling'}>Sparkling</MenuItem>
                              <MenuItem value={'Champagne'}>Champagne</MenuItem>
                              <MenuItem value={'Prosecco'}>Prosecco</MenuItem>
                              <MenuItem value={'Dessert Wine'}>Dessert Wine</MenuItem>
