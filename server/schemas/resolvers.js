@@ -58,6 +58,7 @@ const resolvers = {
                 console.log(itemsData)
                 return itemsData;
             }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         Vices: async(parent, args, context) => {
             if (context.user) {
@@ -65,6 +66,7 @@ const resolvers = {
                 return viceData
 
             }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         Wine: async(parent, args, context) => {
             console.log({ args })
@@ -155,6 +157,7 @@ const resolvers = {
                 console.log(`Found Existing Record: ${savedVice}`)
                 return savedVice
             }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         // ! NOT SURE THIS MUTATION IS BEING USED ANYWHERE . . . DELETE IT?
         saveItem: async(parent, args, context) => {
@@ -177,51 +180,63 @@ const resolvers = {
             return savedItem;
         },
         saveWine: async(parent, args, context) => {
-            if (args) {
-                let wines = await db.Wine.find({})
-                let existCheck = await wines.map((wine) => {
-                    let dbWine = `${wine.year} ${wine.name}${wine.type}`
-                    let newWine = `${args.year} ${args.name}${args.type}`
+            if (context.user) {
+                if (args) {
+                    let wines = await db.Wine.find({})
+                    console.log('Args:\n', args.name, args.type, args.year)
+                    let yearAsNum = parseInt(args.year, 10)
+                    let newWine = `${yearAsNum}${args.name}${args.type}`
+                    let dbWine
+                    let existCheck = await wines.map((wine) => {
+                        return dbWine = `${wine.year}${wine.name}${wine.type}`
 
-                    if (args.year == null || args.name == null || args.type == null) {
-                        return `We need some info.`
-                    }
+
+                    })
+                    console.log(dbWine, newWine)
+                    console.log(dbWine == newWine)
                     if (dbWine == newWine) {
                         console.log(`${newWine} already exists`)
                         return false
-                    } else { return true }
-                })
+                    }
+                    console.log('exist check: ', existCheck)
+                    if (existCheck.includes(true)) {
+                        console.error(`The wine's already in the database.`)
+                        return false
+                    }
+                    if (existCheck.includes(false)) {
+                        console.log('We are go for launch')
+                    }
 
-                let savedWine
-                if (!existCheck) {
-                    return (`The wine's already in the database.`)
-                }
-                if (args.imgsrc == '') {
-                    const { year, name, type } = args
-                    let input = `${year} ${name} ${type}`
-                        // const search = getWineImage(input)
-                    search.json({
-                            engine: "google",
-                            q: input,
-                            location: "United States",
-                            google_domain: "google.com",
-                            gl: "us",
-                            hl: "en",
-                            tbm: "isch"
-                        }, async(data) => {
-                            args.imgsrc = data.images_results[0].original
-                                // console.log('ARGS: ', args)
-                            savedWine = await db.Wine.create({...args })
-                        })
-                        //! This will always return null, but the information is getting passed to the db
-                    return savedWine
-                } else {
+                    let savedWine
+                    if (args.imgsrc == '') {
+                        const { year, name, type } = args
+                        let input = `${year} ${name} ${type}`
+                            // const search = getWineImage(input)
+                        search.json({
+                                engine: "google",
+                                q: input,
+                                location: "United States",
+                                google_domain: "google.com",
+                                gl: "us",
+                                hl: "en",
+                                tbm: "isch"
+                            }, async(data) => {
+                                args.imgsrc = data.images_results[0].original
+                                    // console.log('ARGS: ', args)
+                                savedWine = await db.Wine.create({...args })
+                            })
+                            //! This will always return null, but the information is getting passed to the db
+                        return savedWine
+                    } else {
 
-                    savedWine = await db.Wine.create({...args })
-                    console.log('Wine saved:', savedWine)
-                    return savedWine;
+                        savedWine = await db.Wine.create({...args, author_id: context.user._id })
+                        console.log('Wine saved:', savedWine)
+                        return savedWine;
+                    }
                 }
             }
+
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         saveNote: async(parent, args, context) => {
             if (context.user) {
@@ -233,6 +248,7 @@ const resolvers = {
                     return targetItem
                 } catch (err) { throw err }
             }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         removeFromVicebrary: async(parent, args, context) => {
             if (context.user) {
@@ -246,6 +262,7 @@ const resolvers = {
                     return { message: 'Item removed' }
                 } catch (err) { throw err }
             }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         }
     }
 }

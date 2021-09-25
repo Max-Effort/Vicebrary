@@ -51,6 +51,19 @@ mutation saveNote($item_id:ID, $content: String){
   
 }`;
 
+
+export const SAVE_WINE = gql `
+mutation saveWine($name: String,$year: String, $country: String, $type: String, $imgsrc: String,$description: String) {
+  saveWine(name: $name, year: $year, country: $country, type: $type, imgsrc: $imgsrc,description: $description,) {
+    name
+    year
+    country
+    type
+    description
+    imgsrc
+  }
+}`;
+
 export const REMOVE_ITEM = gql `
 mutation removeFromVicebrary($vice_id: ID) {
     removeFromVicebrary(vice_id: $vice_id) {
