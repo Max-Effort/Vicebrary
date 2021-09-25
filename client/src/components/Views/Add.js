@@ -488,7 +488,7 @@ export default function Add({userData}) {
     const handleInput = (name, value) =>{
         setWineInfo({...wineInfo,[name]:value})
     }
-    // console.log(wineInfo)
+    console.log(wineInfo)
     const handleSubmit = async () =>{
         console.log(`Submission`)
     const token = Auth.loggedIn() ? Auth.getToken() : null 
@@ -499,7 +499,7 @@ export default function Add({userData}) {
 
     try{
       const newWine = await saveWine({variables:{...wineInfo}});
-      console.dir({newWine})
+      console.dir(newWine.data.saveWine)
       if(loading){
       console.log(`Loading. . .`)
       }
@@ -507,6 +507,8 @@ export default function Add({userData}) {
         throw new Error(`So, that shit didn't work`)
       }
       
+      alert(`This wine has been saved to Wine Database. \n Thank You`)
+
       setWineInfo({
       name:'', 
       year:'', 
@@ -515,6 +517,7 @@ export default function Add({userData}) {
       description:'',
       imgsrc: ''
         })
+        window.location.reload(false)
       return newWine
     }catch (err) { 
       throw err
@@ -540,7 +543,7 @@ export default function Add({userData}) {
                      {/* <Box flexGrow={1}> */}
                          <TextField
                              style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                             id="filled-basic" color='white' label="Name *" variant="filled" onChange={(e)=>
+                             id="filled-basic" color='white' label="Name *" value={wineInfo.name} variant="filled" onChange={(e)=>
                              handleInput('name',e.target.value)} />
                              {/* </Box> */}
              </FormControl>
@@ -548,7 +551,7 @@ export default function Add({userData}) {
                  <FormControl required className={classes.form} fullWidth align="center"
                      style={{ flexFlow:'row wrap', flex: '0 0 100%',  justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
                      <TextField style={{ minWidth:'242px',backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                         id="filled-basic" label="Year *" variant="filled" onChange={(e)=>
+                         id="filled-basic" label="Year *" value={wineInfo.year} variant="filled" onChange={(e)=>
                          handleInput('year',e.target.value)} />
                          {/* </Box> */}
              {/* <Box flexGrow={1}> */}
@@ -610,7 +613,11 @@ export default function Add({userData}) {
                          </Box>
                          )}
                          renderInput={(params) => (
-                         <TextField {...params} variant="filled" value={wineInfo.country} label="Choose a country"
+                         <TextField 
+                         {...params} 
+                         variant="filled" 
+                         value={wineInfo.country} 
+                         label="Choose a country"
                              inputProps={{
                                 ...params.inputProps,
                                 // autoComplete: , // disable autocomplete and autofill //! I DON'T UNDERSTND THIS COMPONENT AT ALL
@@ -634,7 +641,7 @@ export default function Add({userData}) {
                      {/* <Box flexGrow={1}> */}
                          <TextField
                              style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                             id="filled-basic" fullWidth label="Description"
+                             id="filled-basic" fullWidth label="Description" value={wineInfo.description}
                              placeholder="You can just copy and paste here." variant="filled" onChange={(e)=>
                              handleInput('description',e.target.value)} multiline rows={6} />
                              {/* </Box> */}
@@ -644,7 +651,7 @@ export default function Add({userData}) {
                              style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
                              <TextField
                                  style={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                                 id="filled-basic" fullWidth label="Image URL"
+                                 id="filled-basic" fullWidth label="Image URL" value={wineInfo.imgsrc}
                                  placeholder="Upload an image or we will...eventually." variant="filled" onChange={(e)=>
                                  handleInput('imgsrc',e.target.value)} />
                          </FormControl>

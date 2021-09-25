@@ -189,17 +189,17 @@ const resolvers = {
                     let newWine = `${yearAsNum}${args.name}${args.type}`
                     let dbWine
                     let existCheck = await wines.map((wine) => {
-                        return dbWine = `${wine.year}${wine.name}${wine.type}`
+                            return dbWine = `${wine.year}${wine.name}${wine.type}`
 
 
-                    })
-                    console.log(dbWine, newWine)
+                        })
+                        // console.log(dbWine, newWine)
                     console.log(dbWine == newWine)
                     if (dbWine == newWine) {
                         console.log(`${newWine} already exists`)
                         return false
                     }
-                    console.log('exist check: ', existCheck)
+                    // console.log('exist check: ', existCheck)
                     if (existCheck.includes(true)) {
                         console.error(`The wine's already in the database.`)
                         return false
@@ -214,18 +214,19 @@ const resolvers = {
                         let input = `${year} ${name} ${type}`
                             // const search = getWineImage(input)
                         search.json({
-                                engine: "google",
-                                q: input,
-                                location: "United States",
-                                google_domain: "google.com",
-                                gl: "us",
-                                hl: "en",
-                                tbm: "isch"
-                            }, async(data) => {
-                                args.imgsrc = data.images_results[0].original
-                                    // console.log('ARGS: ', args)
-                                savedWine = await db.Wine.create({...args })
-                            })
+                            engine: "google",
+                            q: input,
+                            location: "United States",
+                            google_domain: "google.com",
+                            gl: "us",
+                            hl: "en",
+                            tbm: "isch"
+                        }, async(data) => {
+                            args.imgsrc = data.images_results[0].original
+                                // console.log('ARGS: ', args)
+                            savedWine = await db.Wine.create({...args, author_id: context.user._id })
+                        })
+                        console.log('Wine saved:', savedWine)
                             //! This will always return null, but the information is getting passed to the db
                         return savedWine
                     } else {
