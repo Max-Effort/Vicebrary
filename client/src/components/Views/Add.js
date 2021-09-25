@@ -1,4 +1,4 @@
-import React , {useState, useEffect} from 'react';
+import React , {useState} from 'react';
 import { Container } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import InputLabel from '@mui/material/InputLabel';
+// import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+// import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
 import Auth from '../../utils/auth'
@@ -525,123 +525,138 @@ export default function Add({userData}) {
 
     return (
         // <div className="add-bg">
-            <div className="renderAdd" style={{ width: '100%' }}>
-                <Container fullWidth className={classes.container} align="center">
-                   <Box className={classes.h2box}>
-                       <br />
-                    <Typography className="pageTitle" variant="h4" component="h2">Feel Free to Add A New Wine We Haven't Heard Of!</Typography>
-                    </Box>
-                    <Divider />
-                    <br />
-        <FormControl required  className={classes.form} fullWidth align="center" style={{flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
-                    {/* <form className={classes.form} noValidate> */}
-                        {/* <Box flexGrow={1}> */}
-                            <TextField style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  color='white' label="Name *" variant="filled" onChange={(e) => handleInput('name',e.target.value)} />
-                            {/* </Box> */}
-                            </FormControl>
-                        {/* <Box flexGrow={1}> */}
-                        <FormControl  required className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap', flex: '0 0 100%',  justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
-                            <TextField style={{ minWidth:'242px',backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Year *" variant="filled" onChange={(e) => handleInput('year',e.target.value)} />
-                            {/* </Box> */}
-                        {/* <Box flexGrow={1}> */}
-                        </FormControl>
-                            <FormControl required className={classes.form} style={{ backgroundColor:'transparent',flexFlow:'row wrap', flex: '0 0 100%', justifyContent: 'center'}} fullWidth label="Select Wine Type" >
-                            <Box>
-                            <TextField
-                                fullWidth
-                                select
-                                align='left'
-                                style={{minWidth:'242px', borderRadius:0, backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                                label="Select Wine Type *"
-                                value={wineInfo.type}
-                                variant="filled"
-                                onChange={(e) => handleInput('type',e.target.value)}
-                            >
-                            {/* <InputLabel style={{maxWidth:'unset',paddingTop:'3px',backgroundColor:'transparent',flex: '0 0 100%'}} id="wine-type-select-label"> Select a Wine Type </InputLabel> */}
-                                <MenuItem value={''}></MenuItem>
-                                <MenuItem value={''} disabled><em>Red Wines</em></MenuItem>
-                                <MenuItem value={'Red'}>Red</MenuItem>
-                                <MenuItem value={'Merlot'}>Merlot</MenuItem>
-                                <MenuItem value={'Cabernet'}>Cabernet</MenuItem>
-                                <MenuItem value={'Pinot Noir'}>Pinot Noir</MenuItem>
-                                <MenuItem value={'Zinfandel'}>Zinfandel</MenuItem>
-                                <MenuItem value={'Chianti'}>Chianti</MenuItem>
-                                <MenuItem value={'Beaujolais'}>Beaujolais</MenuItem>
-                                <MenuItem value={''} disabled><em>White Wines</em></MenuItem>
-                                <MenuItem value={'White'}>White</MenuItem>
-                                <MenuItem value={'Chardonnay'}>Chardonnay</MenuItem>
-                                <MenuItem value={'Sauvignon Blanc'}>Sauvignon Blanc</MenuItem>
-                                <MenuItem value={'Riesling'}>Riesling</MenuItem>
-                                <MenuItem value={'Pinto Grigio'}>Pinto Grigio</MenuItem>
-                                <MenuItem value={'Sparkiling'}>Sparkiling</MenuItem>
-                                <MenuItem value={'Champagne'}>Champagne</MenuItem>
-                                <MenuItem value={'Prosecco'}>Prosecco</MenuItem>
-                                <MenuItem value={'Dessert Wine'}>Dessert Wine</MenuItem>
-                                <MenuItem value={'Icewine'}>Icewine</MenuItem>
-                                <MenuItem value={'Moscato'}>Moscato</MenuItem>
-                                <MenuItem value={''} disabled><em>Misc</em></MenuItem>
-                                <MenuItem value={'Rose'}>Rosé</MenuItem>
-                                <MenuItem value={'Other'}>Other</MenuItem>
-                            </TextField>
-            </Box>
-                </FormControl>
-                        <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
-                        <Autocomplete
-                        id="country-select"
-                        sx={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-                        options={countries}
-                        // onInputChange={(e)=>handleInput('country', e.target.value)}
-                        onSelect={(e)=>handleInput('country', e.target.value)}
-                        getOptionLabel={(option) => option.label}
-                        renderOption={(props, option) => (
-                            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                            <img
-                                loading="lazy"
-                                width="20"
-                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                alt={option.code}
-                            />
-                            {option.label} ({option.code})
-                            </Box>
-                        )}
-                        renderInput={(params) => (
-                            <TextField
-                            {...params}
-                            variant="filled"
-                            value={wineInfo.country}
-                            label="Choose a country"
-                            inputProps={{
+     <div className="renderAdd" style={{ width: '100%' }}>
+         <Container fullWidth className={classes.container} align="center">
+             <Box className={classes.h2box}>
+                 <br />
+                 <Typography className="pageTitle" variant="h4" component="h2">Feel Free to Add A New Wine We Haven't
+                     Heard Of!</Typography>
+             </Box>
+             <Divider />
+             <br />
+             <FormControl required className={classes.form} fullWidth align="center"
+                 style={{flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
+                 {/* <form className={classes.form} noValidate> */}
+                     {/* <Box flexGrow={1}> */}
+                         <TextField
+                             style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                             id="filled-basic" color='white' label="Name *" variant="filled" onChange={(e)=>
+                             handleInput('name',e.target.value)} />
+                             {/* </Box> */}
+             </FormControl>
+             {/* <Box flexGrow={1}> */}
+                 <FormControl required className={classes.form} fullWidth align="center"
+                     style={{ flexFlow:'row wrap', flex: '0 0 100%',  justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
+                     <TextField style={{ minWidth:'242px',backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                         id="filled-basic" label="Year *" variant="filled" onChange={(e)=>
+                         handleInput('year',e.target.value)} />
+                         {/* </Box> */}
+             {/* <Box flexGrow={1}> */}
+                 </FormControl>
+                 <FormControl required className={classes.form}
+                     style={{ backgroundColor:'transparent',flexFlow:'row wrap', flex: '0 0 100%', justifyContent: 'center'}}
+                     fullWidth label="Select Wine Type">
+                     <Box>
+                         <TextField fullWidth select align='left'
+                             style={{minWidth:'242px', borderRadius:0, backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                             label="Select Wine Type *" value={wineInfo.type} variant="filled" onChange={(e)=>
+                             handleInput('type',e.target.value)}
+                             >
+                             {/* <InputLabel
+                                 style={{maxWidth:'unset',paddingTop:'3px',backgroundColor:'transparent',flex: '0 0 100%'}}
+                                 id="wine-type-select-label"> Select a Wine Type </InputLabel> */}
+                             <MenuItem value={''}>
+                             </MenuItem>
+                             <MenuItem value={''} disabled><em>Red Wines</em></MenuItem>
+                             <MenuItem value={'Red'}>Red</MenuItem>
+                             <MenuItem value={'Merlot'}>Merlot</MenuItem>
+                             <MenuItem value={'Cabernet'}>Cabernet</MenuItem>
+                             <MenuItem value={'Pinot Noir'}>Pinot Noir</MenuItem>
+                             <MenuItem value={'Zinfandel'}>Zinfandel</MenuItem>
+                             <MenuItem value={'Chianti'}>Chianti</MenuItem>
+                             <MenuItem value={'Beaujolais'}>Beaujolais</MenuItem>
+                             <MenuItem value={''} disabled><em>White Wines</em></MenuItem>
+                             <MenuItem value={'White'}>White</MenuItem>
+                             <MenuItem value={'Chardonnay'}>Chardonnay</MenuItem>
+                             <MenuItem value={'Sauvignon Blanc'}>Sauvignon Blanc</MenuItem>
+                             <MenuItem value={'Riesling'}>Riesling</MenuItem>
+                             <MenuItem value={'Pinto Grigio'}>Pinto Grigio</MenuItem>
+                             <MenuItem value={'Sparkiling'}>Sparkiling</MenuItem>
+                             <MenuItem value={'Champagne'}>Champagne</MenuItem>
+                             <MenuItem value={'Prosecco'}>Prosecco</MenuItem>
+                             <MenuItem value={'Dessert Wine'}>Dessert Wine</MenuItem>
+                             <MenuItem value={'Icewine'}>Icewine</MenuItem>
+                             <MenuItem value={'Moscato'}>Moscato</MenuItem>
+                             <MenuItem value={''} disabled><em>Misc</em></MenuItem>
+                             <MenuItem value={'Rose'}>Rosé</MenuItem>
+                             <MenuItem value={'Other'}>Other</MenuItem>
+                         </TextField>
+                     </Box>
+                 </FormControl>
+                 <FormControl className={classes.form} fullWidth align="center"
+                     style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
+                     <Autocomplete id="country-select"
+                         sx={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                         options={countries} // onInputChange={(e)=>handleInput('country', e.target.value)}
+                         onSelect={(e)=>handleInput('country', e.target.value)}
+                         getOptionLabel={(option) => option.label}
+                         renderOption={(props, option) => (
+                         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                             <img loading="lazy" width="20"
+                                 src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                 srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                 alt={option.code} />
+                             {option.label} ({option.code})
+                         </Box>
+                         )}
+                         renderInput={(params) => (
+                         <TextField {...params} variant="filled" value={wineInfo.country} label="Choose a country"
+                             inputProps={{
                                 ...params.inputProps,
                                 // autoComplete: , // disable autocomplete and autofill //! I DON'T UNDERSTND THIS COMPONENT AT ALL
-                            }}
-                            
-        />
-                        )}
-                        />
-                        {/* </Box> */}
-                            {/* <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Country" variant="filled" onChange={(e) => handleInput('country',e.target.value)} /></Box> */}
-                        {/* <Box flexGrow={1}> */}
-                        </FormControl>
-            <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap',flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
-            {/* </Box> */}
-                            {/* <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Type" variant="filled" onChange={(e) => handleInput('type',e.target.value)} /></Box> */}
-                        {/* <Box flexGrow={1}> */}
-                        <TextField style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Description" placeholder="You can just copy and paste here." variant="filled" onChange={(e) => handleInput('description',e.target.value)} multiline rows={6} />
-                            {/* </Box> */}
-                            </FormControl>
-                        {/* <Box flexGrow={1}> */}
-                        <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
-                        <TextField style={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  fullWidth label="Image URL" placeholder="Upload an image or we will...eventually." variant="filled" onChange={(e) => handleInput('imgsrc',e.target.value)} />
-                    </FormControl>
-                        {/* <Box flexGrow={1}> */}
-                        <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap',flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
-                        <Button variant="filled" onClick={handleSubmit}>Add Wine</Button>
-                        {/* </Box> */}
-                </FormControl>
-                    {/* </form> */}
-                </Container>
-            </div>
+                            }} />
+                         )}
+                         />
+                         {/*
+             </Box> */}
+             {/* <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                 id="filled-basic" label="Country" variant="filled" onChange={(e)=>
+                 handleInput('country',e.target.value)} /></Box> */}
+                 {/* <Box flexGrow={1}> */}
+                     </FormControl>
+                     <FormControl className={classes.form} fullWidth align="center"
+                         style={{ flexFlow:'row wrap',flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
+                         {/*
+                 </Box> */}
+                 {/* <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                     id="filled-basic" label="Type" variant="filled" onChange={(e)=> handleInput('type',e.target.value)}
+                     /></Box> */}
+                     {/* <Box flexGrow={1}> */}
+                         <TextField
+                             style={{minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                             id="filled-basic" fullWidth label="Description"
+                             placeholder="You can just copy and paste here." variant="filled" onChange={(e)=>
+                             handleInput('description',e.target.value)} multiline rows={6} />
+                             {/* </Box> */}
+                     </FormControl>
+                     {/* <Box flexGrow={1}> */}
+                         <FormControl className={classes.form} fullWidth align="center"
+                             style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
+                             <TextField
+                                 style={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
+                                 id="filled-basic" fullWidth label="Image URL"
+                                 placeholder="Upload an image or we will...eventually." variant="filled" onChange={(e)=>
+                                 handleInput('imgsrc',e.target.value)} />
+                         </FormControl>
+                         {/* <Box flexGrow={1}> */}
+                             <FormControl className={classes.form} fullWidth align="center"
+                                 style={{ flexFlow:'row wrap',flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
+                                 <Button variant="filled" onClick={handleSubmit}>Add Wine</Button>
+                                 {/* </Box> */}
+                         </FormControl>
+                         {/* </form> */}
+         </Container>
+     </div>
         // </div>
     )
 }

@@ -1,18 +1,13 @@
 import LoginSide from "./pages/LoginSide";
 import SignUpSide from "./pages/SignUpSide";
 import Main from "./pages/Main";
-import Auth from "./utils/auth";
+// import Auth from "./utils/auth";
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import BackgroundVideo from './components/Background Videos/viceclips.mp4.mov'
+import { BrowserRouter as Router, Switch,  Route} from "react-router-dom";
 import './App.css'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 
 
 const client = new ApolloClient({
