@@ -180,6 +180,7 @@ const resolvers = {
             return savedItem;
         },
         saveWine: async(parent, args, context) => {
+            console.log(`Adding New Wine Boss`)
             if (context.user) {
                 if (args) {
                     let wines = await db.Wine.find({})

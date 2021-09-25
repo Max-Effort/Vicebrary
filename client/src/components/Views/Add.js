@@ -11,7 +11,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import Auth from '../../utils/auth'
+import {useMutation} from '@apollo/react-hooks'
+import {SAVE_WINE} from '../../utils/mutations'
 
 const useStyles = makeStyles((theme) => ({
 form: {
@@ -468,9 +470,8 @@ const countries = [
 
 export default function Add({userData}) {
     const classes = useStyles();
-    const [inputValue, setInputValue] = useState('');
+
     const [wineInfo,setWineInfo]= useState({
-        author_id:'',
         name:'', 
         year:'', 
         country:'', 
@@ -478,14 +479,45 @@ export default function Add({userData}) {
         description:'',
         imgsrc: ''
     })
-
+    const [saveWine, {loading, error }] = useMutation(SAVE_WINE);
+    
     const handleInput = (name, value) =>{
         setWineInfo({...wineInfo,[name]:value})
     }
-    console.log(wineInfo)
-    const handleSubmit = (e) =>{
-
+    // console.log(wineInfo)
+    const handleSubmit = async () =>{
+        console.log(`Submission`)
+    const token = Auth.loggedIn() ? Auth.getToken() : null 
+    if (!token){
+        console.log('invalid token')
+      return false;
     }
+
+    try{
+      const newWine = await saveWine({variables:{...wineInfo}});
+      console.dir({newWine})
+      if(loading){
+      console.log(`Loading. . .`)
+      }
+      if(error){
+        throw new Error(`So, that shit didn't work`)
+      }
+      
+      setWineInfo({
+      name:'', 
+      year:'', 
+      country:'', 
+      type:'', 
+      description:'',
+      imgsrc: ''
+        })
+      return newWine
+    }catch (err) { 
+      throw err
+    }
+}
+
+    
 
     return (
         // <div className="add-bg">
@@ -553,21 +585,11 @@ export default function Add({userData}) {
                 </FormControl>
                         <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap', flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor:'transparent'}}>
                         <Autocomplete
-  disablePortal
-  id="country-select"
-  options={countries}
-  sx={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
-  onChange={(e) => handleInput('country',e.target.value)}
-//   onInputChange={(newValue)=>setInputValue(newValue)}
-  renderInput={(params) => <TextField {...params} onChange={(e) => handleInput('country',e.target.value)} label="Country" />}
-/>
-                        {/* <Autocomplete
                         id="country-select"
                         sx={{ minWidth:'242px', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}}
                         options={countries}
-                        autoHighlight
-                        value={wineInfo.country}
-                        onChange={(e) => handleInput('country',e.target.inputValue)}
+                        // onInputChange={(e)=>handleInput('country', e.target.value)}
+                        onSelect={(e)=>handleInput('country', e.target.value)}
                         getOptionLabel={(option) => option.label}
                         renderOption={(props, option) => (
                             <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -585,15 +607,16 @@ export default function Add({userData}) {
                             <TextField
                             {...params}
                             variant="filled"
-                            label="Choose a country"
                             value={wineInfo.country}
+                            label="Choose a country"
                             inputProps={{
                                 ...params.inputProps,
-                                autoComplete: 'wine-country', // disable autocomplete and autofill
+                                // autoComplete: , // disable autocomplete and autofill //! I DON'T UNDERSTND THIS COMPONENT AT ALL
                             }}
+                            
         />
                         )}
-                        /> */}
+                        />
                         {/* </Box> */}
                             {/* <TextField style={{ width: '100%', backgroundColor: 'white', boxShadow: 'inset 0 0 5px black'}} id="filled-basic"  label="Country" variant="filled" onChange={(e) => handleInput('country',e.target.value)} /></Box> */}
                         {/* <Box flexGrow={1}> */}
@@ -611,7 +634,7 @@ export default function Add({userData}) {
                     </FormControl>
                         {/* <Box flexGrow={1}> */}
                         <FormControl className={classes.form} fullWidth align="center" style={{ flexFlow:'row wrap',flex: '0 0 100%', justifyContent:'center', gap: '0', backgroundColor: 'transparent'}}>
-                        <Button variant="filled" onclick={handleSubmit}>Add Wine</Button>
+                        <Button variant="filled" onClick={handleSubmit}>Add Wine</Button>
                         {/* </Box> */}
                 </FormControl>
                     {/* </form> */}
