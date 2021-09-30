@@ -59,7 +59,7 @@ export default function SearchGrid() {
     wineList.map((wine,index) => { 
       if (!savedViceIDs.includes(wine._id)){
         return (
-                  <Grid item key={index} xs={3}>
+                  <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                     <Card style={{height:'400px'}} className={classes.root}>
                       <CardActionArea>
                         <CardMedia
@@ -89,7 +89,7 @@ export default function SearchGrid() {
         } 
     })
   return (
-          <Container>
+          <Container align="center">
             <Grid container spacing={1}>
               {wineCards}
             </Grid>
