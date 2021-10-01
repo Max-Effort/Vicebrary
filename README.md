@@ -35,7 +35,7 @@ Visit [Vicebrary](http://vicebrary.herokuapp.com) and create a new account.
   
   ## Contributors 🧑‍🤝‍🧑
 ---
-  [Peter Roto](http://github.com/PRoto133), [Nakshab Nadeem](http://github.com/nnadeem75), [Quanisha Jackson](http://github.com/jquanisha), [Ryan Hillier](http://github.com/Ryan1992186), [Gerald Plotke](http://github.com/gplotke)
+  [Peter Roto](http://github.com/PRoto133),[Quanisha Jackson](http://github.com/jquanisha), [Gerald Plotke](http://github.com/gplotke)
   
   ## Screenshots 📷
 ---
