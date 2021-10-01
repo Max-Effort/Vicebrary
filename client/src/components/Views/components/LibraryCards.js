@@ -4,6 +4,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -70,7 +72,7 @@ function LibraryCards() {
     const [vicebraryIDs, setVicebraryIDs] = useState(getSavedViceIDs())
 
     // Description or Note toggle
-    const [selected, setSelected] = useState(false)
+    const [selected, setSelected] = useState({0:false})
 
     // Mutations
     const [removeItem, { itemLoading, itemError }] = useMutation(REMOVE_ITEM);
@@ -89,13 +91,16 @@ function LibraryCards() {
     }
     const handleClose = () => setOpen(false);
 
-    const handleNoteToggle = (e) => {
-        //console.log('NoteToggle:', e.currentTarget.selected)
-        // e.currentTarget.selected = !e.currentTarget.selected
-
-        e.currentTarget.selected = setSelected(!selected)
-
-    }
+    const handleNoteToggle = (index,e) => {
+ e.target.value = !e.target.value
+      console.log(`INDEX: ${index}`)
+      console.log(`VALUE: ${e.target.value}`)
+       setSelected({...selected, [index]: e.target.value})
+       
+       
+      }
+      useEffect(()=>{
+        console.table(selected)})
 
     const handleNoteChange = (e) => {
         const content = e.currentTarget.value
@@ -176,25 +181,26 @@ function LibraryCards() {
                             </Card>
                 }
   return (
-          <Card key={index} data-vice={item.vice_type} className={classes.root}>
+    <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+          <Card data-vice={item.vice_type} className={classes.root}>
             <CardHeader
               style={{ padding:'.1rem .5rem', zIndex:1000,fontWeight:'800',backgroundColor:'rgba(255,255,255,.85)', textShadow:'0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1)'}}
               title={item.vice[0].name} subheader={`${item.vice[0].year} | ${item.vice[0].country} | ${item.vice[0].type}`} />
             <CardMedia className={classes.media} image={item.vice[0].imgsrc ? item.vice[0].imgsrc : 'https://loremflickr.com/g/320/240/wine,bottle'} title={item.vice[0].name} />
             <Box
-              style={{  height: '100px', boxSizing: 'content-box', paddingRight:'17px',width:'100%', overflowY:'auto', overflowX:'hidden'}}>
+              style={{  height: '100px', boxSizing: 'content-box', marginRight:'3%',width:'99%', overflowY:'auto', overflowX:'hidden'}}>
               <Typography variant="body2"
-                style={{textAlign: 'justify', textJustify: 'inter-word',fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', padding: '.25rem', width:'100%', backgroundColor:'rgba(255,255,255,.85)', paddingTop:'.25rem', paddingRight:'calc(.25rem + 18px)',paddingBottom: 0, paddingLeft:'.25rem'}}
+                style={{fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', width:'100%', backgroundColor:'rgba(255,255,255,.85)',marginLeft:'-2.25%', paddingTop:'.25rem', paddingRight:'calc(.25rem + 20px)',paddingBottom: 0, paddingLeft:'.25rem'}}
                 component="p">
-                {selected ? (item.note) : item.vice[0].description}
+                {selected[index] ? (item.note) : item.vice[0].description}
               </Typography>
             </Box>
             <Stack
               style={{ backgroundColor:'rgba(255,255,255,.85)', width:'100%', margin:'0', padding:'.25rem 0 0 0', boxShadow:'0px -2px 26px 0px #000000'}}
               direction="row" justifyContent="center" alignItems="center" spacing={2}>
               <span style={{margin:'0', padding:'0'}}>
-                <Button style={{fontSize:'12px'}} title={!selected?'See Note': 'See Description' } size='small' value="notes"
-                  selected={selected} onClick={handleNoteToggle}>
+                <Button style={{fontSize:'12px'}} title={!selected?'See Note': 'See Description' } size='small' defaultValue={false}
+                      value={selected[{index}]} onClick={(e)=>handleNoteToggle(index, e)}>
                   <VisibilityIcon style={{color:'blue'}} />
                 </Button>
               </span>
@@ -226,13 +232,16 @@ function LibraryCards() {
               </DialogActions>
             </Dialog>
           </Card>
+          </Grid>
     )
 } )
   
 
   return(
-       <Box style={{ display: 'flex', flexFlow: 'row wrap',gap:'1rem', justifyContent:'space-evenly',width:'100%'}}>
-          {itemCards}
-       </Box>
+    <Container style={{width: '100%'}} align="center">
+    <Grid container justify="space-evenly">
+      {itemCards}
+    </Grid>
+  </Container>
         )
   }
