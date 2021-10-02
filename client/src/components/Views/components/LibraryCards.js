@@ -190,7 +190,7 @@ function LibraryCards() {
             <Box
               style={{  height: '100px', boxSizing: 'content-box', marginRight:'3%',width:'99%', overflowY:'auto', overflowX:'hidden'}}>
               <Typography variant="body2"
-                style={{fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', width:'100%', backgroundColor:'rgba(255,255,255,.85)',marginLeft:'-2.25%', paddingTop:'.25rem', paddingRight:'calc(.25rem + 20px)',paddingBottom: 0, paddingLeft:'.25rem'}}
+                style={{fontFamily:'Roboto',fontSize:'calc(11px + .25vw)', color:'black', width:'100%', backgroundColor:'rgba(255,255,255,.85)',marginLeft:'-1.25%', padding:'.25rem'}}
                 component="p">
                 {selected[index] ? (item.note) : item.vice[0].description}
               </Typography>
@@ -239,7 +239,7 @@ function LibraryCards() {
 
   return(
     <Container style={{width: '100%'}} align="center">
-    <Grid container justify="space-evenly">
+    <Grid container style={{gap: '1rem .5rem'}} justify="space-evenly">
       {itemCards}
     </Grid>
   </Container>
