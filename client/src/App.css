@@ -3,6 +3,24 @@
                     min-height: 100vh;
                 }
                 
+                div * {
+                    scrollbar-width: none;
+                    /* Firefox */
+                    -ms-overflow-style: none;
+                    /* IE 10+ */
+                     ::-webkit-scrollbar-track {
+                        -webkit-box-shadow: none !important;
+                        background-color: transparent;
+                    }
+                     ::-webkit-scrollbar {
+                        width: 3px !important;
+                        background-color: transparent;
+                    }
+                     ::-webkit-scrollbar-thumb {
+                        background-color: transparent;
+                    }
+                }
+                
                 .mainPage {
                     /* padding-top: 3rem;
                     padding-bottom: 5rem; */

@@ -25,8 +25,8 @@ const useStyles = makeStyles({
 });
 
 
-export default function SearchGrid() {
-  const classes = useStyles();
+export default function SearchGrid({search}) {
+  const classes = useStyles()
   const [wineList, setWineList] = useState([])
   // console.dir({wineList})
   const wineDB = useQuery(QUERY_WINES, {
@@ -34,7 +34,6 @@ export default function SearchGrid() {
       setWineList(wineDB.data.Wines)
     }
   })
-
   const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIDs())
   useEffect(()=>{localSavedViceIDs(savedViceIDs)})
 
@@ -54,9 +53,48 @@ export default function SearchGrid() {
       //  console.log({savedViceIDs})
   }
   // console.log('saved vice id: '+savedViceIDs.length)
+const searchString = search ? search.toLowerCase() : null
+const filteredWines = wineList?.filter(wine => {
+  // console.log(wine.name)
+  return(wine.name.toLowerCase().includes(searchString) || wine.description.toLowerCase().includes(searchString) || wine.year.toString().includes(searchString) || wine.type.toLowerCase().includes(searchString));
+})
 
-    const wineCards = 
-    wineList.map((wine,index) => { 
+console.log(filteredWines)
+
+  const wineCards = search ? (filteredWines.map((wine,index) => { 
+      return (
+                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                  <Card style={{height:'400px'}} className={classes.root}>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image={wine.imgsrc ? wine.imgsrc : 'https://loremflickr.com/g/320/240/wine,bottle'}
+                        title={wine.name}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
+                          {wine.name}
+                        </Typography>
+                        <Box style={{height:'125px', overflowY:'scroll'}}>
+                        <Typography variant="body2" style={{color:'darkgrey'}} component="p">
+                          {wine.description}
+                        </Typography>
+                        </Box>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions style={{boxShadow:'0px -10px 7px 0px rgba(0,0,0, .15)'}}>
+                      <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
+                        Add to Vicebrary
+                      </Button>
+                    </CardActions>
+                    {/* <Container > */}
+                        <span style={{float:'right', color:'white', fontWeight:'300',backgroundColor:((wine.type === 'Merlot' ||'Pinot Noir'|| 'Zinfandel' || 'Chianti' || 'Beaujolais' || 'Red' || 'Cabernet') ? ('#470B12'):(wine.type === 'White' || 'Chardonnay' || 'Sauvignon Blanc' || 'Riesling' || 'Pinot Grigio' || 'Prosecco' || 'Sparkling' || 'Champagne' || 'Dessert Wine' || 'Icewine' || 'Moscato') ? '#e8cd5f' : '#929292'), padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>
+                    {/* </Container> */}
+                  </Card>
+                </Grid>
+              );
+      // }
+})) :(wineList.map((wine,index) => { 
       if (!savedViceIDs.includes(wine._id)){
         return (
                   <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
@@ -78,20 +116,28 @@ export default function SearchGrid() {
                           </Box>
                         </CardContent>
                       </CardActionArea>
-                      <CardActions>
-                        <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
+                      <CardActions style={{boxShadow:'0px -10px 7px 0px rgba(0,0,0, .15)'}}>
+                        <Button value={wine._id}  onClick={handleSaveWine} size="small" color="primary">
                           Add to Vicebrary
                         </Button>
                       </CardActions>
+                      <span style={{float:'right', color:'white', fontWeight:'300', backgroundColor:(wine.type === 'Merlot' ||'Pinot Noir'|| 'Zinfandel' || 'Chianti' || 'Beaujolais' || 'Red' || 'Cabernet' ? '#470B12':wine.type === 'White' || 'Chardonnay' || 'Sauvignon Blanc' || 'Riesling' || 'Pinot Grigio' || 'Prosecco' || 'Sparkling' || 'Champagne' || 'Dessert Wine' || 'Icewine' || 'Moscato' ? '#e8cd5f' : 
+                        '#929292'), padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>               
                     </Card>
                   </Grid>
                 );
-        } 
-    })
+        }
+  }))
+
+  console.log(wineCards.length)
   return (
           <Container align="center">
             <Grid container spacing={1}>
-              {wineCards}
+              {wineCards.length ? wineCards : (<Container style={{padding:'1rem', margin:'2rem'}}align="center">
+      <Card>
+  <h3>No results found. Please try again. . . or don't. It's up to you.</h3>
+  </Card>
+  </Container>) }
             </Grid>
           </Container>
           )
