@@ -25,6 +25,8 @@ const useStyles = makeStyles({
 });
 
 
+
+
 export default function SearchGrid({search}) {
   const classes = useStyles()
   const [wineList, setWineList] = useState([])
@@ -60,7 +62,7 @@ const filteredWines = wineList?.filter(wine => {
 })
 
 console.log(filteredWines)
-
+let tagColor
   const wineCards = search ? (filteredWines.map((wine,index) => { 
       return (
                 <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
@@ -88,7 +90,7 @@ console.log(filteredWines)
                       </Button>
                     </CardActions>
                     {/* <Container > */}
-                        <span style={{float:'right', color:'white', fontWeight:'300',backgroundColor:((wine.type === 'Merlot' ||'Pinot Noir'|| 'Zinfandel' || 'Chianti' || 'Beaujolais' || 'Red' || 'Cabernet') ? ('#470B12'):(wine.type === 'White' || 'Chardonnay' || 'Sauvignon Blanc' || 'Riesling' || 'Pinot Grigio' || 'Prosecco' || 'Sparkling' || 'Champagne' || 'Dessert Wine' || 'Icewine' || 'Moscato') ? '#e8cd5f' : '#929292'), padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>
+                        <span style={{float:'right', color:'white', fontWeight:'300',  padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>
                     {/* </Container> */}
                   </Card>
                 </Grid>
@@ -109,7 +111,7 @@ console.log(filteredWines)
                           <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
                             {wine.name}
                           </Typography>
-                          <Box style={{height:'125px', overflowY:'scroll'}}>
+                          <Box style={{height:'100px', overflowY:'scroll'}}>
                           <Typography variant="body2" style={{color:'darkgrey'}} component="p">
                             {wine.description}
                           </Typography>
@@ -120,16 +122,18 @@ console.log(filteredWines)
                         <Button value={wine._id}  onClick={handleSaveWine} size="small" color="primary">
                           Add to Vicebrary
                         </Button>
-                      </CardActions>
-                      <span style={{float:'right', color:'white', fontWeight:'300', backgroundColor:(wine.type === 'Merlot' ||'Pinot Noir'|| 'Zinfandel' || 'Chianti' || 'Beaujolais' || 'Red' || 'Cabernet' ? '#470B12':wine.type === 'White' || 'Chardonnay' || 'Sauvignon Blanc' || 'Riesling' || 'Pinot Grigio' || 'Prosecco' || 'Sparkling' || 'Champagne' || 'Dessert Wine' || 'Icewine' || 'Moscato' ? '#e8cd5f' : 
-                        '#929292'), padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>               
+                      </CardActions>                        
+                      <span id="wineTag" style={{float:'right', color:'white', backgroundColor: (wine.type === 'Merlot' ||wine.type ==='Pinot Noir'||wine.type === 'Zinfandel' ||wine.type === 'Chianti' ||wine.type === 'Beaujolais' ||wine.type === 'Red'||wine.type === 'Malbec'|| wine.type === 'Cabernet') ? ('#470B12') : 
+    (wine.type === 'White' ||wine.type === 'Chardonnay' || wine.type ==='Sauvignon Blanc' ||wine.type === 'Riesling' || wine.type ==='Pinot Grigio' || wine.type ==='Prosecco' ||wine.type === 'Sparkling' || wine.type ==='Champagne' || wine.type ==='Dessert Wine' || wine.type ==='Icewine' ||wine.type === 'Moscato') ? '#e8cd5f' : 
+    (wine.type === 'Rose' || wine.type === 'Rosé') ? '#ff2994' :('#929292')
+, fontWeight:'300', padding:'.25rem 1rem', borderTopLeftRadius: '50px', borderBottomLeftRadius: '5px'}}>{wine.type}</span>
+                    
                     </Card>
                   </Grid>
                 );
         }
   }))
-
-  console.log(wineCards.length)
+  
   return (
           <Container align="center">
             <Grid container spacing={1}>
