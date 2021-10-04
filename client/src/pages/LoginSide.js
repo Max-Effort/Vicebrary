@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import BackgroundVideo from '../components/Background Videos/viceclips.mp4.mov';
 import { Redirect } from 'react-router-dom'
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/react-hooks';
@@ -26,7 +26,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="/">
-        Vicebrary
+        MaxEffort
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)', // TODO: Change Background URL
+    // backgroundImage: 'url(https://source.unsplash.com/random)', // TODO: Change Background URL
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -109,7 +109,11 @@ export default function SignInSide() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={false} sm={4} md={7}>
+      <video id="background-video" style={{height: '100%', width: '100%'}} autoPlay loop muted>
+            <source src={BackgroundVideo} type='video/mp4' />
+        </video>
+      </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>

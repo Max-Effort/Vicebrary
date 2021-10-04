@@ -1,113 +1,113 @@
-                .App {
-                    width: 100%;
-                    min-height: 100vh;
-                }
-                
-                div * {
-                    scrollbar-width: none;
-                    /* Firefox */
-                    -ms-overflow-style: none;
-                    /* IE 10+ */
-                     ::-webkit-scrollbar-track {
-                        -webkit-box-shadow: none !important;
-                        background-color: transparent;
-                    }
-                     ::-webkit-scrollbar {
-                        width: 3px !important;
-                        background-color: transparent;
-                    }
-                     ::-webkit-scrollbar-thumb {
-                        background-color: transparent;
-                    }
-                }
-                
-                .mainPage {
-                    /* padding-top: 3rem;
-                    padding-bottom: 5rem; */
-                    padding: 4rem;
-                    width: calc(100% - 8rem);
-                    height: auto;
-                }
-                /* .renderSearch {
-                padding-top: 3rem !important;
-            } */
-                
-                .pageTitle {
-                    padding: 1rem 0;
-                    color: rgb(255, 255, 255);
-                    font-weight: 200 !important;
-                    text-shadow: 0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1) !important;
-                }
-                
-                .modal-container {
-                    height: 90%;
-                    width: 90%;
-                }
-                
-                footer {
-                    position: fixed;
-                    bottom: 0;
-                    left: 0;
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                }
-                
-                .addWineContainer {
-                    text-align: center;
-                }
-                
-                .MuiTypography-h5 {
-                    font-size: 1rem !important;
-                    font-weight: bold !important
-                }
-                
-                .MuiTypography-body1 {
-                    font-size: .75rem !important;
-                    font-weight: 200 !important;
-                }
-                
-                .MuiTypography-colorTextSecondary {
-                    color: rgb(150, 150, 150) !important
-                }
-                
-                .add-bg h2 {
-                    color: white !important;
-                }
-                /* .add-bg {
-                padding: 3rem;
-            } */
-                
-                .search-bg h2 {
-                    color: white !important;
-                }
-                
-                form div input {
-                    background-color: white;
-                }
-                
-                #background-video {
-                    width: 100vw;
-                    height: 100vh;
-                    object-fit: cover;
-                    position: fixed;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    z-index: -1;
-                }
-                
-                .MuiButton-textSizeSmall {
-                    font-size: .75rem !important;
-                }
-                
-                .MuiButton-textSizeSmall:hover {
-                    color: rgb(255, 140, 140)
-                }
-                
-                .renderAdd {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    justify-content: center;
-                }
+    .App {
+        width: 100%;
+        min-height: 100vh;
+    }
+    
+    div * {
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE 10+ */
+         ::-webkit-scrollbar-track {
+            -webkit-box-shadow: none !important;
+            background-color: transparent;
+        }
+         ::-webkit-scrollbar {
+            width: 3px !important;
+            background-color: transparent;
+        }
+         ::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+    }
+    
+    .mainPage {
+        /* padding-top: 3rem;
+    padding-bottom: 5rem; */
+        padding: 4rem;
+        width: calc(100% - 8rem);
+        height: auto;
+    }
+    /* .renderSearch {
+    padding-top: 3rem !important;
+    } */
+    
+    .pageTitle {
+        padding: 1rem 0;
+        color: rgb(255, 255, 255);
+        font-weight: 200 !important;
+        text-shadow: 0px -1px 3px rgba(255, 255, 255, 1), 0px 0px 1px rgba(0, 0, 0, 1) !important;
+    }
+    
+    .modal-container {
+        height: 90%;
+        width: 90%;
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .addWineContainer {
+        text-align: center;
+    }
+    
+    .MuiTypography-h5 {
+        font-size: 1rem !important;
+        font-weight: bold !important
+    }
+    
+    .MuiTypography-body1 {
+        font-size: .75rem !important;
+        font-weight: 200 !important;
+    }
+    
+    .MuiTypography-colorTextSecondary {
+        color: rgb(150, 150, 150) !important
+    }
+    
+    .add-bg h2 {
+        color: white !important;
+    }
+    /* .add-bg {
+    padding: 3rem;
+    } */
+    
+    .search-bg h2 {
+        color: white !important;
+    }
+    
+    form div input {
+        background-color: white;
+    }
+    
+    #background-video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    
+    .MuiButton-textSizeSmall {
+        font-size: .75rem !important;
+    }
+    
+    .MuiButton-textSizeSmall:hover {
+        color: rgb(255, 140, 140)
+    }
+    
+    .renderAdd {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
