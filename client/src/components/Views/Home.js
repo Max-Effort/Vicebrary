@@ -4,21 +4,21 @@ import { localSavedViceIDs,getSavedViceIDs } from '../../utils/localStorage'
 // import {useEffect} from 'react'
 
 function Home({userData}) {   
-    let dbItemIDs = getSavedViceIDs()
+    // let dbItemIDs = getSavedViceIDs()
     console.dir(userData)
-    console.table(dbItemIDs)
-const {items} = userData
-if (items){
-    items.map((item) => {
-    // let newItemID = item.vice_id
-if (!dbItemIDs.includes(item.vice_id)){
-    console.log(item.vice_id)
-        dbItemIDs.push(item.vice_id)
-}
-    console.log('Line 18:',dbItemIDs)
-    return dbItemIDs
-})
-localSavedViceIDs(dbItemIDs)}
+//     console.table(dbItemIDs)
+// const {items} = userData
+// if (items){
+//     items.map((item) => {
+//     // let newItemID = item.vice_id
+// if (!dbItemIDs.includes(item.vice_id)){
+//     console.log(item.vice_id)
+//         dbItemIDs.push(item.vice_id)
+// }
+//     console.log('Line 18:',dbItemIDs)
+//     return dbItemIDs
+// })
+// localSavedViceIDs(dbItemIDs)}
 
 
 

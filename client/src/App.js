@@ -5,7 +5,7 @@ import Main from "./pages/Main";
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import BackgroundVideo from './components/Background Videos/viceclips.mp4.mov'
+import BackgroundVideo from './components/Background Videos/viceclips.mp4.mov';
 import { BrowserRouter as Router, Switch,  Route} from "react-router-dom";
 import './App.css'
 

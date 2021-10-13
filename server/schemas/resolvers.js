@@ -55,7 +55,7 @@ const resolvers = {
         Items: async(parent, args, context) => {
             if (context.user) {
                 const itemsData = await db.Item.find({ owner_id: context.user._id }).populate({ path: 'vice', model: 'Vice' })
-                console.log(itemsData)
+                console.table(itemsData)
                 return itemsData;
             }
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
@@ -127,11 +127,11 @@ const resolvers = {
             // {"vice_type": "Wine", "vice_id": "61419bf1fb2190ea2445d460", "item_id": "614542b2165e0d97b5a57500"}
             if (context.user) {
                 // console.log(`Update Vice \n item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
-                const savedVice = await db.Vice.findOne({ _id: args.vice_id });
+                const savedVice = await db.Vice.findOne({ vice_id: args.vice_id });
                 const savedItem = await db.Item.findOne({ owner_id: context.user._id, vice_id: args.vice_id })
                 console.log(`\n Server resolver.js saveVice: ${savedVice}\n`)
                 if (!savedVice) {
-                    console.log(`${savedVice} does not exist making one.`)
+                    console.log(`${args.vice_id} does not exist making one.`)
                     let viceInfo
                     let updatedVice
                         // console.log(`vicetype: ${args.vice_type}`)
@@ -145,7 +145,8 @@ const resolvers = {
                             console.dir({ newItem })
                                 // update User Items to include the id of the new item
                                 //Setting item_id from newly created item
-                            viceInfo = {...data[0]._doc, item_id: newItem._id, owner_id: context.user._id }
+                            viceInfo = {...data[0]._doc, vice_id: args.vice_id, item_id: newItem._id, owner_id: context.user._id }
+                            console.table(viceInfo)
                         }
                     }
                     //Creating new Vice
@@ -257,10 +258,12 @@ const resolvers = {
                 console.log(db.Item.length)
                 try {
                     const item = await db.Item.findOne({ vice_id: args.vice_id })
-                    const user = await db.User.findOneAndUpdate({ _id: context.user._id }, { $pull: { items: item._id }, returnOriginal: false })
+                    console.log('Removing Item ID', item._id)
+                    const user = await db.User.findOneAndUpdate({ _id: context.user._id }, { $pull: { items: item._id }, new: true })
                     console.log(`Removing ${item._id} from ${user.username}'s items list.`)
-                    await db.Item.deleteOne({ vice_id: args.vice_id })
-                    await db.Vice.deleteOne({ _id: args.vice_id })
+                    console.log(`${user.username}'s items \n ${user}`)
+                    await db.Item.deleteOne({ owner_id: context.user._id, vice_id: args.vice_id })
+                    await db.Vice.deleteOne({ item_id: item._id })
                     return { message: 'Item removed' }
                 } catch (err) { throw err }
             }

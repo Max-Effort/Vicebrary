@@ -6,6 +6,10 @@ const viceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Item'
     },
+    vice_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Vice'
+    },
     name: {
         type: String,
         // required: true

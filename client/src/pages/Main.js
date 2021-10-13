@@ -3,16 +3,23 @@ import React, { useState } from 'react'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import View from '../components/Views/index'
+// import {useQuery} from '@apollo/react-hooks'
+// import { QUERY_ITEMS } from '../utils/queries';
 
 
 
 export default function Main() {
+
       const [page, setPage] = useState('home');
 
     const handleChange = (event, newPage) => {
         console.log({ newPage });
         setPage(newPage);
     };
+
+
+    
+
     if (Auth.loggedIn() === false) {
         window.location.replace('/login');
     }

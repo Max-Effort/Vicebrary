@@ -39,16 +39,16 @@ export default function SearchGrid({search}) {
   const [savedViceIDs,setSavedViceIDs] = useState(getSavedViceIDs())
   useEffect(()=>{localSavedViceIDs(savedViceIDs)})
 
-  const [saveWine,{loading,error}]=useMutation(SAVE_VICE)
+  const [saveVice,{loading,error}]=useMutation(SAVE_VICE)
 
   if (loading) return 'Saving. . .'
   if (error) return `Error occured ${error.message}`
 
-  const handleSaveWine = (e) => {
+  const handleSaveVice = (e) => {
     // console.log(e.currentTarget.value)
     let id = e.currentTarget.value
-    // console.log({id})
-       saveWine({variables:{vice_id:id, vice_type: 'Wine'}})
+    console.log({id})
+       saveVice({variables:{vice_id:id, vice_type: 'Wine'}})
        setSavedViceIDs([...savedViceIDs, id])
        
 
@@ -61,7 +61,7 @@ const filteredWines = wineList?.filter(wine => {
   return(wine.name.toLowerCase().includes(searchString) || wine.description.toLowerCase().includes(searchString) || wine.year.toString().includes(searchString) || wine.type.toLowerCase().includes(searchString));
 })
 
-console.log(filteredWines)
+// console.log(filteredWines)
 let tagColor
   const wineCards = search ? (filteredWines.map((wine,index) => { 
       return (
@@ -75,7 +75,7 @@ let tagColor
                       />
                       <CardContent>
                         <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
-                          {wine.name}
+                          {wine._id} | {wine.name}
                         </Typography>
                         <Box style={{height:'125px', overflowY:'scroll'}}>
                         <Typography variant="body2" style={{color:'darkgrey'}} component="p">
@@ -85,7 +85,7 @@ let tagColor
                       </CardContent>
                     </CardActionArea>
                     <CardActions style={{boxShadow:'0px -10px 7px 0px rgba(0,0,0, .15)'}}>
-                      <Button value={wine._id} onClick={handleSaveWine} size="small" color="primary">
+                      <Button value={wine._id} onClick={handleSaveVice} size="small" color="primary">
                         Add to Vicebrary
                       </Button>
                     </CardActions>
@@ -109,7 +109,7 @@ let tagColor
                         />
                         <CardContent>
                           <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
-                            {wine.name}
+                            {wine._id} | {wine.name}
                           </Typography>
                           <Box style={{height:'100px', overflowY:'scroll'}}>
                           <Typography variant="body2" style={{color:'darkgrey'}} component="p">
@@ -119,7 +119,7 @@ let tagColor
                         </CardContent>
                       </CardActionArea>
                       <CardActions style={{boxShadow:'0px -10px 7px 0px rgba(0,0,0, .15)'}}>
-                        <Button value={wine._id}  onClick={handleSaveWine} size="small" color="primary">
+                        <Button value={wine._id}  onClick={handleSaveVice} size="small" color="primary">
                           Add to Vicebrary
                         </Button>
                       </CardActions>                        

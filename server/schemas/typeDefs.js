@@ -17,6 +17,7 @@ type Vice{
   _id:ID
   owner_id:ID
   item_id:ID
+  vice_id:ID
   name: String
    year: String
    country: String
