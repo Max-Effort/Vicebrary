@@ -75,7 +75,7 @@ let tagColor
                       />
                       <CardContent>
                         <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
-                          {wine._id} | {wine.name}
+                          {wine.name}
                         </Typography>
                         <Box style={{height:'125px', overflowY:'scroll'}}>
                         <Typography variant="body2" style={{color:'darkgrey'}} component="p">
@@ -109,7 +109,7 @@ let tagColor
                         />
                         <CardContent>
                           <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
-                            {wine._id} | {wine.name}
+                           {wine.name}
                           </Typography>
                           <Box style={{height:'100px', overflowY:'scroll'}}>
                           <Typography variant="body2" style={{color:'darkgrey'}} component="p">
