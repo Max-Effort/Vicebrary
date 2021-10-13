@@ -16,7 +16,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Stack from '@mui/material/Stack';
 import Auth from '../../../utils/auth'
 import {useState, useEffect} from 'react'
-import {useMutation,useLazyQuery, useQuery} from '@apollo/react-hooks';
+import {useMutation, useQuery} from '@apollo/react-hooks';
 import {REMOVE_ITEM, SAVE_NOTE} from '../../../utils/mutations';
 import {QUERY_ITEMS} from '../../../utils/queries'
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -47,19 +47,17 @@ const useStyles = makeStyles({
     
 export default function LibraryCards() {
     const [items, setItems] = useState([])
-    const { loading,error, data } = useQuery(QUERY_ITEMS);
+    const { loading,error, data, refetch } = useQuery(QUERY_ITEMS);
+    refetch()
     useEffect(() => {
       if (data) {
-        console.log(data.Items)
+        // console.log(data.Items)
         return setItems(data.Items)
       }
       if (loading) return <p>Loading. . .</p>;
       if (error) return <p>Something went wrong. . .</p>
-    })
-  //   const refreshItems = ()=>{
-  //   const [getItems] = useLazyQuery(QUERY_ITEMS)
-  // return getItems()
-  // }
+    },[data, loading, error])
+ 
     const classes = useStyles();
 
     //Note Dialog State
@@ -121,7 +119,7 @@ export default function LibraryCards() {
 
         try {
             const newNote = await saveNote({ variables: { item_id: item_id, content: content }, returnOriginal: false });
-            console.dir({ newNote })
+            // console.dir({ newNote })
             if (noteLoading) {
                 console.log(`Loading. . .`)
             }
@@ -170,9 +168,9 @@ export default function LibraryCards() {
 
     
     let freshItems = items.filter((item) => vicebraryIDs.includes(item.vice_id))
-console.table(freshItems)
-console.dir({items})
-console.log(vicebraryIDs)
+// console.table(freshItems)
+// console.dir({items})
+// console.log(vicebraryIDs)
     const itemCards = freshItems.map((item, index) => {                
       if (!vicebraryIDs) {
                     return <Card >

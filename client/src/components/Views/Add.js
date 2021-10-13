@@ -488,7 +488,7 @@ export default function Add({userData}) {
     const handleInput = (name, value) =>{
         setWineInfo({...wineInfo,[name]:value})
     }
-    console.log(wineInfo)
+    // console.log(wineInfo)
     const handleSubmit = async () =>{
         console.log(`Submission`)
     const token = Auth.loggedIn() ? Auth.getToken() : null 
@@ -499,7 +499,7 @@ export default function Add({userData}) {
 
     try{
       const newWine = await saveWine({variables:{...wineInfo}});
-      console.dir(newWine.data.saveWine)
+      // console.dir(newWine.data.saveWine)
       if(loading){
       console.log(`Loading. . .`)
       }

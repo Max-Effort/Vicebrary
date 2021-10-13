@@ -47,7 +47,7 @@ export default function SearchGrid({search}) {
   const handleSaveVice = (e) => {
     // console.log(e.currentTarget.value)
     let id = e.currentTarget.value
-    console.log({id})
+    // console.log({id})
        saveVice({variables:{vice_id:id, vice_type: 'Wine'}})
        setSavedViceIDs([...savedViceIDs, id])
        
@@ -60,9 +60,6 @@ const filteredWines = wineList?.filter(wine => {
   // console.log(wine.name)
   return(wine.name.toLowerCase().includes(searchString) || wine.description.toLowerCase().includes(searchString) || wine.year.toString().includes(searchString) || wine.type.toLowerCase().includes(searchString));
 })
-
-// console.log(filteredWines)
-let tagColor
   const wineCards = search ? (filteredWines.map((wine,index) => { 
       return (
                 <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
@@ -74,7 +71,7 @@ let tagColor
                         title={wine.name}
                       />
                       <CardContent>
-                        <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
+                        <Typography gutterBottom style={{color:'#721400', width: '250px',  whiteSpace: 'nowrap',  overflow: 'hidden', textOverflow: 'ellipsis'}} variant="h5" component="h3">
                           {wine.name}
                         </Typography>
                         <Box style={{height:'125px', overflowY:'scroll'}}>
@@ -108,7 +105,7 @@ let tagColor
                           title={wine.name}
                         />
                         <CardContent>
-                          <Typography gutterBottom style={{color:'burgundy'}} variant="h5" component="h3">
+                          <Typography gutterBottom style={{color:'#721400', width: '250px',  whiteSpace: 'nowrap',  overflow: 'hidden', textOverflow: 'ellipsis'}} variant="h5" component="h3">
                            {wine.name}
                           </Typography>
                           <Box style={{height:'100px', overflowY:'scroll'}}>

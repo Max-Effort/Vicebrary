@@ -45,7 +45,7 @@ const resolvers = {
             const wine = await db.Wine.find({ _id: item.vice_id })
 
             const updatedItem = await db.Item.findOneAndUpdate({ _id: item._id }, { $set: { imgsrc: wine[0].imgsrc } })
-            console.log({ updatedItem })
+                // console.log({ updatedItem })
             return updatedItem
         },
         // Note: async(parent, args, context) => {
@@ -55,7 +55,7 @@ const resolvers = {
         Items: async(parent, args, context) => {
             if (context.user) {
                 const itemsData = await db.Item.find({ owner_id: context.user._id }).populate({ path: 'vice', model: 'Vice' })
-                console.table(itemsData)
+                    // console.table(itemsData)
                 return itemsData;
             }
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
@@ -69,7 +69,7 @@ const resolvers = {
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
         Wine: async(parent, args, context) => {
-            console.log({ args })
+            // console.log({ args })
             const wineData = await db.Wine.findOne({ _id: args._id })
             return wineData
         },
@@ -90,7 +90,7 @@ const resolvers = {
             if (emailCheck) {
                 try {
                     const user = await db.User.findOne({ email });
-                    console.log({ user });
+                    // console.log({ user });
                     if (!user) {
                         throw new AuthenticationError('Incorrect credentials');
                     }
@@ -129,7 +129,7 @@ const resolvers = {
                 // console.log(`Update Vice \n item_ID: ${args.item_id} \n vice_ID ${args. vice_id} \n vice_type ${args. vice_type}`)
                 const savedVice = await db.Vice.findOne({ vice_id: args.vice_id });
                 const savedItem = await db.Item.findOne({ owner_id: context.user._id, vice_id: args.vice_id })
-                console.log(`\n Server resolver.js saveVice: ${savedVice}\n`)
+                    // console.log(`\n Server resolver.js saveVice: ${savedVice}\n`)
                 if (!savedVice) {
                     console.log(`${args.vice_id} does not exist making one.`)
                     let viceInfo
@@ -142,11 +142,11 @@ const resolvers = {
                         if (!savedItem) {
                             // add info to Item table in DB
                             const newItem = await db.Item.create({...args, owner_id: context.user._id })
-                            console.dir({ newItem })
+                                // console.dir({ newItem })
                                 // update User Items to include the id of the new item
                                 //Setting item_id from newly created item
                             viceInfo = {...data[0]._doc, vice_id: args.vice_id, item_id: newItem._id, owner_id: context.user._id }
-                            console.table(viceInfo)
+                                // console.table(viceInfo)
                         }
                     }
                     //Creating new Vice
@@ -162,16 +162,16 @@ const resolvers = {
         },
         // ! NOT SURE THIS MUTATION IS BEING USED ANYWHERE . . . DELETE IT?
         saveItem: async(parent, args, context) => {
-            console.log({ parent })
+            // console.log({ parent })
             if (context.user) {
                 // Check if user is adding a new item
                 const savedItem = await db.Item.findOne({ vice_id: args.vice_id })
                     // If not--v
-                console.dir({...args })
+                    // console.dir({...args })
                 if (!savedItem) {
                     // add info to Item table in DB
                     const newItem = await db.Item.create({...args, owner_id: context.user._id })
-                    console.dir({ newItem })
+                        // console.dir({ newItem })
                         // update User Items to include the id of the new item
                     await db.User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { items: newItem._id } })
                 }
@@ -185,7 +185,7 @@ const resolvers = {
             if (context.user) {
                 if (args) {
                     let wines = await db.Wine.find({})
-                    console.log('Args:\n', args.name, args.type, args.year)
+                        // console.log('Args:\n', args.name, args.type, args.year)
                     let yearAsNum = parseInt(args.year, 10)
                     let newWine = `${yearAsNum}${args.name}${args.type}`
                     let dbWine
@@ -195,7 +195,7 @@ const resolvers = {
 
                         })
                         // console.log(dbWine, newWine)
-                    console.log(dbWine == newWine)
+                        // console.log(dbWine == newWine)
                     if (dbWine == newWine) {
                         console.log(`${newWine} already exists`)
                         return false
@@ -243,11 +243,11 @@ const resolvers = {
         },
         saveNote: async(parent, args, context) => {
             if (context.user) {
-                console.dir({ args })
+                // console.dir({ args })
                 try {
-                    console.log(`Args.itemID: ${args._id}`)
+                    // console.log(`Args.itemID: ${args._id}`)
                     const targetItem = await db.Item.findOneAndUpdate({ _id: args.item_id }, { $set: { note: args.content } }, { returnOriginal: false })
-                    console.log('Item saved:', targetItem)
+                        // console.log('Item saved:', targetItem)
                     return targetItem
                 } catch (err) { throw err }
             }
@@ -260,8 +260,8 @@ const resolvers = {
                     const item = await db.Item.findOne({ vice_id: args.vice_id })
                     console.log('Removing Item ID', item._id)
                     const user = await db.User.findOneAndUpdate({ _id: context.user._id }, { $pull: { items: item._id }, new: true })
-                    console.log(`Removing ${item._id} from ${user.username}'s items list.`)
-                    console.log(`${user.username}'s items \n ${user}`)
+                        // console.log(`Removing ${item._id} from ${user.username}'s items list.`)
+                        // console.log(`${user.username}'s items \n ${user}`)
                     await db.Item.deleteOne({ owner_id: context.user._id, vice_id: args.vice_id })
                     await db.Vice.deleteOne({ item_id: item._id })
                     return { message: 'Item removed' }

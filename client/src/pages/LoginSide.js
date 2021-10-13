@@ -72,7 +72,7 @@ export default function SignInSide() {
   const classes = useStyles();
 
   if (Auth.loggedIn()) {
-    console.log('is logged in: ' + Auth.loggedIn())
+    // console.log('is logged in: ' + Auth.loggedIn())
     return <Redirect to='/'></Redirect>
   }
 
@@ -88,7 +88,7 @@ export default function SignInSide() {
       const { data } = await loginUser({
         variables: { ...userFormData }
       })
-      console.dir({ data });
+      // console.dir({ data });
 
       Auth.login(data.login.token)
 

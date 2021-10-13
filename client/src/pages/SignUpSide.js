@@ -69,7 +69,7 @@ export default function SignInSide() {
   const[addUser, {error}] = useMutation(ADD_USER);
 
   if (Auth.loggedIn()){
-    console.log('is logged in: '+ Auth.loggedIn())
+    // console.log('is logged in: '+ Auth.loggedIn())
     return   <Redirect to='/'></Redirect>
   }
 
@@ -85,7 +85,7 @@ export default function SignInSide() {
       const { data } = await addUser({
         variables: { ...userFormData}
       })
-      console.dir({data});
+      // console.dir({data});
 
       Auth.login(data.addUser.token)
 
@@ -93,7 +93,7 @@ export default function SignInSide() {
       console.error(e);
     }
     if (Auth.loggedIn()){
-      console.log('is logged in: '+ Auth.loggedIn())
+      // console.log('is logged in: '+ Auth.loggedIn())
       return   <Redirect to='/'></Redirect>
     }
     setUserFormData({

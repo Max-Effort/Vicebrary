@@ -1,11 +1,9 @@
 import React from 'react'
 import WelcomeCard from "./components/WelcomeCard"
-import { localSavedViceIDs,getSavedViceIDs } from '../../utils/localStorage'
-// import {useEffect} from 'react'
 
 function Home({userData}) {   
     // let dbItemIDs = getSavedViceIDs()
-    console.dir(userData)
+    // console.dir(userData)
 //     console.table(dbItemIDs)
 // const {items} = userData
 // if (items){

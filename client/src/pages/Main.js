@@ -13,7 +13,7 @@ export default function Main() {
       const [page, setPage] = useState('home');
 
     const handleChange = (event, newPage) => {
-        console.log({ newPage });
+        // console.log({ newPage });
         setPage(newPage);
     };
 
@@ -29,8 +29,7 @@ export default function Main() {
         <View page={page}/> 
         <Footer page={page}
         setPage={setPage}
-        handleChange={handleChange}
-        /> 
+        handleChange={handleChange}/> 
     </div>
     )
 }

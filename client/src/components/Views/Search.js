@@ -1,16 +1,16 @@
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SearchGrid from './components/SearchGrid';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
-import { QUERY_WINES } from '../../utils/queries';
-import {getSavedViceIDs, localSavedViceIDs} from '../../utils/localStorage'
-import { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import {SAVE_VICE} from '../../utils/mutations'
+// import { QUERY_WINES } from '../../utils/queries';
+// import {getSavedViceIDs, localSavedViceIDs} from '../../utils/localStorage'
+import { useState } from 'react';
+// import { useQuery, useMutation } from '@apollo/react-hooks';
+// import {SAVE_VICE} from '../../utils/mutations'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search({ userData }) {
   const classes = useStyles();
- const [searchInput, setSearchInput] = useState('')
  const [search,setSearch] = useState('')
 
  const handleInputChange = (e) =>{
@@ -50,8 +49,8 @@ export default function Search({ userData }) {
 //    setSearch(searchInput)
 //  }
 
- console.log(`FILTER: ${search}`)
- useEffect(() => {console.log(searchInput)})
+//  console.log(`FILTER: ${search}`)
+//  useEffect(() => {console.log(searchInput)})
 
   return (
     <div className="renderSearch" style={{ width: '100%' }}>
