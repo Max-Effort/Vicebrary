@@ -83,6 +83,17 @@ export const QUERY_ITEMS = gql `
 }
 `;
 
+export const QUERY_USER_ITEMS = gql `
+query UserItems{
+  UserItems{
+    items{
+      vice_id
+    }
+  }
+
+}
+`;
+
 export const QUERY_NOTE = gql `
 query getNote($_id:ID){
   Item(_id:$_id){

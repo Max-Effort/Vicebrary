@@ -17,8 +17,8 @@ import Stack from '@mui/material/Stack';
 import Auth from '../../../utils/auth'
 import {useState, useEffect} from 'react'
 import {useMutation, useQuery} from '@apollo/react-hooks';
-import {REMOVE_ITEM, SAVE_NOTE} from '../../../utils/mutations';
 import {QUERY_ITEMS} from '../../../utils/queries'
+import {REMOVE_ITEM, SAVE_NOTE} from '../../../utils/mutations';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
     
 export default function LibraryCards() {
     const [items, setItems] = useState([])
-    const { loading,error, data, refetch } = useQuery(QUERY_ITEMS);
+    const { loading, error, data, refetch } = useQuery(QUERY_ITEMS);
     refetch()
     useEffect(() => {
       if (data) {
@@ -154,24 +154,32 @@ export default function LibraryCards() {
                 throw new Error(`So, that shit didn't work`)
             }
             setVicebraryIDs(updatedViceIdArray)
+            refetch()
             return updatedViceIdArray
         } catch (err) {
             throw err
         }
-        // refreshItems()
 
     }
+    let itemIDSet = new Set();
+    items.forEach(item => itemIDSet.add(item.vice_id) )
     useEffect(() => {
+      // console.log(`ITEM ID SET: ${itemIDSet.values()}`)
+      for (let setItems of itemIDSet){
+  
+        setVicebraryIDs(vicebraryIDs.concat(setItems))
+      }
+      console.log(vicebraryIDs)
         localSavedViceIDs(vicebraryIDs)
-    })
+    },[])
 
 
     
-    let freshItems = items.filter((item) => vicebraryIDs.includes(item.vice_id))
+    // let freshItems = items.filter((item) => vicebraryIDs.includes(item.vice_id))
 // console.table(freshItems)
 // console.dir({items})
 // console.log(vicebraryIDs)
-    const itemCards = freshItems.map((item, index) => {                
+    const itemCards = items.map((item, index) => {                
       if (!vicebraryIDs) {
                     return <Card >
                               <span>

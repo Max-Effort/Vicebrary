@@ -10,7 +10,6 @@ type Wine{
    type: String
    description: String
    imgsrc: String
-
 }
 
 type Vice{
@@ -35,12 +34,11 @@ type Vice{
    note: String
  }
 
-# type Note{
-#    _id: String
-#    owner_id: String
-#    item_id: String
-#    content: String
-# }
+type userItems{
+  items:[Item] 
+}
+
+
 
 #  type Library{
 #    _id: ID
@@ -73,12 +71,13 @@ type Auth {
 type Query {
     Users: [User]
     Self:Self
+    UserItems: userItems
     User(username: String!): User
     # Library(owner_id: String): Library
     Item(_id: ID): Item
+    Items:[Item]
     Vice(item_id: ID):Vice
     Vices:[Vice]
-    Items:[Item]
     Wines: [Wine]
     Wine(_id:ID):Wine
     }

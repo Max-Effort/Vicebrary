@@ -60,6 +60,14 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In. Go\'on Git!!')
         },
+        UserItems: async(parent, args, context) => {
+            if (context.user) {
+                const userItems = await db.User.findOne({ _id: context.user._id }).populate('items')
+                console.log(userItems)
+                return userItems
+            }
+            throw new AuthenticationError('Not Logged In. Go\'on Git!!')
+        },
         Vices: async(parent, args, context) => {
             if (context.user) {
                 let viceData = await db.Vice.find({})
